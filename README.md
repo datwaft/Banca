@@ -4,6 +4,16 @@
 - David Guevara Sánchez
 - Mario Arguello Borge
 
+## FAQ
+
+### La página web se ve pocha, ¿cómo lo arreglo? (netbeans)
+
+1. Dale clic derecho al servidor y dale a _Properties_.
+2. Ve a _Run_
+3. Cambia _Browser_ a Google Chrome.
+
+Esto sucede porque Internet Explorer no soporta muy bien _FlexBox_.
+
 ## Comandos para instalar Maven
 
 ### Windows
