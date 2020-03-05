@@ -5,7 +5,7 @@
   <artifactId>banca</artifactId>
   <packaging>war</packaging>
   <version>FINAL</version>
-  <name>banca Maven Webapp</name>
+  <name>banca</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
