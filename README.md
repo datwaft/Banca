@@ -14,6 +14,8 @@
 
 Esto sucede porque Internet Explorer no soporta muy bien _FlexBox_.
 
+![Annotation 2020-03-04 212000](https://user-images.githubusercontent.com/37723586/75944850-5426ff00-5e5e-11ea-9fbd-ff6895c9bbf6.png)
+
 ## Comandos para instalar Maven
 
 ### Windows
