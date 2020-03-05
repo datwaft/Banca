@@ -32,7 +32,7 @@ sudo apt-get install maven
 
 ### Generar el proyecto
 ```bash
-mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId={maven-template} -DinteractiveMode=false
+mvn archetype:generate -DgroupId=banca -DartifactId=banca -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 ```
 
 ### Actualizar los plugins
