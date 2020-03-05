@@ -49,6 +49,29 @@ li a:hover {
   color: black;
 }
 
+
+li a#selected {
+  background-color: yellow;
+  color: black;
+}
+
+.form {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.form table {
+  border: 5px solid darkgray;
+  background-color: white;
+  padding: 5px;
+}
+
+.form table tr td {
+  padding: 5px;
+}
+
 .banner {
   background-color: black;
   color: yellow;
@@ -57,6 +80,12 @@ li a:hover {
 
 .body {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../resources/img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;  
 }
 
 .title {
