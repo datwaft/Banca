@@ -1,7 +1,8 @@
-<html>
+﻿<html lang="es">
   <head>
+	<meta charset="utf-8">
     <title>Sistema del Banco XYZ</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
   </head>
   <body>
     <div class="banner title"><p>Banco XYZ</p></div>
