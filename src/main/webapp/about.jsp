@@ -1,14 +1,14 @@
 <html>
   <head>
     <title>Sistema del Banco XYZ</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
     <div class="banner title"><p>Banco XYZ</p></div>
      <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" id="selected">About</a></li>
-      <li><a href="login.html">Log In</a></li>
+      <li><a href="index.jsp">Home</a></li>
+      <li><a href="about.jsp" id="selected">About</a></li>
+      <li><a href="login.jsp">Log In</a></li>
     </ul>
     <div class="body">
       <p>
