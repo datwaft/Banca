@@ -42,3 +42,4 @@ nb-configuration.xml
 # IntelliJ
 .idea/
 banca.iml
+.factorypath
