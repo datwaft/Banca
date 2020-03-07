@@ -28,9 +28,9 @@ public class Account implements Serializable
   @Column(name = "dailylimit")
   private double dailylimit;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-  private Collection<Links> linksCollection;
+  private Collection<Link> linkCollection;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "linkedAccount")
-  private Collection<Links> linksCollection1;
+  private Collection<Link> linkCollection1;
   @OneToMany(mappedBy = "origin")
   private Collection<Movement> movementCollection;
   @OneToMany(mappedBy = "destination")
@@ -88,24 +88,24 @@ public class Account implements Serializable
     this.dailylimit = dailylimit;
   }
 
-  public Collection<Links> getLinksCollection()
+  public Collection<Link> getLinkCollection()
   {
-    return linksCollection;
+    return linkCollection;
   }
 
-  public void setLinksCollection(Collection<Links> linksCollection)
+  public void setLinkCollection(Collection<Link> linkCollection)
   {
-    this.linksCollection = linksCollection;
+    this.linkCollection = linkCollection;
   }
 
-  public Collection<Links> getLinksCollection1()
+  public Collection<Link> getLinkCollection1()
   {
-    return linksCollection1;
+    return linkCollection1;
   }
 
-  public void setLinksCollection1(Collection<Links> linksCollection1)
+  public void setLinkCollection1(Collection<Link> linkCollection1)
   {
-    this.linksCollection1 = linksCollection1;
+    this.linkCollection1 = linkCollection1;
   }
 
   public Collection<Movement> getMovementCollection()

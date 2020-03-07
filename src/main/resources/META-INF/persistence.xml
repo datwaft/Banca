@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="bank_bank_war_FINALPU" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="BANK" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>bank.logic.Account</class>
     <class>bank.logic.User</class>
     <class>bank.logic.Movement</class>
     <class>bank.logic.Currency</class>
     <class>bank.logic.Links</class>
+    <class>bank.logic.Link</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bank?useTimezone=true&amp;serverTimezone=UTC&amp;user=root&amp;password=losiram01&amp;allowPublicKeyRetrieval=true&amp;useSSL=false"/>

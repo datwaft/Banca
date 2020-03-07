@@ -4,13 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "links")
+@Table(name = "link")
 @NamedQueries(
 {
-  @NamedQuery(name = "Links.findAll", query = "SELECT l FROM Links l"),
-  @NamedQuery(name = "Links.findById", query = "SELECT l FROM Links l WHERE l.id = :id")
+  @NamedQuery(name = "Link.findAll", query = "SELECT l FROM Link l"),
+  @NamedQuery(name = "Link.findById", query = "SELECT l FROM Link l WHERE l.id = :id")
 })
-public class Links implements Serializable
+public class Link implements Serializable
 {
   private static final long serialVersionUID = 1L;
   @Id
@@ -25,11 +25,11 @@ public class Links implements Serializable
   @ManyToOne(optional = false)
   private Account linkedAccount;
 
-  public Links()
+  public Link()
   {
   }
 
-  public Links(Integer id)
+  public Link(Integer id)
   {
     this.id = id;
   }
@@ -76,11 +76,11 @@ public class Links implements Serializable
   public boolean equals(Object object)
   {
     // TODO: Warning - this method won't work in the case the id fields are not set
-    if (!(object instanceof Links))
+    if (!(object instanceof Link))
     {
       return false;
     }
-    Links other = (Links) object;
+    Link other = (Link) object;
     if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
     {
       return false;
@@ -91,7 +91,7 @@ public class Links implements Serializable
   @Override
   public String toString()
   {
-    return "bank.logic.Links[ id=" + id + " ]";
+    return "bank.logic.Link[ id=" + id + " ]";
   }
 
 }

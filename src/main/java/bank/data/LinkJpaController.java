@@ -7,13 +7,13 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import bank.logic.Account;
-import bank.logic.Links;
+import bank.logic.Link;
 import java.util.List;
 import javax.persistence.*;
 
-public class LinksJpaController implements Serializable
+public class LinkJpaController implements Serializable
 {
-  public LinksJpaController(EntityManagerFactory emf)
+  public LinkJpaController(EntityManagerFactory emf)
   {
     this.emf = emf;
   }
@@ -24,34 +24,34 @@ public class LinksJpaController implements Serializable
     return emf.createEntityManager();
   }
 
-  public void create(Links links)
+  public void create(Link link)
   {
     EntityManager em = null;
     try
     {
       em = getEntityManager();
       em.getTransaction().begin();
-      Account owner = links.getOwner();
+      Account owner = link.getOwner();
       if (owner != null)
       {
         owner = em.getReference(owner.getClass(), owner.getId());
-        links.setOwner(owner);
+        link.setOwner(owner);
       }
-      Account linkedAccount = links.getLinkedAccount();
+      Account linkedAccount = link.getLinkedAccount();
       if (linkedAccount != null)
       {
         linkedAccount = em.getReference(linkedAccount.getClass(), linkedAccount.getId());
-        links.setLinkedAccount(linkedAccount);
+        link.setLinkedAccount(linkedAccount);
       }
-      em.persist(links);
+      em.persist(link);
       if (owner != null)
       {
-        owner.getLinksCollection().add(links);
+        owner.getLinkCollection().add(link);
         owner = em.merge(owner);
       }
       if (linkedAccount != null)
       {
-        linkedAccount.getLinksCollection().add(links);
+        linkedAccount.getLinkCollection().add(link);
         linkedAccount = em.merge(linkedAccount);
       }
       em.getTransaction().commit();
@@ -65,47 +65,47 @@ public class LinksJpaController implements Serializable
     }
   }
 
-  public void edit(Links links) throws NonexistentEntityException, Exception
+  public void edit(Link link) throws NonexistentEntityException, Exception
   {
     EntityManager em = null;
     try
     {
       em = getEntityManager();
       em.getTransaction().begin();
-      Links persistentLinks = em.find(Links.class, links.getId());
-      Account ownerOld = persistentLinks.getOwner();
-      Account ownerNew = links.getOwner();
-      Account linkedAccountOld = persistentLinks.getLinkedAccount();
-      Account linkedAccountNew = links.getLinkedAccount();
+      Link persistentLink = em.find(Link.class, link.getId());
+      Account ownerOld = persistentLink.getOwner();
+      Account ownerNew = link.getOwner();
+      Account linkedAccountOld = persistentLink.getLinkedAccount();
+      Account linkedAccountNew = link.getLinkedAccount();
       if (ownerNew != null)
       {
         ownerNew = em.getReference(ownerNew.getClass(), ownerNew.getId());
-        links.setOwner(ownerNew);
+        link.setOwner(ownerNew);
       }
       if (linkedAccountNew != null)
       {
         linkedAccountNew = em.getReference(linkedAccountNew.getClass(), linkedAccountNew.getId());
-        links.setLinkedAccount(linkedAccountNew);
+        link.setLinkedAccount(linkedAccountNew);
       }
-      links = em.merge(links);
+      link = em.merge(link);
       if (ownerOld != null && !ownerOld.equals(ownerNew))
       {
-        ownerOld.getLinksCollection().remove(links);
+        ownerOld.getLinkCollection().remove(link);
         ownerOld = em.merge(ownerOld);
       }
       if (ownerNew != null && !ownerNew.equals(ownerOld))
       {
-        ownerNew.getLinksCollection().add(links);
+        ownerNew.getLinkCollection().add(link);
         ownerNew = em.merge(ownerNew);
       }
       if (linkedAccountOld != null && !linkedAccountOld.equals(linkedAccountNew))
       {
-        linkedAccountOld.getLinksCollection().remove(links);
+        linkedAccountOld.getLinkCollection().remove(link);
         linkedAccountOld = em.merge(linkedAccountOld);
       }
       if (linkedAccountNew != null && !linkedAccountNew.equals(linkedAccountOld))
       {
-        linkedAccountNew.getLinksCollection().add(links);
+        linkedAccountNew.getLinkCollection().add(link);
         linkedAccountNew = em.merge(linkedAccountNew);
       }
       em.getTransaction().commit();
@@ -115,10 +115,10 @@ public class LinksJpaController implements Serializable
       String msg = ex.getLocalizedMessage();
       if (msg == null || msg.length() == 0)
       {
-        Integer id = links.getId();
-        if (findLinks(id) == null)
+        Integer id = link.getId();
+        if (findLink(id) == null)
         {
-          throw new NonexistentEntityException("The links with id " + id + " no longer exists.");
+          throw new NonexistentEntityException("The link with id " + id + " no longer exists.");
         }
       }
       throw ex;
@@ -139,29 +139,29 @@ public class LinksJpaController implements Serializable
     {
       em = getEntityManager();
       em.getTransaction().begin();
-      Links links;
+      Link link;
       try
       {
-        links = em.getReference(Links.class, id);
-        links.getId();
+        link = em.getReference(Link.class, id);
+        link.getId();
       }
       catch (EntityNotFoundException enfe)
       {
-        throw new NonexistentEntityException("The links with id " + id + " no longer exists.", enfe);
+        throw new NonexistentEntityException("The link with id " + id + " no longer exists.", enfe);
       }
-      Account owner = links.getOwner();
+      Account owner = link.getOwner();
       if (owner != null)
       {
-        owner.getLinksCollection().remove(links);
+        owner.getLinkCollection().remove(link);
         owner = em.merge(owner);
       }
-      Account linkedAccount = links.getLinkedAccount();
+      Account linkedAccount = link.getLinkedAccount();
       if (linkedAccount != null)
       {
-        linkedAccount.getLinksCollection().remove(links);
+        linkedAccount.getLinkCollection().remove(link);
         linkedAccount = em.merge(linkedAccount);
       }
-      em.remove(links);
+      em.remove(link);
       em.getTransaction().commit();
     }
     finally
@@ -173,23 +173,23 @@ public class LinksJpaController implements Serializable
     }
   }
 
-  public List<Links> findLinksEntities()
+  public List<Link> findLinkEntities()
   {
-    return findLinksEntities(true, -1, -1);
+    return findLinkEntities(true, -1, -1);
   }
 
-  public List<Links> findLinksEntities(int maxResults, int firstResult)
+  public List<Link> findLinkEntities(int maxResults, int firstResult)
   {
-    return findLinksEntities(false, maxResults, firstResult);
+    return findLinkEntities(false, maxResults, firstResult);
   }
 
-  private List<Links> findLinksEntities(boolean all, int maxResults, int firstResult)
+  private List<Link> findLinkEntities(boolean all, int maxResults, int firstResult)
   {
     EntityManager em = getEntityManager();
     try
     {
       CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-      cq.select(cq.from(Links.class));
+      cq.select(cq.from(Link.class));
       Query q = em.createQuery(cq);
       if (!all)
       {
@@ -204,12 +204,12 @@ public class LinksJpaController implements Serializable
     }
   }
 
-  public Links findLinks(Integer id)
+  public Link findLink(Integer id)
   {
     EntityManager em = getEntityManager();
     try
     {
-      return em.find(Links.class, id);
+      return em.find(Link.class, id);
     }
     finally
     {
@@ -217,13 +217,13 @@ public class LinksJpaController implements Serializable
     }
   }
 
-  public int getLinksCount()
+  public int getLinkCount()
   {
     EntityManager em = getEntityManager();
     try
     {
       CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-      Root<Links> rt = cq.from(Links.class);
+      Root<Link> rt = cq.from(Link.class);
       cq.select(em.getCriteriaBuilder().count(rt));
       Query q = em.createQuery(cq);
       return ((Long) q.getSingleResult()).intValue();

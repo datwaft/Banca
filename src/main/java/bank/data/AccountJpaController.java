@@ -29,13 +29,13 @@ public class AccountJpaController implements Serializable
 
   public void create(Account account)
   {
-    if (account.getLinksCollection() == null)
+    if (account.getLinkCollection() == null)
     {
-      account.setLinksCollection(new ArrayList<Links>());
+      account.setLinkCollection(new ArrayList<Link>());
     }
-    if (account.getLinksCollection1() == null)
+    if (account.getLinkCollection1() == null)
     {
-      account.setLinksCollection1(new ArrayList<Links>());
+      account.setLinkCollection1(new ArrayList<Link>());
     }
     if (account.getMovementCollection() == null)
     {
@@ -62,20 +62,20 @@ public class AccountJpaController implements Serializable
         owner = em.getReference(owner.getClass(), owner.getId());
         account.setOwner(owner);
       }
-      Collection<Links> attachedLinksCollection = new ArrayList<Links>();
-      for (Links linksCollectionLinksToAttach : account.getLinksCollection())
+      Collection<Link> attachedLinkCollection = new ArrayList<Link>();
+      for (Link linkCollectionLinkToAttach : account.getLinkCollection())
       {
-        linksCollectionLinksToAttach = em.getReference(linksCollectionLinksToAttach.getClass(), linksCollectionLinksToAttach.getId());
-        attachedLinksCollection.add(linksCollectionLinksToAttach);
+        linkCollectionLinkToAttach = em.getReference(linkCollectionLinkToAttach.getClass(), linkCollectionLinkToAttach.getId());
+        attachedLinkCollection.add(linkCollectionLinkToAttach);
       }
-      account.setLinksCollection(attachedLinksCollection);
-      Collection<Links> attachedLinksCollection1 = new ArrayList<Links>();
-      for (Links linksCollection1LinksToAttach : account.getLinksCollection1())
+      account.setLinkCollection(attachedLinkCollection);
+      Collection<Link> attachedLinkCollection1 = new ArrayList<Link>();
+      for (Link linkCollection1LinkToAttach : account.getLinkCollection1())
       {
-        linksCollection1LinksToAttach = em.getReference(linksCollection1LinksToAttach.getClass(), linksCollection1LinksToAttach.getId());
-        attachedLinksCollection1.add(linksCollection1LinksToAttach);
+        linkCollection1LinkToAttach = em.getReference(linkCollection1LinkToAttach.getClass(), linkCollection1LinkToAttach.getId());
+        attachedLinkCollection1.add(linkCollection1LinkToAttach);
       }
-      account.setLinksCollection1(attachedLinksCollection1);
+      account.setLinkCollection1(attachedLinkCollection1);
       Collection<Movement> attachedMovementCollection = new ArrayList<Movement>();
       for (Movement movementCollectionMovementToAttach : account.getMovementCollection())
       {
@@ -101,26 +101,26 @@ public class AccountJpaController implements Serializable
         owner.getAccountCollection().add(account);
         owner = em.merge(owner);
       }
-      for (Links linksCollectionLinks : account.getLinksCollection())
+      for (Link linkCollectionLink : account.getLinkCollection())
       {
-        Account oldOwnerOfLinksCollectionLinks = linksCollectionLinks.getOwner();
-        linksCollectionLinks.setOwner(account);
-        linksCollectionLinks = em.merge(linksCollectionLinks);
-        if (oldOwnerOfLinksCollectionLinks != null)
+        Account oldOwnerOfLinkCollectionLink = linkCollectionLink.getOwner();
+        linkCollectionLink.setOwner(account);
+        linkCollectionLink = em.merge(linkCollectionLink);
+        if (oldOwnerOfLinkCollectionLink != null)
         {
-          oldOwnerOfLinksCollectionLinks.getLinksCollection().remove(linksCollectionLinks);
-          oldOwnerOfLinksCollectionLinks = em.merge(oldOwnerOfLinksCollectionLinks);
+          oldOwnerOfLinkCollectionLink.getLinkCollection().remove(linkCollectionLink);
+          oldOwnerOfLinkCollectionLink = em.merge(oldOwnerOfLinkCollectionLink);
         }
       }
-      for (Links linksCollection1Links : account.getLinksCollection1())
+      for (Link linkCollection1Link : account.getLinkCollection1())
       {
-        Account oldLinkedAccountOfLinksCollection1Links = linksCollection1Links.getLinkedAccount();
-        linksCollection1Links.setLinkedAccount(account);
-        linksCollection1Links = em.merge(linksCollection1Links);
-        if (oldLinkedAccountOfLinksCollection1Links != null)
+        Account oldLinkedAccountOfLinkCollection1Link = linkCollection1Link.getLinkedAccount();
+        linkCollection1Link.setLinkedAccount(account);
+        linkCollection1Link = em.merge(linkCollection1Link);
+        if (oldLinkedAccountOfLinkCollection1Link != null)
         {
-          oldLinkedAccountOfLinksCollection1Links.getLinksCollection1().remove(linksCollection1Links);
-          oldLinkedAccountOfLinksCollection1Links = em.merge(oldLinkedAccountOfLinksCollection1Links);
+          oldLinkedAccountOfLinkCollection1Link.getLinkCollection1().remove(linkCollection1Link);
+          oldLinkedAccountOfLinkCollection1Link = em.merge(oldLinkedAccountOfLinkCollection1Link);
         }
       }
       for (Movement movementCollectionMovement : account.getMovementCollection())
@@ -168,35 +168,35 @@ public class AccountJpaController implements Serializable
       Currency currencyNew = account.getCurrency();
       User ownerOld = persistentAccount.getOwner();
       User ownerNew = account.getOwner();
-      Collection<Links> linksCollectionOld = persistentAccount.getLinksCollection();
-      Collection<Links> linksCollectionNew = account.getLinksCollection();
-      Collection<Links> linksCollection1Old = persistentAccount.getLinksCollection1();
-      Collection<Links> linksCollection1New = account.getLinksCollection1();
+      Collection<Link> linkCollectionOld = persistentAccount.getLinkCollection();
+      Collection<Link> linkCollectionNew = account.getLinkCollection();
+      Collection<Link> linkCollection1Old = persistentAccount.getLinkCollection1();
+      Collection<Link> linkCollection1New = account.getLinkCollection1();
       Collection<Movement> movementCollectionOld = persistentAccount.getMovementCollection();
       Collection<Movement> movementCollectionNew = account.getMovementCollection();
       Collection<Movement> movementCollection1Old = persistentAccount.getMovementCollection1();
       Collection<Movement> movementCollection1New = account.getMovementCollection1();
       List<String> illegalOrphanMessages = null;
-      for (Links linksCollectionOldLinks : linksCollectionOld)
+      for (Link linkCollectionOldLink : linkCollectionOld)
       {
-        if (!linksCollectionNew.contains(linksCollectionOldLinks))
+        if (!linkCollectionNew.contains(linkCollectionOldLink))
         {
           if (illegalOrphanMessages == null)
           {
             illegalOrphanMessages = new ArrayList<String>();
           }
-          illegalOrphanMessages.add("You must retain Links " + linksCollectionOldLinks + " since its owner field is not nullable.");
+          illegalOrphanMessages.add("You must retain Link " + linkCollectionOldLink + " since its owner field is not nullable.");
         }
       }
-      for (Links linksCollection1OldLinks : linksCollection1Old)
+      for (Link linkCollection1OldLink : linkCollection1Old)
       {
-        if (!linksCollection1New.contains(linksCollection1OldLinks))
+        if (!linkCollection1New.contains(linkCollection1OldLink))
         {
           if (illegalOrphanMessages == null)
           {
             illegalOrphanMessages = new ArrayList<String>();
           }
-          illegalOrphanMessages.add("You must retain Links " + linksCollection1OldLinks + " since its linkedAccount field is not nullable.");
+          illegalOrphanMessages.add("You must retain Link " + linkCollection1OldLink + " since its linkedAccount field is not nullable.");
         }
       }
       if (illegalOrphanMessages != null)
@@ -213,22 +213,22 @@ public class AccountJpaController implements Serializable
         ownerNew = em.getReference(ownerNew.getClass(), ownerNew.getId());
         account.setOwner(ownerNew);
       }
-      Collection<Links> attachedLinksCollectionNew = new ArrayList<Links>();
-      for (Links linksCollectionNewLinksToAttach : linksCollectionNew)
+      Collection<Link> attachedLinkCollectionNew = new ArrayList<Link>();
+      for (Link linkCollectionNewLinkToAttach : linkCollectionNew)
       {
-        linksCollectionNewLinksToAttach = em.getReference(linksCollectionNewLinksToAttach.getClass(), linksCollectionNewLinksToAttach.getId());
-        attachedLinksCollectionNew.add(linksCollectionNewLinksToAttach);
+        linkCollectionNewLinkToAttach = em.getReference(linkCollectionNewLinkToAttach.getClass(), linkCollectionNewLinkToAttach.getId());
+        attachedLinkCollectionNew.add(linkCollectionNewLinkToAttach);
       }
-      linksCollectionNew = attachedLinksCollectionNew;
-      account.setLinksCollection(linksCollectionNew);
-      Collection<Links> attachedLinksCollection1New = new ArrayList<Links>();
-      for (Links linksCollection1NewLinksToAttach : linksCollection1New)
+      linkCollectionNew = attachedLinkCollectionNew;
+      account.setLinkCollection(linkCollectionNew);
+      Collection<Link> attachedLinkCollection1New = new ArrayList<Link>();
+      for (Link linkCollection1NewLinkToAttach : linkCollection1New)
       {
-        linksCollection1NewLinksToAttach = em.getReference(linksCollection1NewLinksToAttach.getClass(), linksCollection1NewLinksToAttach.getId());
-        attachedLinksCollection1New.add(linksCollection1NewLinksToAttach);
+        linkCollection1NewLinkToAttach = em.getReference(linkCollection1NewLinkToAttach.getClass(), linkCollection1NewLinkToAttach.getId());
+        attachedLinkCollection1New.add(linkCollection1NewLinkToAttach);
       }
-      linksCollection1New = attachedLinksCollection1New;
-      account.setLinksCollection1(linksCollection1New);
+      linkCollection1New = attachedLinkCollection1New;
+      account.setLinkCollection1(linkCollection1New);
       Collection<Movement> attachedMovementCollectionNew = new ArrayList<Movement>();
       for (Movement movementCollectionNewMovementToAttach : movementCollectionNew)
       {
@@ -266,31 +266,31 @@ public class AccountJpaController implements Serializable
         ownerNew.getAccountCollection().add(account);
         ownerNew = em.merge(ownerNew);
       }
-      for (Links linksCollectionNewLinks : linksCollectionNew)
+      for (Link linkCollectionNewLink : linkCollectionNew)
       {
-        if (!linksCollectionOld.contains(linksCollectionNewLinks))
+        if (!linkCollectionOld.contains(linkCollectionNewLink))
         {
-          Account oldOwnerOfLinksCollectionNewLinks = linksCollectionNewLinks.getOwner();
-          linksCollectionNewLinks.setOwner(account);
-          linksCollectionNewLinks = em.merge(linksCollectionNewLinks);
-          if (oldOwnerOfLinksCollectionNewLinks != null && !oldOwnerOfLinksCollectionNewLinks.equals(account))
+          Account oldOwnerOfLinkCollectionNewLink = linkCollectionNewLink.getOwner();
+          linkCollectionNewLink.setOwner(account);
+          linkCollectionNewLink = em.merge(linkCollectionNewLink);
+          if (oldOwnerOfLinkCollectionNewLink != null && !oldOwnerOfLinkCollectionNewLink.equals(account))
           {
-            oldOwnerOfLinksCollectionNewLinks.getLinksCollection().remove(linksCollectionNewLinks);
-            oldOwnerOfLinksCollectionNewLinks = em.merge(oldOwnerOfLinksCollectionNewLinks);
+            oldOwnerOfLinkCollectionNewLink.getLinkCollection().remove(linkCollectionNewLink);
+            oldOwnerOfLinkCollectionNewLink = em.merge(oldOwnerOfLinkCollectionNewLink);
           }
         }
       }
-      for (Links linksCollection1NewLinks : linksCollection1New)
+      for (Link linkCollection1NewLink : linkCollection1New)
       {
-        if (!linksCollection1Old.contains(linksCollection1NewLinks))
+        if (!linkCollection1Old.contains(linkCollection1NewLink))
         {
-          Account oldLinkedAccountOfLinksCollection1NewLinks = linksCollection1NewLinks.getLinkedAccount();
-          linksCollection1NewLinks.setLinkedAccount(account);
-          linksCollection1NewLinks = em.merge(linksCollection1NewLinks);
-          if (oldLinkedAccountOfLinksCollection1NewLinks != null && !oldLinkedAccountOfLinksCollection1NewLinks.equals(account))
+          Account oldLinkedAccountOfLinkCollection1NewLink = linkCollection1NewLink.getLinkedAccount();
+          linkCollection1NewLink.setLinkedAccount(account);
+          linkCollection1NewLink = em.merge(linkCollection1NewLink);
+          if (oldLinkedAccountOfLinkCollection1NewLink != null && !oldLinkedAccountOfLinkCollection1NewLink.equals(account))
           {
-            oldLinkedAccountOfLinksCollection1NewLinks.getLinksCollection1().remove(linksCollection1NewLinks);
-            oldLinkedAccountOfLinksCollection1NewLinks = em.merge(oldLinkedAccountOfLinksCollection1NewLinks);
+            oldLinkedAccountOfLinkCollection1NewLink.getLinkCollection1().remove(linkCollection1NewLink);
+            oldLinkedAccountOfLinkCollection1NewLink = em.merge(oldLinkedAccountOfLinkCollection1NewLink);
           }
         }
       }
@@ -380,23 +380,23 @@ public class AccountJpaController implements Serializable
         throw new NonexistentEntityException("The account with id " + id + " no longer exists.", enfe);
       }
       List<String> illegalOrphanMessages = null;
-      Collection<Links> linksCollectionOrphanCheck = account.getLinksCollection();
-      for (Links linksCollectionOrphanCheckLinks : linksCollectionOrphanCheck)
+      Collection<Link> linkCollectionOrphanCheck = account.getLinkCollection();
+      for (Link linkCollectionOrphanCheckLink : linkCollectionOrphanCheck)
       {
         if (illegalOrphanMessages == null)
         {
           illegalOrphanMessages = new ArrayList<String>();
         }
-        illegalOrphanMessages.add("This Account (" + account + ") cannot be destroyed since the Links " + linksCollectionOrphanCheckLinks + " in its linksCollection field has a non-nullable owner field.");
+        illegalOrphanMessages.add("This Account (" + account + ") cannot be destroyed since the Link " + linkCollectionOrphanCheckLink + " in its linkCollection field has a non-nullable owner field.");
       }
-      Collection<Links> linksCollection1OrphanCheck = account.getLinksCollection1();
-      for (Links linksCollection1OrphanCheckLinks : linksCollection1OrphanCheck)
+      Collection<Link> linkCollection1OrphanCheck = account.getLinkCollection1();
+      for (Link linkCollection1OrphanCheckLink : linkCollection1OrphanCheck)
       {
         if (illegalOrphanMessages == null)
         {
           illegalOrphanMessages = new ArrayList<String>();
         }
-        illegalOrphanMessages.add("This Account (" + account + ") cannot be destroyed since the Links " + linksCollection1OrphanCheckLinks + " in its linksCollection1 field has a non-nullable linkedAccount field.");
+        illegalOrphanMessages.add("This Account (" + account + ") cannot be destroyed since the Link " + linkCollection1OrphanCheckLink + " in its linkCollection1 field has a non-nullable linkedAccount field.");
       }
       if (illegalOrphanMessages != null)
       {
