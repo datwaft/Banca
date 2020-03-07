@@ -35,6 +35,7 @@ buildNumber.properties
 .settings/
 .project
 .classpath
+.factorypath
 
 # Netbeans
 nb-configuration.xml
@@ -42,4 +43,3 @@ nb-configuration.xml
 # IntelliJ
 .idea/
 banca.iml
-.factorypath
