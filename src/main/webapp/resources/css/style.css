@@ -82,7 +82,7 @@ li a#selected {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-image: url("/bank/resources/images/background.jpg");
+  background-image: url("../images/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;  
