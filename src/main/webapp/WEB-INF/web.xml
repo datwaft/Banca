@@ -5,8 +5,16 @@
         <servlet-name>server</servlet-name>
         <servlet-class>bank.presentation.server</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>NewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>server</servlet-name>
         <url-pattern>/server</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
     </servlet-mapping>
 </web-app>
