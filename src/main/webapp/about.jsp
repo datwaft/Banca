@@ -1,8 +1,11 @@
-﻿<html lang="es">
+﻿<html lang="es"> 
   <head>
-	<%@ include file="/Header.jsp" %>
+    <%@ include file="/head.jsp" %> 
+     <title>Banco Corporativo C.R</title>
   </head>
   
+  <body>
+    <%@ include file="/Header.jsp" %>
     <div class="body">
       <p>
         Esta es la página de about, una página de prueba, help me!.

@@ -1,6 +1,7 @@
 ﻿<html lang="es">
   <head>
-	
+    <%@ include file="/head.jsp" %> 
+    <title>Banco Corporativo C.R</title>
   </head>
   <body>
     <%@ include file="/Header.jsp" %>
