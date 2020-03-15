@@ -8,6 +8,6 @@
       </p>
     </div>
     <div class="body"></div>
-    <div class=" desc"><p>Creado por David Guevara y Mario Arguello. 2020 ©</p></div>
+    <div class="desc"><p>Creado por David Guevara y Mario Arguello. 2020 ©</p></div>
   </body>
 </html>
