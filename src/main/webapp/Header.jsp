@@ -1,10 +1,12 @@
 <header>
-  <div class="banner"></div>
-  <div class="bar_list">
+  <div class="banner">
+    <img src="/bank/resources/images/logo.png">
+  </div>
+  <div class="menubar">
     <ul>
-      <li><a href="index.jsp">Home</a></li>
-      <li><a href="about.jsp">About</a></li>
-      <li><a href="login/view">Log In</a></li>
+      <li><a href="/bank/index.jsp">Home</a></li>
+      <li><a href="/bank/about.jsp">About</a></li>
+      <li><a href="/bank/login/view">Log In</a></li>
     </ul>
   </div>
 </header>
