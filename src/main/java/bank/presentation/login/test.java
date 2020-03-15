@@ -3,7 +3,7 @@
  To change this template file, choose Tools | Templates
  and open the template in the editor.
  */
-package bank.presentation;
+package bank.presentation.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
  @author David
  */
-public class server extends HttpServlet
+public class test extends HttpServlet
 {
 
   /**
@@ -36,10 +36,10 @@ public class server extends HttpServlet
       out.println("<!DOCTYPE html>");
       out.println("<html>");
       out.println("<head>");
-      out.println("<title>Servlet server</title>");      
+      out.println("<title>Servlet test</title>");      
       out.println("</head>");
       out.println("<body>");
-      out.println("<h1>Servlet server at " + request.getContextPath() + "</h1>");
+      out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
       out.println("</body>");
       out.println("</html>");
     }
