@@ -1,1 +1,4 @@
-<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+<head>
+  <link rel="stylesheet" type="text/css" href="/bank/resources/css/style.css">
+  <title>Banco Corporativo C.R</title>
+</head>
