@@ -12,7 +12,6 @@ public class Controller extends HttpServlet
   {
     request.setAttribute("model", new Model());
     String url = "";
-    System.out.println(request.getServletPath());
     switch(request.getServletPath())
     {
       case "/login/view":
