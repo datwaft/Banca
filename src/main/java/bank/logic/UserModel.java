@@ -1,5 +1,7 @@
 package bank.logic;
 
+import java.util.Collection;
+
 import bank.data.UserDao;
 import bank.data.exceptions.IllegalOrphanException;
 import bank.data.exceptions.NonexistentEntityException;
@@ -26,6 +28,11 @@ public class UserModel
   public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException
   {
     dao.destroy(id);
+  }
+
+  public Collection<User> verifyUser(String id, String password)
+  {
+    return dao.verifyUser(id, password);
   }
   
   public static UserModel getInstance() 

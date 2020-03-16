@@ -8,5 +8,7 @@
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
         <url-pattern>/login/view</url-pattern>
+        <url-pattern>/login/login</url-pattern>
+        <url-pattern>/login/logout</url-pattern>
     </servlet-mapping>
 </web-app>
