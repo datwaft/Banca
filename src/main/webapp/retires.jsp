@@ -9,28 +9,49 @@
       </div>
       
       <div class="transfer_left">
-        <label>Numero de cuenta: </label>
-        <input type="text" placeholder="Numero de cuenta"><input type = "submit" value="verificar"><br><br>
-        <label>Cedula: </label>
-        <input type = "text" placeholder="Cedula" "><br>
-        <label>Nombre: </label>
-        <input type = "text" value="Namae" disabled="disabled" readonly="readonly"><br>
-        <label>Saldo a retirar:</label>
-        <input type = "text" placeholder="Cantidad"><br>
-        <input type = "submit" value="Retirar"><br>
+        <table class="register">
+          <tr>
+            <td><label>Numero de cuenta: </label></td>
+            <td><input type="text" placeholder="Numero de cuenta"></td>
+            <td><input type = "submit" value="verificar"></td>
+          </tr>
+          <tr>
+            <td><label>Cedula: </label></td>
+            <td><input type = "text" placeholder="Cedula" "></td>
+          </tr>
+          <tr>
+            <td><label>Nombre: </label></td>
+            <td><input type = "text" value="Namae" disabled="disabled" readonly="readonly"></td>
+          </tr>
+          <tr>
+            <td><label>Saldo a retirar:</label></td>
+            <td><input type = "text" placeholder="Cantidad"></td>
+            <td><input type = "submit" value="Retirar"></td>
+          </tr>
+        </table>
       </div>
       
       
       <div class="transfer_right">
-        <label>Numero de cuenta: </label>
-        <input type="text" placeholder="Numero de cuenta"><input type = "submit" value="verificar"><br>
-        <label>Cedula: </label>
-        <input type = "text" placeholder="Cedula" "><br>
-        <label>Nombre: </label>
-        <input type = "text" value="Namae" disabled="disabled" readonly="readonly"><br>
-        <label>Saldo a depositar:</label>
-        <input type = "text" placeholder="Cantidad"><br>
-        <input type = "submit" value="Depositar"><br>
+        <table class="register">
+          <tr>
+            <td><label>Numero de cuenta: </label></td>
+            <td><input type="text" placeholder="Numero de cuenta"><input type = "submit" value="verificar"></td>
+          </tr>
+          <tr>
+            <td><label>Cedula: </label></td>
+            <td><input type = "text" placeholder="Cedula" "></td>
+          </tr>
+          <tr>
+            <td><label>Nombre: </label></td>
+            <td><input type = "text" value="Namae" disabled="disabled" readonly="readonly"></td>
+          </tr>
+          <tr>
+            <td><label>Saldo a depositar:</label></td>
+            <td><input type = "text" placeholder="Cantidad"></td>
+            <td><input type = "submit" value="Depositar"></td>
+          </tr>
+        </table>
       </div>
     </div>
     
