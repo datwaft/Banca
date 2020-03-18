@@ -15,7 +15,7 @@
           <option value="Cuenta 2">Saab</option>
         </select><br>
         <label>Nombre: </label>
-        <input value="Namae" disabled="disabled" readonly="readonly"><br>
+        <input type = "text" value="Namae" disabled="disabled" readonly="readonly"><br>
         <label>Saldo a depositar:</label>
         <input type = "text" placeholder="Cantidad">
       </div>
@@ -28,12 +28,15 @@
           <option value="Cuenta 2">Saab</option>
         </select><br>
         <label>Numero de cuenta destinataria: </label>
-        <input placeholder="No. Cuenta"><br>
+        <input type = "text" placeholder="No. Cuenta"> <input type = "submit" value="verificar"><br>
         <label>Nombre del receptor: </label>
-        <input value="Namae" disabled="disabled" readonly="readonly"><br>
+        <input type = "text" value="Namae" disabled="disabled" readonly="readonly"><br>
         <label>Saldo a recibir:</label>
-        <input value="Namae" disabled="disabled" readonly="readonly">
+        <input type = "text" value="Namae" disabled="disabled" readonly="readonly">
       </div>
+    </div>
+    <div class="title">
+        <input type = "submit" value="Tansferir">
     </div>
     
     
