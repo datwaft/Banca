@@ -4,10 +4,10 @@
     <%@ include file="/header.jsp" %>
     <div class="body">
       <p>
-        Esta es la página de about, una página de prueba, help me!.
-        <br>
-        1: "${pageContext.servletContext.contextPath}".
-        2: "${pageContext.request.contextPath}".
+        Esta es la página de about, una página de prueba, help me!. <br>
+        1: "${pageContext.servletContext.contextPath}". <br>
+        2: "${pageContext.request.contextPath}". <br>
+        Java version: "<%out.print(System.getProperty("java.version"));%>" <br>
       </p>
     </div>
     <%@ include file="/footer.jsp" %>
