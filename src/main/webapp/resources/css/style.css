@@ -1,70 +1,61 @@
 body {
   background-image: url("../images/fondo_body2.jpg");
   background-size: cover;
+  background-attachment: fixed;  /*Fija la imagen de fondo por lo que no se desfigura en claso de necesitar un deslizador*/
   background-repeat: no-repeat;
   background-position: center center;  
   display: flex;
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
-  
 }
-
 img {
   max-width: 100%;
   max-height: 100%;
   padding-left: 10px;  
+   vertical-align: middle;
+  display: inline-block;
 }
-
 p {
   vertical-align: middle;
   display: inline-block;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 5px;
-  width: 100%;
-/*  background: rgb(0,191,255);  The Fallback 
-  background: rgba(0,191,255,0.5);*/
-}
-
-div ul{
-  background: rgba(0,191,255,0.5);
-}
-
-ul {
-  display: inline;
-  height: 30px;
-}
-
-li {
-  display: inline;
-  width: 100px;
-  flex-grow: 1;
-}
-
-li a {
-  color: yellow;
-  padding: 5px 21px;
+.nav li a{
+   background-color: rgba(0,191,255,0.5);
+  color:yellow;
   text-decoration: none;
-  text-align: center;
+  padding: 10px 15px;
+  display: block;
 }
 
-li a:hover {
-  background-color: yellow;
-  color: rgb(0,191,255);
+.nav > li {
+ 
+  float: left;
 }
 
-li a#selected {
+.nav li a:hover{
   background-color: yellow;
-  color: black;
-  margin-left: -1px;
+  color: blue;
+}
+
+.nav li ul{
+  display: none;
+  position: absolute;
+  min-width: 100px;
+}
+
+.nav li:hover > ul{
+  display: block;
+}
+ul, ol{
+  list-style:none;
+  margin: 0;
+  padding: 0;
 }
 
 .form {
-  display: flex;
-  flex-grow: 1;
+  display: flex;/*
+*/  flex-grow: 1;
   justify-content: center;
   align-items: center;
 }
@@ -88,7 +79,7 @@ li a#selected {
 
 .bar_list{
     width: 100%;
-    height: 23px;
+    height: 38px;
     background: rgb(0,191,255);
     background: rgba(0,191,255,0.5);
 }
@@ -120,12 +111,44 @@ div.banner{
   height: 35px;
 }
 
-
 div.banner p{
     font-family: "Arial Black", Gadget, sans-serif;
     font-size: x-large;  
 }
 
+#acc_table{
+    margin: 85px auto;
+    width: 800px;
+}
 
+.Acc_tables{
+    border-collapse: collapse; /*Quitar espacios entre los bordes*/
+    background-color: rgba(255,255,255,0.5);
+    text-align: left;
+    width: 100%;
+}
 
+.Acc_tables th,td{
+    padding: 10px;
+    border: solid 1px black;
+}
+
+table.Acc_tables thead{
+    
+    background-color: rgba(0,191,255);
+    border-bottom: solid 5px;
+    color: yellow;
+}
+
+.Acc_tables tr:nth-child(even){   /*nthchild es una forma de elegir ciertos atributodcomo "pares" "impares" en este caso
+                                  se usa para seleccionar los tr pares mediante el parametro even, otro ejemplo es el 
+                                  parametro odd que toma los pares incluyendo 0" */
+    background-color: rgba(0,191,255,0.5)
+}
+
+.Acc_tables tr:hover td{
+    background-color: rgba(255,255,0,0.5);
+    color:white;
+    
+}
 
