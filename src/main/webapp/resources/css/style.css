@@ -19,7 +19,7 @@ p {
   vertical-align: middle;
   display: inline-block;
 }
-
+/*Clase para la lista en forma de menu*/
 .nav li a{
    background-color: rgba(0,191,255,0.5);
   color:yellow;
@@ -52,7 +52,7 @@ ul, ol{
   margin: 0;
   padding: 0;
 }
-
+ /*termina */
 .form {
   display: flex;/*
 */  flex-grow: 1;
@@ -123,7 +123,7 @@ div.banner p{
 
 .Acc_tables{
     border-collapse: collapse; /*Quitar espacios entre los bordes*/
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(0,0,0,0.5); /*Fondo de la tabla*/
     text-align: left;
     width: 100%;
 }
@@ -131,11 +131,12 @@ div.banner p{
 .Acc_tables th,td{
     padding: 10px;
     border: solid 1px black;
+    color: yellow; /*letras de la tabla*/
 }
 
 table.Acc_tables thead{
     
-    background-color: rgba(0,191,255);
+    background-color: rgba(0,0,0,0.5);  /*titulo de la tabla*/
     border-bottom: solid 5px;
     color: yellow;
 }
@@ -143,7 +144,7 @@ table.Acc_tables thead{
 .Acc_tables tr:nth-child(even){   /*nthchild es una forma de elegir ciertos atributodcomo "pares" "impares" en este caso
                                   se usa para seleccionar los tr pares mediante el parametro even, otro ejemplo es el 
                                   parametro odd que toma los pares incluyendo 0" */
-    background-color: rgba(0,191,255,0.5)
+    background-color: rgba(0,191,255,0.5);
 }
 
 .Acc_tables tr:hover td{

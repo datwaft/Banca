@@ -6,7 +6,7 @@
   margin: 50px auto;
 }
 .title{
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.5); /*div de titulo en tranfer*/
   color:yellow;
   width: 100%;
   height: 25px;
@@ -18,7 +18,7 @@
 
 .transfer_right{
   padding: 5px 35px;
-  background: rgba(0,191,255,0.5);
+  background: rgba(0,0,0,0.5);
   color:yellow;
   width: 45%;
   height: 300px;
@@ -27,7 +27,7 @@
 }
 .transfer_left{
   padding: 5px 35px;
-  background: rgba(0,191,255,0.5);
+  background: rgba(0,0,0,0.5);
   color:yellow;
   width: 43%;
   height: 300px;
@@ -35,7 +35,7 @@
   float: left;
 }
 .transfer_left input{
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,191,255,0.5);
   border: none;
   outline: none;
   padding: 10px;
@@ -43,11 +43,19 @@
   margin-bottom: 20px;
 }
 .transfer_right input, select{
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,191,255,0.5);
   margin-bottom: 20px;
   border: none;
   padding: 10px;
   color: #FFF;
+}
+
+.transfer_left select{
+  background: rgba(0,191,255,0.5);
+}
+
+.transfer_right select{
+  background: rgba(0,191,255,0.5);
 }
 .principal label
 {
@@ -87,7 +95,7 @@
 }
   
 .register_left input[type="text"], select{
-  background: rgba(255,255,0,0.5);
+  background: rgba(255,255,0,0.5); /*rgba(0,191,255,0.5)*/
   border: none;
   outline: none;
   padding: 10px;
@@ -102,7 +110,7 @@
 /* para la tabla de registro*/
 
 .register{
-  color:yellow;
+  color: rgba(255,255,0,0.5);
 }
 
 .register tr td{

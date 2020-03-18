@@ -11,12 +11,13 @@
         
         <table class = "register">
           <tr>
-            <td><label>Nombre Completo: </label></td>
-            <td><input type="text" placeholder="Digite el nombre"><br></td>
-          </tr>
-          <tr>
             <td><label>Cedula:</label></td>
             <td><input type = "text" placeholder="Digite la cedula"><br></td>
+            <td><input type = "submit" value="Verificar" align="center"><td><br>
+          </tr>
+          <tr>
+            <td><label>Nombre Completo: </label></td>
+            <td><input type="text" placeholder="Digite el nombre"><br></td>
           </tr>
           <tr>
             <td><label>Telefono:</label></td>
