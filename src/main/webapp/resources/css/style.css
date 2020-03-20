@@ -53,20 +53,20 @@ ul, ol{
   padding: 0;
 }
  /*termina */
-.form {
+form {
   display: flex;/*
 */  flex-grow: 1;
   justify-content: center;
   align-items: center;
 }
 
-.form table {
+form table {
   border: 5px solid darkgray;
   background-color: white;
   padding: 5px;
 }
 
-.form table tr td {
+form table tr td {
   padding: 5px;
 }
 

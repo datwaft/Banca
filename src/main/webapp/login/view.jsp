@@ -1,22 +1,38 @@
-﻿<html lang="es">
+﻿<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="bank.presentation.login.Model"%>
+<%@page import="bank.presentation.login.Controller"%>
+
+<% Model model= (Model)request.getAttribute("model");%>
+<% Map<String,String> mistakes = (Map<String,String>)request.getAttribute("mistakes");%>
+<% Map<String,String[]> form = (mistakes == null) ? Controller.getForm(model) : request.getParameterMap();%>
+
+<html lang="es">
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
     <div class="body">
-      <div class="form">
+      <form name="form" action="${pageContext.request.contextPath}/login/login" method="post">
         <table>
           <tr>
             <th colspan="2">
-              Please, enter your information
+              Please, enter your login information
             </th>
           </tr>
           <tr>
             <td>username</td>
-            <td><input type="text"></td>
+            <td>
+              <input type="text" placeholder="User ID" name="id" value="<%=form.get("id")%>"
+                title="<%=Controller.title("id", mistakes)%>" class="<%=Controller.isErroneous("id", mistakes)%>">
+            </td>
           </tr>
           <tr>
             <td>password</td>
-            <td><input type="password"></td>
+            <td>
+              <input type="password" placeholder="User password" name="password"
+                value="<%=form.get("password")%>" title="<%=Controller.title("password", mistakes)%>"
+                class="<%=Controller.isErroneous("password", mistakes)%>">
+            </td>
           </tr>
           <tr>
             <th colspan="2">
@@ -24,8 +40,8 @@
             </th>
           </tr>
         </table>
-      </div>
+      </form>
     </div>
-    <div class=" desc"><p>Creado por David Guevara y Mario Arguello. 2020 ©</p></div>
+    <div class="desc"><p>Creado por David Guevara y Mario Arguello. 2020 ©</p></div>
   </body>
 </html>

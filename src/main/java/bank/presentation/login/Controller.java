@@ -16,6 +16,30 @@ import bank.logic.UserModel;
 
 public class Controller extends HttpServlet
 {
+  public static String isErroneous(String field, Map<String,String> mistakes)
+  {
+    if((mistakes != null) && (mistakes.get(field) != null))
+      return "is-invalid";
+    else
+      return "";
+  }
+
+  public static String title(String field, Map<String,String> mistakes)
+  {
+    if ((mistakes != null) && (mistakes.get(field) != null))
+      return mistakes.get(field);
+    else
+      return "";
+  }
+
+  public static Map<String,String[]> getForm(Model model)
+  {
+    Map<String,String[]> values = new HashMap<>();
+    values.put("id", new String[]{model.getCurrent().getId()});
+    values.put("password", new String[]{model.getCurrent().getPassword()});
+    return values;
+  }
+  
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
   {
     request.setAttribute("model", new Model());
