@@ -127,3 +127,60 @@
 {
   border-radius: 5px;
 }
+
+
+/*Movimientos*/
+
+.move_display
+{
+  margin: 85px auto;
+  width: 1000px;
+}
+
+#table_id{
+  width: 95px;
+}
+
+#table_description{
+  width: 200px;
+}
+
+#table_fecha{
+  width: 100px;
+}
+
+.move_table{
+    border-collapse: collapse; /*Quitar espacios entre los bordes*/
+    background-color: rgba(0,0,0,0.5); /*Fondo de la tabla*/
+    text-align: left;
+    width: 100%;
+   /*quitar esta wea*/ table-layout: fixed;
+}
+
+.move_table th,td{
+  word-wrap: break-word;
+    padding: 10px;
+    border: solid 1px black;
+    color: yellow; /*letras de la tabla*/
+}
+
+table.move_table thead{
+    
+    background-color: rgba(0,0,0,0.5);  /*titulo de la tabla*/
+    border-bottom: solid 5px;
+    color: yellow;
+}
+
+.move_table tr:nth-child(even){   /*nthchild es una forma de elegir ciertos atributodcomo "pares" "impares" en este caso
+                                  se usa para seleccionar los tr pares mediante el parametro even, otro ejemplo es el 
+                                  parametro odd que toma los pares incluyendo 0" */
+    background-color: rgba(0,191,255,0.5);
+}
+
+.move_table tr:hover td{
+    background-color: rgba(255,255,0,0.5);
+    color:white;
+    
+}
+
+/*se acaba la pagina de movimientos*/

@@ -119,6 +119,7 @@ div.banner p{
 #acc_table{
     margin: 85px auto;
     width: 800px;
+    
 }
 
 .Acc_tables{
@@ -126,6 +127,7 @@ div.banner p{
     background-color: rgba(0,0,0,0.5); /*Fondo de la tabla*/
     text-align: left;
     width: 100%;
+   
 }
 
 .Acc_tables th,td{

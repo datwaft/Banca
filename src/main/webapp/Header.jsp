@@ -11,6 +11,7 @@
           <li><a href="${pageContext.request.contextPath}/accounts.jsp">My accounts</a>
           <li><a href="${pageContext.request.contextPath}/transfers.jsp">Transfer</a></li>
           <li><a href="${pageContext.request.contextPath}/retires.jsp">Retire/Deposit</a></li>
+          <li><a href="${pageContext.request.contextPath}/movements.jsp">Account moves</a></li>
         </ul>
       </li>
       
