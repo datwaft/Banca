@@ -2,7 +2,7 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <div class="body">
+    <div>
       <p>
         Esta es la página de about, una página de prueba, help me!. <br>
         1: "${pageContext.servletContext.contextPath}". <br>

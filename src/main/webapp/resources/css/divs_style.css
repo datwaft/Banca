@@ -184,3 +184,45 @@ table.move_table thead{
 }
 
 /*se acaba la pagina de movimientos*/
+
+/*Linking*/
+
+.link_display
+{
+  padding: 0;
+  margin: 70px auto;
+  width: 500px;
+  height: 315px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.link_display .title{
+  width: 100%;
+  height: 20px;
+}
+
+.link_display table,td,tr{
+  padding: 10px;
+  border: none;
+}
+
+.link_display .container
+{
+  width: 100%;
+  height: 295px;
+}
+
+.container input[type="text"], select{
+  background: rgba(0,191,255,0.5);
+  margin-bottom: 20px;
+  border: none;
+  padding: 8px;
+  color: #FFF;
+  border-radius: 5px;
+  
+}
+
+.container select{
+  background: rgba(0,191,255,0.5);
+  border-radius: 5px;
+}

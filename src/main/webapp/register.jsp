@@ -4,34 +4,34 @@
     <%@ include file="/header.jsp" %>
     <div class="principal">
       <div class="title">
-        Registrar a un nuevo cliente
+        Register a new customer
       </div>
       
       <div class="register_left">
         
         <table class = "register">
           <tr>
-            <td><label>Cedula:</label></td>
+            <td><label>ID:</label></td>
             <td><input type = "text" placeholder="Digite la cedula"><br></td>
-            <td><input type = "submit" value="Verificar" align="center"><td><br>
+            <td><input type = "submit" value="Verify" align="center"><td><br>
           </tr>
           <tr>
-            <td><label>Nombre Completo: </label></td>
+            <td><label>Complete Name: </label></td>
             <td><input type="text" placeholder="Digite el nombre"><br></td>
           </tr>
           <tr>
-            <td><label>Telefono:</label></td>
+            <td><label>Telephone:</label></td>
             <td><input type = "text" placeholder="Digite el telefono"><br></td> 
           </tr>
           <tr>
-            <td><label>Moneda</label></td>
+            <td><label>Currency</label></td>
             <td><select id="coin">
                   <option value="USD">USD</option>
                   <option value="CRC">CRC</option>
                 </select></td><br>    
           </tr>
         </table>
-          <input type = "submit" value="Registrar"><br>
+          <input type = "submit" value="Register"><br>
         
         
       </div>

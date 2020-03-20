@@ -7,7 +7,7 @@
       <table class="Acc_tables">
           <thead>
           <tr>
-            <th>No.</th><th> Numero de cuenta</th><th>Saldo disponible</th>
+            <th>No.</th><th> Account number</th><th>Avaliable balance</th>
           </tr>
           </thead>
           
