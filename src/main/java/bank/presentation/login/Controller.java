@@ -99,7 +99,7 @@ public class Controller extends HttpServlet
         throw new Exception("Invalid password");
       session.setAttribute("user", match);
       String url = "/index.jsp";
-      // AquÃ­ es donde ponemos la URL dependiendo si es cajero o si es usuario o
+      // Aquí­ es donde ponemos la URL dependiendo si es cajero o si es usuario o
       return url;
     }
     catch(Exception ex)
