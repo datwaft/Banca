@@ -6,8 +6,8 @@
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="bank"/>
         <property name="User" value="root"/>
-        <property name="Password" value="losiram01"/>
-        <property name="URL" value="jdbc:mysql://localhost:3306/bank?useTimezone=true&amp;serverTimezone=UTC&amp;user=root&amp;password=losiram01&amp;allowPublicKeyRetrieval=true&amp;useSSL=false"/>
+        <property name="Password" value="root"/>
+        <property name="URL" value="jdbc:mysql://localhost:3306/bank?useTimezone=true&amp;serverTimezone=UTC&amp;user=root&amp;password=root&amp;allowPublicKeyRetrieval=true&amp;useSSL=false"/>
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/Bank" object-type="user" pool-name="mysql_bank_rootPool"/>
