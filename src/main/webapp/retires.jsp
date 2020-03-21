@@ -13,7 +13,7 @@
           <tr>
             <td><label>Numero de cuenta: </label></td>
             <td><input type="text" placeholder="Numero de cuenta"></td>
-            <td><input type = "submit" value="verificar"></td>
+            <td rowspan="2"><input type = "submit" value="verificar"></td>
           </tr>
           <tr>
             <td><label>Cedula: </label></td>
@@ -37,7 +37,7 @@
           <tr>
             <td><label>Numero de cuenta: </label></td>
             <td><input type="text" placeholder="Numero de cuenta"></td>
-            <td><input type = "submit" value="verificar"></td>
+            <td rowspan="2"><input type = "submit" value="verificar"></td>
           </tr>
           <tr>
             <td><label>Cedula: </label></td>
