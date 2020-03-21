@@ -9,12 +9,12 @@
     <class>bank.logic.Currency</class>
     <class>bank.logic.Links</class>
     <class>bank.logic.Link</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bank?useTimezone=true&amp;serverTimezone=UTC&amp;user=root&amp;password=root&amp;allowPublicKeyRetrieval=true&amp;useSSL=false"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="root"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
     </properties>
   </persistence-unit>
 </persistence>
