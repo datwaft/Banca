@@ -16,3 +16,5 @@ insert into `account` (`owner`, `currency`, `dailylimit`) values
 ('user2', 'USD', 10000),
 ('dual', 'EUR', 20000),
 ('dual', 'CRC', 2000000);
+
+select * from `user`;

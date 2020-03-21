@@ -2,9 +2,11 @@ package bank.logic;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "link")
+@XmlRootElement
 @NamedQueries(
 {
   @NamedQuery(name = "Link.findAll", query = "SELECT l FROM Link l"),

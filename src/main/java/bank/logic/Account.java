@@ -3,9 +3,12 @@ package bank.logic;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "account")
+@XmlRootElement
 @NamedQueries(
 {
   @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
@@ -88,6 +91,7 @@ public class Account implements Serializable
     this.dailylimit = dailylimit;
   }
 
+  @XmlTransient
   public Collection<Link> getLinkCollection()
   {
     return linkCollection;
@@ -98,6 +102,7 @@ public class Account implements Serializable
     this.linkCollection = linkCollection;
   }
 
+  @XmlTransient
   public Collection<Link> getLinkCollection1()
   {
     return linkCollection1;
@@ -108,6 +113,7 @@ public class Account implements Serializable
     this.linkCollection1 = linkCollection1;
   }
 
+  @XmlTransient
   public Collection<Movement> getMovementCollection()
   {
     return movementCollection;
@@ -118,6 +124,7 @@ public class Account implements Serializable
     this.movementCollection = movementCollection;
   }
 
+  @XmlTransient
   public Collection<Movement> getMovementCollection1()
   {
     return movementCollection1;

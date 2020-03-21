@@ -3,9 +3,11 @@ package bank.logic;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "movement")
+@XmlRootElement
 @NamedQueries(
 {
   @NamedQuery(name = "Movement.findAll", query = "SELECT m FROM Movement m"),

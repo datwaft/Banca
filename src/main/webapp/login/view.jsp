@@ -22,16 +22,15 @@
           <tr>
             <td>username</td>
             <td>
-              <input type="text" placeholder="User ID" name="id" value="<%=form.get("id")%>"
-                title="<%=Controller.title("id", mistakes)%>" class="<%=Controller.isErroneous("id", mistakes)%>">
+              <input type="text" placeholder="User ID" name="id"
+                class="<%=Controller.isErroneous("id", mistakes)%>" autocomplete="off">
             </td>
           </tr>
           <tr>
             <td>password</td>
             <td>
               <input type="password" placeholder="User password" name="password"
-                value="<%=form.get("password")%>" title="<%=Controller.title("password", mistakes)%>"
-                class="<%=Controller.isErroneous("password", mistakes)%>">
+                class="<%=Controller.isErroneous("password", mistakes)%>" autocomplete="off">
             </td>
           </tr>
           <tr>

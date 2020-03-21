@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bank.logic.User;
-import bank.logic.UserModel;
+import bank.logic.model.UserModel;
+import java.util.*;
 
 public class Controller extends HttpServlet
 {
@@ -20,14 +21,6 @@ public class Controller extends HttpServlet
   {
     if((mistakes != null) && (mistakes.get(field) != null))
       return "is-invalid";
-    else
-      return "";
-  }
-
-  public static String title(String field, Map<String,String> mistakes)
-  {
-    if ((mistakes != null) && (mistakes.get(field) != null))
-      return mistakes.get(field);
     else
       return "";
   }
@@ -97,16 +90,16 @@ public class Controller extends HttpServlet
   private String loginAction(HttpServletRequest request)
   {
     Model model = (Model)request.getAttribute("model");
-    bank.logic.UserModel dao = UserModel.getInstance();
+    bank.logic.model.UserModel dao = UserModel.getInstance();
     HttpSession session = request.getSession(true);
     try
     {
-      ArrayList<User> matches = new ArrayList(dao.verifyUser(model.getCurrent().getId(), model.getCurrent().getPassword()));
-      User user = matches.get(0);
-      session.setAttribute("user", user);
+      User match = dao.find(model.getCurrent().getId());
+      if(!match.getPassword().equals(model.getCurrent().getPassword()))
+        throw new Exception("Invalid password");
+      session.setAttribute("user", match);
       String url = "/index.jsp";
       // Aquí es donde ponemos la URL dependiendo si es cajero o si es usuario o
-      // si es los dos.
       return url;
     }
     catch(Exception ex)

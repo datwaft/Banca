@@ -1,39 +1,90 @@
 package bank.data;
 
-import javax.persistence.EntityManager;
 import bank.logic.User;
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.*;
 
-public class UserDao extends UserJpaController
+public class UserDao extends AbstractFacade<User> implements Serializable
 {
-  private UserDao()
+  private final EntityManagerFactory emf;
+  private final EntityManager em;
+
+  public UserDao(EntityManagerFactory emf)
   {
-    super(PersistenceManager.getInstance().getEntityManagerFactory());
+    super(User.class);
+    this.emf = emf;
+    em = getEntityManager();
   }
 
-  public static UserDao getInstance() 
+  @Override
+  protected final EntityManager getEntityManager() 
   {
-    return AccountDaoHolder.INSTANCE;
+    return emf.createEntityManager();
   }
 
-  public Collection<User> verifyUser(String id, String password)
+  public void create(User obj)
   {
-    EntityManager em = getEntityManager();
     try
     {
-      return em.createQuery("SELECT o FROM user o WHERE o.id = :id AND o.password = :password")
-        .setParameter("id", id)
-        .setParameter("password", password)
-        .getResultList();
-    }
-    finally
+      super.persist(obj);
+    } 
+    catch (PersistenceException e)
     {
-      em.close();
+      System.out.print("An error occurred while creating the User.\n\n Error:" + e + "\n\n");
     }
   }
 
-  private static class AccountDaoHolder 
+  public void edit(User obj)
   {
-    private static final UserDao INSTANCE = new UserDao();
+    try
+    {
+      super.merge(obj);
+    } 
+    catch (PersistenceException e) 
+    {
+      System.out.print("An error occurred while editing the User.\n\n Error:" + e + "\n\n");
+    }
+  }
+
+  public void delete(User obj)
+  {
+    try
+    {
+      super.remove(obj);
+    } 
+    catch (PersistenceException e) 
+    {
+      System.out.print("An error occurred while deleting the User.\n\n Error:" + e + "\n\n");
+    }
+  }
+
+  public List<User> search(String id)
+  {
+    try
+    {
+      return em.createQuery("SELECT obj FROM User obj WHERE obj.id = :id")
+        .setParameter("id", id)
+        .getResultList();
+    } 
+    catch (Exception e)
+    {
+      System.out.print("An error occurred while getting id = '" + id + "' from table User.\n\n Error:" + e + "\n\n");
+    }
+    return null;
+  }
+
+  public List<User> getAll()
+  {
+    try
+    {
+      return em.createQuery("SELECT obj FROM User obj")
+        .getResultList();
+    }
+    catch (Exception e)
+    {
+      System.out.print("An error occurred while getting all from table User.\n\n Error:" + e + "\n\n");
+    }
+    return null;
   }
 }

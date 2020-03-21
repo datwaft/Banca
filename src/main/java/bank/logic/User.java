@@ -3,9 +3,12 @@ package bank.logic;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "user")
+@XmlRootElement
 @NamedQueries(
 {
   @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
@@ -120,6 +123,7 @@ public class User implements Serializable
     this.client = client;
   }
 
+  @XmlTransient
   public Collection<Account> getAccountCollection()
   {
     return accountCollection;

@@ -21,7 +21,6 @@ public class PersistenceManager
   
   public void closeEntityManagerFactory() 
   {
-    
     if (emf != null)
     {
       emf.close();
