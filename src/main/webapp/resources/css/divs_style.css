@@ -1,3 +1,8 @@
+
+*
+{
+  -webkit-text-stroke: 0.1px Black; /*esperar opinion para aplicar*/ 
+}
 /*Divs para tranferencias */
 
 .principal{
@@ -14,6 +19,7 @@
   border-radius: 1px;
   text-align: center;
   font-size: 20px;
+
 }
 
 .transfer_right{
@@ -34,34 +40,40 @@
   border-bottom-left-radius: 1em;
   float: left;
 }
-.transfer_left input[type="text"]{
+.principal input[type="text"]{
   background: rgba(0,191,255,0.5);
+  margin-bottom: 20px;
   border: none;
   outline: none;
   padding: 10px;
   color: #FFF;
-  margin-bottom: 20px;
   border-radius: 5px;
 }
-.transfer_right input[type="text"], select{
+/*.transfer_right input[type="text"], select{
   background: rgba(0,191,255,0.5);
   margin-bottom: 20px;
   border: none;
   padding: 10px;
   color: #FFF;
   border-radius: 5px;
-  
-}
+}*/
 
-.transfer_left select{
+.principal select{
   background: rgba(0,191,255,0.5);
   border-radius: 5px;
 }
 
-.transfer_right select{
+.principal select option
+{
+  color: Black;
+  background-color: white;
+
+}
+
+/*.transfer_right select{
   background: rgba(0,191,255,0.5);
   border-radius: 5px;
-}
+}*/
 .principal label
 {
   display: inline-table;
