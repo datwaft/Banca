@@ -2,22 +2,18 @@ package bank.presentation.login;
 
 import bank.logic.User;
 
-public class Model
-{
+public class Model {
   User current;
 
-  public Model()
-  {
+  public Model() {
     this.setCurrent(new User());
   }
 
-  public final User getCurrent()
-  {
+  public final User getCurrent() {
     return current;
   }
 
-  public final void setCurrent(User current)
-  {
+  public final void setCurrent(User current) {
     this.current = current;
   }
 }
