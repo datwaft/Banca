@@ -2,7 +2,6 @@ package bank.presentation.login;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import bank.logic.User;
 import bank.logic.model.UserModel;
-import java.util.*;
 
 public class Controller extends HttpServlet
 {
@@ -23,14 +21,6 @@ public class Controller extends HttpServlet
       return "is-invalid";
     else
       return "";
-  }
-
-  public static Map<String,String[]> getForm(Model model)
-  {
-    Map<String,String[]> values = new HashMap<>();
-    values.put("id", new String[]{model.getCurrent().getId()});
-    values.put("password", new String[]{model.getCurrent().getPassword()});
-    return values;
   }
   
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

@@ -5,7 +5,6 @@
 
 <% Model model= (Model)request.getAttribute("model");%>
 <% Map<String,String> mistakes = (Map<String,String>)request.getAttribute("mistakes");%>
-<% Map<String,String[]> form = (mistakes == null) ? Controller.getForm(model) : request.getParameterMap();%>
 
 <html lang="es">
   <%@ include file="/head.jsp" %> 
