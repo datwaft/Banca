@@ -13,22 +13,18 @@ import javax.servlet.http.HttpSession;
 import bank.logic.User;
 import bank.logic.model.UserModel;
 
-public class Controller extends HttpServlet
-{
-  public static String isErroneous(String field, Map<String,String> mistakes)
-  {
+public class Controller extends HttpServlet {
+  public static String isErroneous(String field, Map<String,String> mistakes) {
     if((mistakes != null) && (mistakes.get(field) != null))
       return "is-invalid";
     else
       return "";
   }
   
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-  {
+  protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     request.setAttribute("model", new Model());
     String url = "";
-    switch(request.getServletPath())
-    {
+    switch(request.getServletPath()) {
       case "/login/view":
         url = this.view(request);
         break;
@@ -42,58 +38,45 @@ public class Controller extends HttpServlet
     request.getRequestDispatcher(url).forward(request, response);
   }
   
-  private String view(HttpServletRequest request)
-  {
+  private String view(HttpServletRequest request) {
     return viewAction(request);
   }
 
-  private String viewAction(HttpServletRequest request)
-  {
+  private String viewAction(HttpServletRequest request) {
     Model model = (Model)request.getAttribute("model");
     model.getCurrent().setId("");
     model.getCurrent().setPassword("");
     return "/login/view.jsp"; 
   }
 
-  private String login(HttpServletRequest request)
-  {
-    try
-    {
+  private String login(HttpServletRequest request) {
+    try {
       Map<String, String> mistakes = this.validate(request);
-      if(mistakes.isEmpty())
-      {
+      if(mistakes.isEmpty()) {
         this.updateModel(request);
         return this.loginAction(request);
-      }
-      else
-      {
+      } else {
         request.setAttribute("mistakes", mistakes);
         return "/login/view.jsp";
       }
-    }
-    catch(Exception ex)
-    {
+    } catch(Exception ex) {
       return "/error.jsp";
     }
   }
 
-  private String loginAction(HttpServletRequest request)
-  {
+  private String loginAction(HttpServletRequest request) {
     Model model = (Model)request.getAttribute("model");
     bank.logic.model.UserModel dao = UserModel.getInstance();
     HttpSession session = request.getSession(true);
-    try
-    {
+    try {
       User match = dao.find(model.getCurrent().getId());
       if(!match.getPassword().equals(model.getCurrent().getPassword()))
         throw new Exception("Invalid password");
       session.setAttribute("user", match);
       String url = "/index.jsp";
-      // Aquí­ es donde ponemos la URL dependiendo si es cajero o si es usuario o
+      // AquÃ­ es donde ponemos la URL dependiendo si es cajero o si es usuario.
       return url;
-    }
-    catch(Exception ex)
-    {
+    } catch(Exception ex) {
       Map<String, String> mistakes = new HashMap<>();
       request.setAttribute("mistakes", mistakes);
       mistakes.put("id", "ID or password is incorrect");
@@ -102,15 +85,13 @@ public class Controller extends HttpServlet
     }
   }
 
-  private void updateModel(HttpServletRequest request)
-  {
+  private void updateModel(HttpServletRequest request) {
     Model model = (Model)request.getAttribute("model");
     model.getCurrent().setId(request.getParameter("id"));
     model.getCurrent().setPassword(request.getParameter("password"));
   }
 
-  private Map<String, String> validate(HttpServletRequest request)
-  {
+  private Map<String, String> validate(HttpServletRequest request) {
     Map<String, String> mistakes = new HashMap<>();
     if(request.getParameter("id").isEmpty())
       mistakes.put("id", "The ID is required");
@@ -119,13 +100,11 @@ public class Controller extends HttpServlet
     return mistakes;
   }
   
-  public String logout(HttpServletRequest request)
-  {
+  public String logout(HttpServletRequest request) {
     return this.logoutAction(request);
   }
     
-  public String logoutAction(HttpServletRequest request)
-  {
+  public String logoutAction(HttpServletRequest request) {
     HttpSession session = request.getSession(true);
     session.removeAttribute("user");
     session.invalidate();
@@ -142,8 +121,7 @@ public class Controller extends HttpServlet
    */
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-  {
+    throws ServletException, IOException {
     processRequest(request, response);
   }
 
@@ -156,8 +134,7 @@ public class Controller extends HttpServlet
    */
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException
-  {
+    throws ServletException, IOException {
     processRequest(request, response);
   }
 
@@ -166,8 +143,7 @@ public class Controller extends HttpServlet
    @return a String containing servlet description
    */
   @Override
-  public String getServletInfo()
-  {
+  public String getServletInfo() {
     return "Short description";
   }// </editor-fold>
 

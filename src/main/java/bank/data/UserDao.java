@@ -5,84 +5,61 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
-public class UserDao extends AbstractFacade<User> implements Serializable
-{
+public class UserDao extends AbstractFacade<User> implements Serializable {
   private final EntityManagerFactory emf;
   private final EntityManager em;
 
-  public UserDao(EntityManagerFactory emf)
-  {
+  public UserDao(EntityManagerFactory emf) {
     super(User.class);
     this.emf = emf;
     em = getEntityManager();
   }
 
   @Override
-  protected final EntityManager getEntityManager() 
-  {
+  protected final EntityManager getEntityManager() {
     return emf.createEntityManager();
   }
 
-  public void create(User obj)
-  {
-    try
-    {
+  public void create(User obj) {
+    try {
       super.persist(obj);
-    } 
-    catch (PersistenceException e)
-    {
+    } catch (PersistenceException e) {
       System.out.print("An error occurred while creating the User.\n\n Error:" + e + "\n\n");
     }
   }
 
-  public void edit(User obj)
-  {
-    try
-    {
+  public void edit(User obj) {
+    try {
       super.merge(obj);
-    } 
-    catch (PersistenceException e) 
-    {
+    } catch (PersistenceException e) {
       System.out.print("An error occurred while editing the User.\n\n Error:" + e + "\n\n");
     }
   }
 
-  public void delete(User obj)
-  {
-    try
-    {
+  public void delete(User obj) {
+    try {
       super.remove(obj);
-    } 
-    catch (PersistenceException e) 
-    {
+    } catch (PersistenceException e) {
       System.out.print("An error occurred while deleting the User.\n\n Error:" + e + "\n\n");
     }
   }
 
-  public List<User> search(String id)
-  {
-    try
-    {
+  public List<User> search(String id) {
+    try {
       return em.createQuery("SELECT obj FROM User obj WHERE obj.id = :id")
         .setParameter("id", id)
         .getResultList();
-    } 
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       System.out.print("An error occurred while getting id = '" + id + "' from table User.\n\n Error:" + e + "\n\n");
     }
     return null;
   }
 
-  public List<User> getAll()
-  {
-    try
-    {
+  public List<User> getAll() {
+    try {
       return em.createQuery("SELECT obj FROM User obj")
         .getResultList();
-    }
-    catch (Exception e)
-    {
+    } catch (Exception e) {
       System.out.print("An error occurred while getting all from table User.\n\n Error:" + e + "\n\n");
     }
     return null;

@@ -4,12 +4,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
-public abstract class AbstractFacade<T>
-{
+public abstract class AbstractFacade<T> {
   private final Class<T> entityClass;
 
-  public AbstractFacade()
-  {
+  public AbstractFacade() {
       this.entityClass = null;
   }
 
@@ -19,8 +17,7 @@ public abstract class AbstractFacade<T>
 
   protected abstract EntityManager getEntityManager();
 
-  public void persist(T entity) throws PersistenceException
-  {
+  public void persist(T entity) throws PersistenceException {
     EntityManager entitymanager = getEntityManager();
     entitymanager.getTransaction( ).begin( );
     entitymanager.persist(entity);
@@ -28,8 +25,7 @@ public abstract class AbstractFacade<T>
     entitymanager.close();
   }
 
-  public void merge(T entity) throws PersistenceException
-  {
+  public void merge(T entity) throws PersistenceException {
     EntityManager entitymanager = getEntityManager();
     entitymanager.getTransaction( ).begin( );
     entitymanager.merge(entity);
@@ -37,8 +33,7 @@ public abstract class AbstractFacade<T>
     entitymanager.close();
   }
 
-  public void remove(T entity) throws PersistenceException
-  {
+  public void remove(T entity) throws PersistenceException {
     EntityManager entitymanager = getEntityManager();
     entitymanager.getTransaction( ).begin( );
     entitymanager.remove(entitymanager.merge(entity));
@@ -46,20 +41,17 @@ public abstract class AbstractFacade<T>
     entitymanager.close();
   }
 
-  public T find(Object id) throws PersistenceException
-  {
+  public T find(Object id) throws PersistenceException {
     return getEntityManager().find(entityClass, id);
   }
 
-  public List<T> findAll() throws PersistenceException
-  {
+  public List<T> findAll() throws PersistenceException {
     javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
     cq.select(cq.from(entityClass));
     return getEntityManager().createQuery(cq).getResultList();
   }
 
-  public void refresh() throws PersistenceException
-  {
+  public void refresh() throws PersistenceException {
     getEntityManager().getEntityManagerFactory().getCache().evictAll();
   }
 }
