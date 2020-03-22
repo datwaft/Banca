@@ -21,12 +21,16 @@
           </tr>
           <tr>
             <td><label>Nombre: </label></td>
-            <td><input type = "text" value="Namae" disabled="disabled" readonly="readonly"></td>
+            <td><input type = "text" placeholder="Namae" ></td>
           </tr>
           <tr>
             <td><label>Saldo a retirar:</label></td>
             <td><input type = "text" placeholder="Cantidad"></td>
             <td><input type = "submit" value="Retirar"></td>
+          </tr>
+          <tr>
+            <td><label>Description: </label></td>
+            <td><input type = "text" placeholder="Description" ></td>
           </tr>
         </table>
       </div>

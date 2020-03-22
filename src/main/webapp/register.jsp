@@ -13,7 +13,7 @@
           <tr>
             <td><label>ID:</label></td>
             <td><input type = "text" placeholder="Digite la cedula"><br></td>
-            <td><input type = "submit" value="Verify" align="center"><td><br>
+            <td rowspan="2"><input type = "submit" value="Verify" align="center"><td><br>
           </tr>
           <tr>
             <td><label>Complete Name: </label></td>
@@ -24,6 +24,10 @@
             <td><input type = "text" placeholder="Digite el telefono"><br></td> 
           </tr>
           <tr>
+            <td><label>Transfer limit:</label></td>
+            <td><input type = "text" placeholder="Limit"><br></td> 
+          </tr>
+          <tr>
             <td><label>Currency</label></td>
             <td><select id="coin">
                   <option value="USD">USD</option>
@@ -31,7 +35,7 @@
                 </select></td><br>    
           </tr>
         </table>
-          <input type = "submit" value="Register"><br>
+        <center><input type = "submit" value="Register"><br></center>
         
         
       </div>

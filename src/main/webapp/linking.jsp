@@ -20,7 +20,7 @@
             <td><input type = "text" placeholder="Cedula"></td> 
           </tr>
           <tr>
-            <td colspan="2"><input type = "submit" value="Vincular" align="center"></td>
+            <td colspan="2"><center><input type = "submit" value="Vincular" align="center"></center></td>
           </tr>
         </table>
       </div>
