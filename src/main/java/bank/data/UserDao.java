@@ -6,11 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 public class UserDao extends AbstractFacade<User> implements Serializable {
-  private final EntityManager em;
-
   public UserDao() {
     super(User.class);
-    em = getEntityManager();
   }
 
   @Override
@@ -43,23 +40,29 @@ public class UserDao extends AbstractFacade<User> implements Serializable {
   }
 
   public List<User> search(String id) {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM User obj WHERE obj.id = :id")
         .setParameter("id", id)
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting id = '" + id + "' from table User.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 
   public List<User> getAll() {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM User obj")
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting all from table User.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 }

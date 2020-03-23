@@ -18,40 +18,64 @@ public abstract class AbstractFacade<T> {
   protected abstract EntityManager getEntityManager();
 
   public void persist(T entity) throws PersistenceException {
-    EntityManager entitymanager = getEntityManager();
-    entitymanager.getTransaction( ).begin( );
-    entitymanager.persist(entity);
-    entitymanager.getTransaction().commit();
-    entitymanager.close();
+    EntityManager em = getEntityManager();
+    try {
+      em.getTransaction().begin();
+      em.persist(entity);
+      em.getTransaction().commit();
+    } finally {
+      em.close();
+    }
   }
 
   public void merge(T entity) throws PersistenceException {
-    EntityManager entitymanager = getEntityManager();
-    entitymanager.getTransaction( ).begin( );
-    entitymanager.merge(entity);
-    entitymanager.getTransaction().commit();
-    entitymanager.close();
+    EntityManager em = getEntityManager();
+    try {
+      em.getTransaction().begin();
+      em.merge(entity);
+      em.getTransaction().commit();
+    } finally {
+      em.close();
+    }
   }
 
   public void remove(T entity) throws PersistenceException {
-    EntityManager entitymanager = getEntityManager();
-    entitymanager.getTransaction( ).begin( );
-    entitymanager.remove(entitymanager.merge(entity));
-    entitymanager.getTransaction().commit();
-    entitymanager.close();
+    EntityManager em = getEntityManager();
+    try {
+      em.getTransaction().begin();
+      em.remove(em.merge(entity));
+      em.getTransaction().commit();
+    } finally {
+      em.close();
+    }
   }
 
   public T find(Object id) throws PersistenceException {
-    return getEntityManager().find(entityClass, id);
+    EntityManager em = getEntityManager();
+    try {
+      return em.find(entityClass, id);
+    } finally {
+      em.close();
+    }
   }
 
   public List<T> findAll() throws PersistenceException {
-    javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-    cq.select(cq.from(entityClass));
-    return getEntityManager().createQuery(cq).getResultList();
+    EntityManager em = getEntityManager();
+    try {
+      javax.persistence.criteria.CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+      cq.select(cq.from(entityClass));
+      return em.createQuery(cq).getResultList();
+    } finally {
+      em.close();
+    }
   }
 
   public void refresh() throws PersistenceException {
-    getEntityManager().getEntityManagerFactory().getCache().evictAll();
+    EntityManager em = getEntityManager();
+    try {
+      em.getEntityManagerFactory().getCache().evictAll();
+    } finally {
+      em.close();
+    }
   }
 }

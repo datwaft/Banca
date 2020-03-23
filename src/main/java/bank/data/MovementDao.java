@@ -6,11 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 public class MovementDao extends AbstractFacade<Movement> implements Serializable {
-  private final EntityManager em;
-
   public MovementDao() {
     super(Movement.class);
-    em = getEntityManager();
   }
 
   @Override
@@ -29,7 +26,7 @@ public class MovementDao extends AbstractFacade<Movement> implements Serializabl
   public void edit(Movement obj) {
     try {
       super.merge(obj);
-    } catch (PersistenceException e)  {
+    } catch (PersistenceException e) {
       System.out.print("An error occurred while editing the Movement.\n\n Error:" + e + "\n\n");
     }
   }
@@ -43,23 +40,29 @@ public class MovementDao extends AbstractFacade<Movement> implements Serializabl
   }
 
   public List<Movement> search(String id) {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM Movement obj WHERE obj.id = :id")
         .setParameter("id", id)
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting id = '" + id + "' from table Movement.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 
   public List<Movement> getAll() {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM Movement obj")
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting all from table Movement.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 }

@@ -6,11 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 public class CurrencyDao extends AbstractFacade<Currency> implements Serializable {
-  private final EntityManager em;
-
   public CurrencyDao() {
     super(Currency.class);
-    em = getEntityManager();
   }
 
   @Override
@@ -29,7 +26,7 @@ public class CurrencyDao extends AbstractFacade<Currency> implements Serializabl
   public void edit(Currency obj) {
     try {
       super.merge(obj);
-    } catch (PersistenceException e)  {
+    } catch (PersistenceException e) {
       System.out.print("An error occurred while editing the Currency.\n\n Error:" + e + "\n\n");
     }
   }
@@ -43,23 +40,29 @@ public class CurrencyDao extends AbstractFacade<Currency> implements Serializabl
   }
 
   public List<Currency> search(String id) {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM Currency obj WHERE obj.id = :id")
         .setParameter("id", id)
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting id = '" + id + "' from table Currency.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 
   public List<Currency> getAll() {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM Currency obj")
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting all from table Currency.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 }

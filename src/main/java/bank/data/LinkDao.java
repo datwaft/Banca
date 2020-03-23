@@ -6,11 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 public class LinkDao extends AbstractFacade<Link> implements Serializable {
-  private final EntityManager em;
-
   public LinkDao() {
     super(Link.class);
-    em = getEntityManager();
   }
 
   @Override
@@ -43,23 +40,29 @@ public class LinkDao extends AbstractFacade<Link> implements Serializable {
   }
 
   public List<Link> search(String id) {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM Link obj WHERE obj.id = :id")
         .setParameter("id", id)
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting id = '" + id + "' from table Link.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 
   public List<Link> getAll() {
+    EntityManager em = getEntityManager();
     try {
       return em.createQuery("SELECT obj FROM Link obj")
         .getResultList();
     } catch (Exception e) {
       System.out.print("An error occurred while getting all from table Link.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
     }
-    return null;
   }
 }
