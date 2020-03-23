@@ -6,18 +6,16 @@ import java.util.List;
 import javax.persistence.*;
 
 public class MovementDao extends AbstractFacade<Movement> implements Serializable {
-  private final EntityManagerFactory emf;
   private final EntityManager em;
 
-  public MovementDao(EntityManagerFactory emf) {
+  public MovementDao() {
     super(Movement.class);
-    this.emf = emf;
     em = getEntityManager();
   }
 
   @Override
   protected final EntityManager getEntityManager() {
-    return emf.createEntityManager();
+    return PersistenceManager.createEntityManager();
   }
 
   public void create(Movement obj) {

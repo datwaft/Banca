@@ -1,37 +1,31 @@
 package bank.data;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
-public class PersistenceManager {
-  protected EntityManagerFactory emf;
+@WebListener
+public class PersistenceManager implements ServletContextListener {
+  protected static EntityManagerFactory emf;
+  final private static String DATABASE = "BANK";
   
-  private PersistenceManager() {
-    emf = null;
+  @Override
+  public void contextInitialized(ServletContextEvent event) {
+    emf = Persistence.createEntityManagerFactory(DATABASE);
   }
   
-  public EntityManagerFactory getEntityManagerFactory() {
-    if (emf == null)
-      createEntityManagerFactory();
-    return emf;
+  @Override
+  public void contextDestroyed(ServletContextEvent event) {
+    emf.close();
   }
   
-  public void closeEntityManagerFactory() {
-    if (emf != null) {
-      emf.close();
-      emf = null;
+  public static EntityManager createEntityManager() {
+    if (emf == null) {
+      throw new IllegalStateException("Context is not initialized yet.");
     }
-  }
-  
-  protected void createEntityManagerFactory() {
-    this.emf = Persistence.createEntityManagerFactory("BANK");
-  }
-  
-  public static PersistenceManager getInstance() {
-    return PersistenceManagerHolder.INSTANCE;
-  }
-  
-  private static class PersistenceManagerHolder {
-    private static final PersistenceManager INSTANCE = new PersistenceManager();
+    return emf.createEntityManager();
   }
 }

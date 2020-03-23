@@ -1,12 +1,9 @@
 package bank.logic.model;
 
 import bank.data.CurrencyDao;
-import bank.data.PersistenceManager;
 
 public class CurrencyModel extends CurrencyDao {
-  private CurrencyModel() {
-    super(PersistenceManager.getInstance().getEntityManagerFactory());
-  }
+  private CurrencyModel() { }
   
   public static CurrencyModel getInstance() {
     return CurrencyModelHolder.INSTANCE;

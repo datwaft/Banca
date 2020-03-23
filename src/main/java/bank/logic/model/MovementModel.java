@@ -1,12 +1,9 @@
 package bank.logic.model;
 
 import bank.data.MovementDao;
-import bank.data.PersistenceManager;
 
 public class MovementModel extends MovementDao {
-  private MovementModel() {
-    super(PersistenceManager.getInstance().getEntityManagerFactory());
-  }
+  private MovementModel() { }
   
   public static MovementModel getInstance() {
     return MovementModelHolder.INSTANCE;

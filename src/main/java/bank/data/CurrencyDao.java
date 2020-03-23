@@ -6,18 +6,16 @@ import java.util.List;
 import javax.persistence.*;
 
 public class CurrencyDao extends AbstractFacade<Currency> implements Serializable {
-  private final EntityManagerFactory emf;
   private final EntityManager em;
 
-  public CurrencyDao(EntityManagerFactory emf) {
+  public CurrencyDao() {
     super(Currency.class);
-    this.emf = emf;
     em = getEntityManager();
   }
 
   @Override
   protected final EntityManager getEntityManager() {
-    return emf.createEntityManager();
+    return PersistenceManager.createEntityManager();
   }
 
   public void create(Currency obj) {

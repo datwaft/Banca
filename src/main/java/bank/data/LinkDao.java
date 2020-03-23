@@ -6,18 +6,16 @@ import java.util.List;
 import javax.persistence.*;
 
 public class LinkDao extends AbstractFacade<Link> implements Serializable {
-  private final EntityManagerFactory emf;
   private final EntityManager em;
 
-  public LinkDao(EntityManagerFactory emf) {
+  public LinkDao() {
     super(Link.class);
-    this.emf = emf;
     em = getEntityManager();
   }
 
   @Override
   protected final EntityManager getEntityManager() {
-    return emf.createEntityManager();
+    return PersistenceManager.createEntityManager();
   }
 
   public void create(Link obj) {

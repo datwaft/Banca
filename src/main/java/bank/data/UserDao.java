@@ -6,18 +6,16 @@ import java.util.List;
 import javax.persistence.*;
 
 public class UserDao extends AbstractFacade<User> implements Serializable {
-  private final EntityManagerFactory emf;
   private final EntityManager em;
 
-  public UserDao(EntityManagerFactory emf) {
+  public UserDao() {
     super(User.class);
-    this.emf = emf;
     em = getEntityManager();
   }
 
   @Override
   protected final EntityManager getEntityManager() {
-    return emf.createEntityManager();
+    return PersistenceManager.createEntityManager();
   }
 
   public void create(User obj) {
