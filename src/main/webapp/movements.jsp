@@ -6,7 +6,11 @@
       <table class="move_table">
           <thead>
           <tr>
-            <th id="table_id">ID</th><th id="table_description">Description</th><th>Origin Account</th><th> Destination account</th><th>Debit-Credit amount</th><th id="table_fecha">Tansaction Date</th>
+            <th id="table_id">ID</th>
+            <th id="table_description">Description</th>
+            <th>Origin Account</th><th> Destination account</th>
+            <th>Debit-Credit amount</th>
+            <th id="table_fecha">Tansaction Date</th>
           </tr>
           </thead>
           

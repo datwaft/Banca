@@ -72,10 +72,25 @@ public class Controller extends HttpServlet {
       User match = dao.find(model.getCurrent().getId());
       if(!match.getPassword().equals(model.getCurrent().getPassword()))
         throw new Exception("Invalid password");
-      session.setAttribute("user", match);
-      String url = "/index.jsp";
-      // Aquí es donde ponemos la URL dependiendo si es cajero o si es usuario.
-      return url;
+      
+      
+      if(request.getParameter("first") != null && match.getClient() == true){
+        match.setCashier(false);
+        session.setAttribute("user", match);
+        String url = "/index.jsp";
+        return url;
+      }
+      else if(request.getParameter("second") != null && match.getCashier() == true){
+        match.setClient(false);
+        session.setAttribute("user", match);
+        String url = "/index.jsp";
+        return url;
+      }
+      else
+      {
+        throw new Exception("Invalid password");
+      }
+      
     } catch(Exception ex) {
       Map<String, String> mistakes = new HashMap<>();
       request.setAttribute("mistakes", mistakes);

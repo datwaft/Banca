@@ -33,9 +33,8 @@
             </td>
           </tr>
           <tr>
-            <th colspan="2">
-              <button>Log In</button>
-            </th>
+             <td><button type="submit" name="first" value="FirstServlet">Log In as client</button></td>
+             <td><button type="submit" name="second" value="SecondServlet">Log In as cashier</button></td>
           </tr>
         </table>
       </form>

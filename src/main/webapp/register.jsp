@@ -13,7 +13,7 @@
           <tr>
             <td><label>ID:</label></td>
             <td><input type = "text" placeholder="Digite la cedula"><br></td>
-            <td rowspan="2"><input type = "submit" value="Verify" align="center"><td><br>
+            <td><input type = "submit" value="Verify"><td><br>
           </tr>
           <tr>
             <td><label>Complete Name: </label></td>
