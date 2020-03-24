@@ -17,4 +17,11 @@ insert into `account` (`owner`, `currency`, `dailylimit`) values
 ('dual', 'EUR', 20000),
 ('dual', 'CRC', 2000000);
 
+insert into `movement` (`origin`, `destination`, `amount`, `description`, `date`) values 
+(null, 3, 10, 'movimiento 1', localtime()),
+(3, null, 10, 'movimiento 2', localtime()),
+(4, 3, 10, 'movimiento 3', localtime());
+
 select * from `user`;
+select * from `movement`;
+SELECT * FROM `movement` obj WHERE obj.origin.id = :id OR obj.destination.id = :id

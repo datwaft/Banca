@@ -1,7 +1,8 @@
-package bank.presentation.client.accounts;
+package bank.presentation.client.accounts.movements;
 
-import bank.logic.User;
-import bank.logic.model.AccountModel;
+import bank.logic.Account;
+import bank.logic.Movement;
+import bank.logic.model.MovementModel;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ public class Controller extends HttpServlet {
     request.setAttribute("model", new Model());
     String url = "";
     switch (request.getServletPath()) {
-      case "/client/accounts/view":
+      case "/client/accounts/movements/view":
         url = this.view(request);
         break;
     }
@@ -26,14 +27,13 @@ public class Controller extends HttpServlet {
   }
 
   private String viewAction(HttpServletRequest request) {
-    HttpSession session = request.getSession(true);
     Model model = (Model)request.getAttribute("model");
     
-    User user = (User)session.getAttribute("user");
+    String account = request.getParameter("account");
     
     try {
-      model.setAccounts(AccountModel.getInstance().findByOwner(user));
-      return "/client/accounts/view.jsp";
+      model.setMovements(MovementModel.getInstance().findByAccount(account));
+      return "/client/accounts/movements/view.jsp";
     } catch (Exception ex) {
       return "";
     }

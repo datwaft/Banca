@@ -4,8 +4,8 @@
 <%@page import="bank.logic.Account"%>
 
 <%
-    Model model = (Model)request.getAttribute("model");
-    List<Account> accounts = model.getAccounts();
+  Model model = (Model)request.getAttribute("model");
+  List<Account> accounts = model.getAccounts();
 %>
 
 <html>
@@ -24,7 +24,7 @@
         </thead>
         <tbody>
           <% for(Account account:accounts) { %>
-            <tr>
+            <tr onclick="window.location='${pageContext.request.contextPath}/client/accounts/movements/view?account=' + <%= account.getId() %>;">
               <td><%= account.getId() %></td>
               <td><%= account.getCurrency().getName() %></td>
               <td><%= account.getAmount() %></td>

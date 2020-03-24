@@ -1,5 +1,6 @@
 package bank.data;
 
+import java.util.TimeZone;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,6 +15,7 @@ public class PersistenceManager implements ServletContextListener {
   
   @Override
   public void contextInitialized(ServletContextEvent event) {
+    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     emf = Persistence.createEntityManagerFactory(DATABASE);
   }
   

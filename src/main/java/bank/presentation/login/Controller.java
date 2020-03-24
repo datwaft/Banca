@@ -15,7 +15,7 @@ import bank.logic.model.UserModel;
 
 public class Controller extends HttpServlet {
   public static String isErroneous(String field, Map<String,String> mistakes) {
-    if((mistakes != null) && (mistakes.get(field) != null))
+    if ((mistakes != null) && (mistakes.get(field) != null))
       return "is-invalid";
     else
       return "";
@@ -24,7 +24,7 @@ public class Controller extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     request.setAttribute("model", new Model());
     String url = "";
-    switch(request.getServletPath()) {
+    switch (request.getServletPath()) {
       case "/login/view":
         url = this.view(request);
         break;
@@ -52,7 +52,7 @@ public class Controller extends HttpServlet {
   private String login(HttpServletRequest request) {
     try {
       Map<String, String> mistakes = this.validate(request);
-      if(mistakes.isEmpty()) {
+      if (mistakes.isEmpty()) {
         this.updateModel(request);
         return this.loginAction(request);
       } else {
@@ -66,21 +66,20 @@ public class Controller extends HttpServlet {
 
   private String loginAction(HttpServletRequest request) {
     Model model = (Model)request.getAttribute("model");
-    bank.logic.model.UserModel dao = UserModel.getInstance();
     HttpSession session = request.getSession(true);
     try {
-      User match = dao.find(model.getCurrent().getId());
+      User match = UserModel.getInstance().find(model.getCurrent().getId());
       if(!match.getPassword().equals(model.getCurrent().getPassword()))
         throw new Exception("Invalid password");
       
       
-      if(request.getParameter("first") != null && match.getClient() == true){
+      if (request.getParameter("first") != null && match.getClient() == true){
         match.setCashier(false);
         session.setAttribute("user", match);
         String url = "/index.jsp";
         return url;
       }
-      else if(request.getParameter("second") != null && match.getCashier() == true){
+      else if (request.getParameter("second") != null && match.getCashier() == true){
         match.setClient(false);
         session.setAttribute("user", match);
         String url = "/index.jsp";
@@ -91,7 +90,7 @@ public class Controller extends HttpServlet {
         throw new Exception("Invalid password");
       }
       
-    } catch(Exception ex) {
+    } catch (Exception ex) {
       Map<String, String> mistakes = new HashMap<>();
       request.setAttribute("mistakes", mistakes);
       mistakes.put("id", "ID or password is incorrect");
@@ -108,9 +107,9 @@ public class Controller extends HttpServlet {
 
   private Map<String, String> validate(HttpServletRequest request) {
     Map<String, String> mistakes = new HashMap<>();
-    if(request.getParameter("id").isEmpty())
+    if (request.getParameter("id").isEmpty())
       mistakes.put("id", "The ID is required");
-    if(request.getParameter("password").isEmpty())
+    if (request.getParameter("password").isEmpty())
       mistakes.put("password", "The password is required");
     return mistakes;
   }

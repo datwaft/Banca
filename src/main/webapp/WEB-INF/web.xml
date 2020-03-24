@@ -2,21 +2,29 @@
 <web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>Archetype Created Web Application</display-name>
     <servlet>
-        <servlet-name>login-controller</servlet-name>
+        <servlet-name>login</servlet-name>
         <servlet-class>bank.presentation.login.Controller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>client-accounts-controller</servlet-name>
+        <servlet-name>client-accounts</servlet-name>
         <servlet-class>bank.presentation.client.accounts.Controller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>client-accounts-movements</servlet-name>
+        <servlet-class>bank.presentation.client.accounts.movements.Controller</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>login-controller</servlet-name>
+        <servlet-name>login</servlet-name>
         <url-pattern>/login/view</url-pattern>
         <url-pattern>/login/login</url-pattern>
         <url-pattern>/login/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>client-accounts-controller</servlet-name>
+        <servlet-name>client-accounts</servlet-name>
         <url-pattern>/client/accounts/view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>client-accounts-movements</servlet-name>
+        <url-pattern>/client/accounts/movements/view</url-pattern>
     </servlet-mapping>
 </web-app>
