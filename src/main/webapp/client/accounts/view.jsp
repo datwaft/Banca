@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <% for(Account account:accounts) { %>
+          <% for (Account account:accounts) { %>
             <tr onclick="window.location='${pageContext.request.contextPath}/client/accounts/movements/view?account=' + <%= account.getId() %>;">
               <td><%= account.getId() %></td>
               <td><%= account.getCurrency().getName() %></td>

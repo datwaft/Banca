@@ -15,7 +15,6 @@
             <% if (usuario.getClient()) { %>
               <li><a href="${pageContext.request.contextPath}/client/accounts/view">My accounts</a></li>
               <li><a href="${pageContext.request.contextPath}/transfers.jsp">Transfer</a></li>
-              <li><a href="${pageContext.request.contextPath}/movements.jsp">Account moves</a></li>
               <li><a href="${pageContext.request.contextPath}/linking.jsp">Account linking</a></li>
             <% } else { %>
               <li><a href="${pageContext.request.contextPath}/register.jsp">Sign Up</a></li>

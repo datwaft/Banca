@@ -32,15 +32,19 @@
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
           %>
-          <% for(Movement movement:movements) { %>
-            <tr>
-              <td><%= formatter.format(movement.getDate()) %></td>
-              <td><%= (movement.getOrigin() == null ? "Deposit" : (movement.getDestination() == null ? "Withdrawal" : "Movement")) %></td>
-              <td><%= (movement.getOrigin() == null ? "-" : movement.getOrigin().getId()) %></td>
-              <td><%= (movement.getDestination() == null ? "-" : movement.getDestination().getId()) %></td>
-              <td><%= movement.getAmount() %></td>
-              <td><%= movement.getDescription() %></td>
-            </tr>
+          <% if (movements.isEmpty()) { %>
+            <td colspan="6">There are no movements for this account</td>
+          <% } else { %>
+            <% for (Movement movement:movements) { %>
+              <tr>
+                <td><%= formatter.format(movement.getDate()) %></td>
+                <td><%= (movement.getOrigin() == null ? "Deposit" : (movement.getDestination() == null ? "Withdrawal" : "Movement")) %></td>
+                <td><%= (movement.getOrigin() == null ? "-" : movement.getOrigin().getId()) %></td>
+                <td><%= (movement.getDestination() == null ? "-" : movement.getDestination().getId()) %></td>
+                <td><%= movement.getAmount() %></td>
+                <td><%= movement.getDescription() %></td>
+              </tr>
+            <% } %>
           <% } %>
         </tbody>
       </table>
