@@ -38,7 +38,7 @@ public class AccountDao extends AbstractFacade<Account> implements Serializable 
       System.out.print("An error occurred while deleting the Account.\n\n Error:" + e + "\n\n");
     }
   }
-
+  
   public List<Account> search(String id) {
     EntityManager em = getEntityManager();
     try {
