@@ -32,7 +32,7 @@ public class Controller extends HttpServlet {
     User user = (User)session.getAttribute("user");
     
     try {
-      model.setAccounts(AccountModel.getInstance().findByOwner(user));
+      model.setAccounts(AccountModel.getInstance().findByOwner(user.getId()));
       return "/client/accounts/view.jsp";
     } catch (Exception ex) {
       return "";

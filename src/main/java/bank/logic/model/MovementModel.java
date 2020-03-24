@@ -1,7 +1,6 @@
 package bank.logic.model;
 
 import bank.data.MovementDao;
-import bank.logic.Account;
 import bank.logic.Movement;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -13,17 +12,53 @@ public class MovementModel extends MovementDao {
     return MovementModelHolder.INSTANCE;
   }
   
-  public List<Movement> findByAccount(Object account) {
+  public List<Movement> findByAccount(String account) {
     if(account  == null)
       return null;
     EntityManager em = getEntityManager();
     try {
-      return em.createQuery("SELECT obj FROM Movement obj WHERE obj.origin.id = :id OR obj.destination.id = :id")
-        .setParameter("id", (account instanceof String ? Integer.getInteger((String)account) : ((Account)account).getId()))
+      List<Movement> origin = em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.origin.id CHAR) = :id")
+        .setParameter("id", account)
+        .getResultList();
+      List<Movement> destination = em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.destination.id CHAR) = :id")
+        .setParameter("id", account)
+        .getResultList();
+      origin.addAll(destination);
+      return origin;
+    } catch (Exception e) {
+      System.out.print("An error occurred while getting account = '" + account + "' from table Movement.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
+    }
+  }
+  
+  public List<Movement> findByOrigin(String account) {
+    if(account  == null)
+      return null;
+    EntityManager em = getEntityManager();
+    try {
+      return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.origin.id CHAR) = :id")
+        .setParameter("id", account)
         .getResultList();
     } catch (Exception e) {
-      System.out.print("An error occurred while getting account = '" + 
-        (account instanceof String ? (String)account : ((Account)account).getId()) + "' from table Movement.\n\n Error:" + e + "\n\n");
+      System.out.print("An error occurred while getting origin = '" + account + "' from table Movement.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
+    }
+  }
+  
+  public List<Movement> findByDestination(String account) {
+    if(account  == null)
+      return null;
+    EntityManager em = getEntityManager();
+    try {
+      return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.destination.id CHAR) = :id")
+        .setParameter("id", account)
+        .getResultList();
+    } catch (Exception e) {
+      System.out.print("An error occurred while getting destination = '" + account + "' from table Movement.\n\n Error:" + e + "\n\n");
       return null;
     } finally {
       em.close();
