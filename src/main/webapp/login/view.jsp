@@ -12,7 +12,7 @@
     <%@ include file="/header.jsp" %>
     <div class="body">
       <form name="form" action="${pageContext.request.contextPath}/login/login" method="post">
-        <table>
+        <table class="login">
           <tr>
             <th colspan="2">
               Please, enter your login information

@@ -1,6 +1,7 @@
 
 *
 {
+
   -webkit-text-stroke: 0.1px Black; /*esperar opinion para aplicar*/ 
 }
 /*Divs para tranferencias */
@@ -12,7 +13,7 @@
 }
 .title{
   background: rgba(0,0,0,0.5); /*div de titulo en tranfer*/
-  color:yellow;
+  color:white; /*yellow*/
   width: 100%;
   height: 25px;
   margin: 1px auto;
@@ -25,7 +26,7 @@
 .transfer_right{
   padding: 5px 35px;
   background: rgba(0,0,0,0.5);
-  color:yellow;
+  color:white; /*yellow*/
   width: 45%;
   height: 325px;
   border-bottom-right-radius: 1em;
@@ -34,7 +35,7 @@
 .transfer_left{
   padding: 5px 35px;
   background: rgba(0,0,0,0.5);
-  color:yellow;
+  color:white; /*yellow*/
   width: 43%;
   height: 325px;
   border-bottom-left-radius: 1em;
@@ -91,7 +92,7 @@
 .register_left{
   padding: 5px 35px;
   background: rgba(0,0,0,0.5);
-  color:yellow;
+  color:white; /*yellow*/
   width: 43%;
   height: 325px;
   border-bottom-left-radius: 1em;
@@ -175,14 +176,14 @@
   word-wrap: break-word;
     padding: 10px;
     border: solid 1px black;
-    color: yellow; /*letras de la tabla*/
+    color: white; /*letras de la tabla yellow*/
 }
 
 table.move_table thead{
     
     background-color: rgba(0,0,0,0.5);  /*titulo de la tabla*/
     border-bottom: solid 5px;
-    color: yellow;
+    color: white; /*yellow*/
 }
 
 .move_table tr:nth-child(even){   /*nthchild es una forma de elegir ciertos atributodcomo "pares" "impares" en este caso

@@ -21,8 +21,8 @@ p {
 }
 /*Clase para la lista en forma de menu*/
 .nav li a{
-   background-color: rgba(0,191,255,0.5);
-  color:yellow;
+   background-color: rgba(0,0,0,0.5); /*Menu backgoround set to black before it was blue rgba(0,191,255,0.5)*/
+  color:white; /* yellow*/
   text-decoration: none;
   padding: 10px 15px;
   display: block;
@@ -34,8 +34,8 @@ p {
 }
 
 .nav li a:hover{
-  background-color: yellow;
-  color: blue;
+  background-color: rgba(0,191,255,0.5); /*Changed from yellow to blue */
+  color: yellow;
 }
 
 .nav li ul{
@@ -68,12 +68,13 @@ form table {
 
 form table tr td {
   padding: 5px;
+  color:black;
 }
 
 .banner {
   background: rgb(0,191,255);
-  background: rgba(0,191,255,0.5); /*aqui se restaura el header blue*/
-  color: yellow;
+    background: rgba(0,0,0,0.5); /*Changed to black from blue rgba(0,191,255,0.5)*/
+  color: white; /*yellow*/
   font-weight: bold;
 }
 
@@ -81,16 +82,21 @@ form table tr td {
     width: 100%;
     height: 38px;
     background: rgb(0,191,255);
-    background: rgba(0,191,255,0.5);
+    background: rgba(0,0,0,0.5);
 }
 div.banner{
     height: 90px;
     width: 100%;
 }
 .body {
+  
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+.login {
+  color: black;
 }
 
 .title {
@@ -106,8 +112,8 @@ div.banner{
   vertical-align: middle; 
   font-size: smaller;
   background: rgb(0,191,255); /* The Fallback */
-  background: rgba(0,191,255,0.5);
-  color: yellow;
+  background: rgba(0,0,0,0.5); /*Footer color changed to black*/
+  color: white; /*yelllow*/
   height: 35px;
 }
 
