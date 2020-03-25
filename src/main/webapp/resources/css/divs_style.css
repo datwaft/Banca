@@ -27,7 +27,7 @@
   background: rgba(0,0,0,0.5);
   color:yellow;
   width: 45%;
-  height: 300px;
+  height: 325px;
   border-bottom-right-radius: 1em;
   float: right;
 }
@@ -36,7 +36,7 @@
   background: rgba(0,0,0,0.5);
   color:yellow;
   width: 43%;
-  height: 300px;
+  height: 325px;
   border-bottom-left-radius: 1em;
   float: left;
 }
@@ -122,7 +122,9 @@
 
 .register_left input[type="submit"]{
   backface-visibility:visible;
+
 }
+
 
 /* para la tabla de registro*/
 
@@ -237,4 +239,9 @@ table.move_table thead{
 .container select{
   background: rgba(0,191,255,0.5);
   border-radius: 5px;
+}
+
+#number_table, #number_table_2 , #box_acc
+{
+  display: none;
 }

@@ -72,7 +72,7 @@ form table tr td {
 
 .banner {
   background: rgb(0,191,255);
-  background: rgba(0,191,255,0.5);
+  background: rgba(0,191,255,0.5); /*aqui se restaura el header blue*/
   color: yellow;
   font-weight: bold;
 }
