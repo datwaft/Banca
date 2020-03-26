@@ -26,5 +26,6 @@
     <servlet-mapping>
         <servlet-name>client-accounts-movements</servlet-name>
         <url-pattern>/client/accounts/movements/view</url-pattern>
+        <url-pattern>/client/accounts/movements/update</url-pattern>
     </servlet-mapping>
 </web-app>
