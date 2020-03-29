@@ -52,6 +52,20 @@ public class LinkDao extends AbstractFacade<Link> implements Serializable {
       em.close();
     }
   }
+  
+//  public List<Link> searchByOwner(String id) {
+//    EntityManager em = getEntityManager();
+//    try {
+//      return em.createQuery("SELECT obj FROM Link obj WHERE obj.id = :id")
+//        .setParameter("id", id)
+//        .getResultList();
+//    } catch (Exception e) {
+//      System.out.print("An error occurred while getting id = '" + id + "' from table Link.\n\n Error:" + e + "\n\n");
+//      return null;
+//    } finally {
+//      em.close();
+//    }
+//  }
 
   public List<Link> getAll() {
     EntityManager em = getEntityManager();

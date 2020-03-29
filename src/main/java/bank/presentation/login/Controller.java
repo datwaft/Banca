@@ -87,7 +87,7 @@ public class Controller extends HttpServlet {
       }
       else
       {
-        throw new Exception("Invalid password");
+        throw new Exception("Invalid field");
       }
       
     } catch (Exception ex) {

@@ -1,4 +1,6 @@
 
+
+
 *
 {
 
@@ -205,9 +207,9 @@ table.move_table thead{
 .link_display
 {
   padding: 0;
-  margin: 70px auto;
+  margin: 45px auto;
   width: 500px;
-  height: 315px;
+  height: 380px;
   background-color: rgba(0,0,0,0.5);
 }
 
@@ -216,9 +218,13 @@ table.move_table thead{
   height: 20px;
 }
 
-.link_display table,td,tr{
+.container label{
+  color:white;
+}
+.container table,td,tr{
   padding: 10px;
   border: none;
+  background-color: transparent;
 }
 
 .link_display .container
@@ -226,7 +232,6 @@ table.move_table thead{
   width: 100%;
   height: 295px;
 }
-
 .container input[type="text"], select{
   background: rgba(0,191,255,0.5);
   margin-bottom: 20px;
@@ -242,7 +247,65 @@ table.move_table thead{
   border-radius: 5px;
 }
 
-#number_table, #number_table_2 , #box_acc
-{
-  display: none;
+.container option{
+   background: white;
+   color: black;
 }
+
+
+
+/* Retires*/
+
+.retire_display
+{
+  padding: 0;
+  margin: 45px auto;
+  width: 500px;
+  height: 350px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.retire_display .title{
+  width: 100%;
+  height: 20px;
+}
+
+.retire_display table,td,tr{
+  padding: 10px;
+  border: none;
+}
+
+.retire_display .container
+{
+  width: 100%;
+  height: 295px;
+}
+
+.deposit_display
+{
+  padding: 0;
+  margin: 35px auto;
+  width: 500px;
+  height: 400px;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.deposit_display .title{
+  width: 100%;
+  height: 20px;
+}
+
+.deposit_display table,td,tr{
+  padding: 10px;
+  border: none;
+}
+
+.deposit_display .container
+{
+  width: 100%;
+  height: 295px;
+}
+
+/*ends retires and deposites*/
+
+

@@ -29,6 +29,22 @@ public class AccountModel extends AccountDao {
     }
   }
   
+  public Account findById(Integer id) {
+    if(id  == null)
+      return null;
+    EntityManager em = getEntityManager();
+    try {
+      return (Account)em.createQuery("SELECT obj FROM Account obj WHERE obj.id = :id")
+        .setParameter("id", id).getSingleResult();
+        
+    } catch (Exception e) {
+      System.out.print("An error occurred while getting id = '" + id + "' from table Account.\n\n Error:" + e + "\n\n");
+      return null;
+    } finally {
+      em.close();
+    }
+  }
+  
   private static class AccountModelHolder {
     private static final AccountModel INSTANCE = new AccountModel();
   }
