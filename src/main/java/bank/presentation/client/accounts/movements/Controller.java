@@ -1,11 +1,14 @@
 package bank.presentation.client.accounts.movements;
 
+import bank.logic.Account;
+import bank.logic.Movement;
 import bank.logic.model.MovementModel;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Controller extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -14,9 +17,6 @@ public class Controller extends HttpServlet {
     switch (request.getServletPath()) {
       case "/client/accounts/movements/view":
         url = this.view(request);
-        break;
-      case "/client/accounts/movements/update":
-        url = this.update(request);
         break;
     }
     request.getRequestDispatcher(url).forward(request, response);
@@ -32,27 +32,7 @@ public class Controller extends HttpServlet {
     String account = request.getParameter("account");
     
     try {
-      model.setMovements(MovementModel.getInstance().findByAccount(account, "", ""));
-      return "/client/accounts/movements/view.jsp";
-    } catch (Exception ex) {
-      return "";
-    }
-  }
-  
-  private String update(HttpServletRequest request) {
-    return updateAction(request);
-  }
-
-  private String updateAction(HttpServletRequest request) {
-    Model model = (Model)request.getAttribute("model");
-    
-    String account = request.getParameter("account");
-    
-    String from = request.getParameter("from");
-    String to = request.getParameter("to");
-    
-    try {
-      model.setMovements(MovementModel.getInstance().findByAccount(account, from, to));
+      model.setMovements(MovementModel.getInstance().findByAccount(account));
       return "/client/accounts/movements/view.jsp";
     } catch (Exception ex) {
       return "";
