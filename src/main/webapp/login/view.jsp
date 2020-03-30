@@ -6,8 +6,7 @@
 <% Model model= (Model)request.getAttribute("model");%>
 <% Map<String,String> mistakes = (Map<String,String>)request.getAttribute("mistakes");%>
 
-<!DOCTYPE html>
-<html>
+<html lang="es">
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>

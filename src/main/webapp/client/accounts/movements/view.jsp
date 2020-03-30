@@ -11,19 +11,18 @@
   List<Movement> movements = model.getMovements();
 %>
 
-<!DOCTYPE html>
 <html>
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
     <div id="move_display">
-      <form name="form" method="post"
-        action="${pageContext.request.contextPath}/client/accounts/movements/update?account=${pageContext.request.getParameter("account")}">
-        <label>From: </label><input type="date" name="from">
-        <label>To: </label><input type="date" name="to">
-        <button type="submit">Filter by date range</button>
-      </form>
       <table class="move_table">
+        <form name="form" method="post"
+          action="${pageContext.request.contextPath}/client/accounts/movements/update?account=${pageContext.request.getParameter("account")}">
+          <label>From: </label><input type="date" name="from">
+          <label>To: </label><input type="date" name="to">
+          <button type="submit">Filter by date range</button>
+        </form>
         <thead>
           <tr>
             <th>Time</th>
