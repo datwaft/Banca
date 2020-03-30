@@ -20,7 +20,7 @@
               <li><a href="${pageContext.request.contextPath}/register.jsp">Sign Up</a></li>
               <li><a href="${pageContext.request.contextPath}/deposit.jsp">Deposit</a></li>
               <li><a href="${pageContext.request.contextPath}/retires_c.jsp">Retire</a></li>
-              <li><a href="${pageContext.request.contextPath}/transfer_cashier.jsp">Transfer</a></li>
+              <li><a href="${pageContext.request.contextPath}/cashier/transfer/view">Transfer</a></li>
             <% } %>
           </ul>
         </li>

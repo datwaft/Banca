@@ -8,6 +8,7 @@
   List<Account> accounts = model.getAccounts();
 %>
 
+<!DOCTYPE html>
 <html>
   <%@ include file="/head.jsp" %> 
   <body>

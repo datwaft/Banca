@@ -15,6 +15,7 @@
   System.out.print("la wea");
 %>
 
+<!DOCTYPE html>
 <html>
   <%@ include file="/head.jsp" %> 
   <body>
