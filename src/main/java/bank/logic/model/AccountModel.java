@@ -14,7 +14,7 @@ public class AccountModel extends AccountDao {
   }
 
   public List<Account> findByOwner(String owner) {
-    if(owner  == null)
+    if(owner == null)
       return null;
     EntityManager em = getEntityManager();
     try {
@@ -30,13 +30,13 @@ public class AccountModel extends AccountDao {
   }
   
   public Account findById(Integer id) {
-    if(id  == null)
+    if(id == null)
       return null;
     EntityManager em = getEntityManager();
     try {
       return (Account)em.createQuery("SELECT obj FROM Account obj WHERE obj.id = :id")
-        .setParameter("id", id).getSingleResult();
-        
+        .setParameter("id", id)
+        .getSingleResult();
     } catch (Exception e) {
       System.out.print("An error occurred while getting id = '" + id + "' from table Account.\n\n Error:" + e + "\n\n");
       return null;
