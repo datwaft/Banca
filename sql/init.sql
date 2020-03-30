@@ -18,6 +18,8 @@ insert into `account` (`owner`, `currency`, `dailylimit`) values
 ('dual', 'CRC', 2000000);
 
 insert into `movement` (`origin`, `destination`, `amount`, `description`, `date`) values 
-(null, 3, 10, 'movimiento 1', localtime()),
-(3, null, 10, 'movimiento 2', localtime()),
-(4, 3, 10, 'movimiento 3', localtime());
+(null, 3, 10, 'movimiento 1', '2020-01-27 00:00:00'),
+(3, null, 10, 'movimiento 2', '2020-02-09 00:00:00'),
+(4, 3, 10, 'movimiento 3', '2020-03-11 00:00:00');
+
+select * from `movement`;
