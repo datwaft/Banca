@@ -1,4 +1,11 @@
+
+html 
+{
+  height: 99.5%;
+}
+
 body {
+  height: 98%;
   background-image: url("../images/fondo_body2.jpg");
   background-size: cover;
   background-attachment: fixed;  /*Fija la imagen de fondo por lo que no se desfigura en claso de necesitar un deslizador*/

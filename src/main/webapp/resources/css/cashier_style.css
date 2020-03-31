@@ -1,0 +1,61 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30/03/2020, 09:13:05 PM
+    Author     : Mario
+*/
+
+/* Cashier transfer css  starts here */
+
+::-webkit-input-placeholder { color: #9DDCFC; } 
+
+:-moz-placeholder { /* Firefox 18- */ color: #9DDCFC; } 
+
+::-moz-placeholder { /* Firefox 19+ */ color: #9DDCFC; } 
+
+:-ms-input-placeholder { color: #9DDCFC; }
+
+.transfer_display{
+  border: black solid medium;
+  padding: 0;
+  margin: 10px auto;
+  width: 750px;
+  height: 450px;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.transfer_display  table{
+  border-collapse:collapse;
+  background: transparent;
+  color:white;
+  border:none;
+}
+
+.transfer_display td, tr{
+  color:white;
+  
+}
+
+.transfer_display table th{
+  text-align: left;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.transfer_display input[type="text"]{
+  background: rgba(0,191,255,0.5);
+  margin-bottom: 0px;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;  
+}
+
+.transfer_display select option{
+  color:black;
+  background-color: white;
+}
+
+
+/*Cashier transfer css ends here*/
