@@ -4,6 +4,8 @@ import bank.logic.Account;
 import bank.logic.Movement;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -124,6 +126,16 @@ public class Controller extends HttpServlet {
   }
   
   private String transfer(HttpServletRequest request) {
+    Map<String, String> mistakes = this.validate(request);
+    if (mistakes.isEmpty()) {
+      return this.transferAction(request);
+    } else {
+      request.setAttribute("mistakes", mistakes);
+      return "/cashier/transfer/view.jsp";
+    }
+  }
+  
+  private String transferAction(HttpServletRequest request) {
     Movement movement = new Movement();
     bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
     try {
@@ -137,12 +149,46 @@ public class Controller extends HttpServlet {
       movement.setAmount(amount);
       movement.setDescription(description);
       movement.setDate(date);
+      
       bank.logic.model.MovementModel.getInstance().create(movement);
+      origin.setAmount(origin.getAmount() - amount);
+      destination.setAmount(destination.getAmount() + amount);
+      dao.edit(origin);
+      dao.edit(destination);
     } catch (Exception ex) {
-      request.setAttribute("model", new Model());
-      return "/cashier/transfer/view.jsp";
+      return "/error.jsp";
     }
     return "/cashier/transfer/done.jsp";
+  }
+  
+  private Map<String, String> validate(HttpServletRequest request) {
+    Map<String, String> mistakes = new HashMap<>();
+    bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
+    if (request.getParameter("origin").isEmpty())
+      mistakes.put("origin", "The source is required");
+    if (request.getParameter("destination").isEmpty())
+      mistakes.put("destination", "The destination is required");
+    if (request.getParameter("amount").isEmpty())
+      mistakes.put("amount", "The amount is required");
+    if (request.getParameter("description").isEmpty())
+      mistakes.put("description", "The description is required");
+    Account origin = dao.findById(Integer.valueOf(request.getParameter("origin")));
+    Account destination = dao.findById(Integer.valueOf(request.getParameter("destination")));
+    if (origin == null)
+      mistakes.put("origin", "The source is invalid");
+    if (destination == null)
+      mistakes.put("destination", "The destination is invalid");
+    Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
+    if (origin != null && origin.getAmount() < amount)
+      mistakes.put("amount", "The source account doesn't have enough money");
+    return mistakes;
+  }
+          
+  public static String isErroneous(String field, Map<String,String> mistakes) {
+    if ((mistakes != null) && (mistakes.get(field) != null))
+      return "is-invalid";
+    else
+      return "";
   }
   
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

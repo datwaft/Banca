@@ -111,7 +111,7 @@
           <td></td>
           <td>Amount to transfer</td>
           <td colspan="3">
-            <input name="amount" type="text" placeholder="10000">
+            <input name="amount" type="number" placeholder="10000">
             <input name="currency" type="text" size="3" placeholder="$$$"
               value="<% if (origin != null) out.print(origin.getCurrency().getCode()); %>" readonly>
           </td>

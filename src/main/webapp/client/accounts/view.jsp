@@ -29,7 +29,7 @@
             <tr onclick="window.location='${pageContext.request.contextPath}/client/accounts/movements/view?account=' + <%= account.getId() %>;">
               <td><%= account.getId() %></td>
               <td><%= account.getCurrency().getName() %></td>
-              <td><%= account.getAmount() %></td>
+              <td><%= Math.ceil(account.getAmount() * account.getCurrency().getConversion()) %> <%= account.getCurrency().getCode() %></td>
               <td><%= account.getDailylimit() %></td>
             </tr>
           <% } %>
