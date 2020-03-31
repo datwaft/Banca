@@ -30,7 +30,7 @@
               <td><%= account.getId() %></td>
               <td><%= account.getCurrency().getName() %></td>
               <td><%= Math.ceil(account.getAmount() * account.getCurrency().getConversion()) %> <%= account.getCurrency().getCode() %></td>
-              <td><%= account.getDailylimit() %></td>
+              <td><%= account.getDailylimit() %> <%= account.getCurrency().getCode() %></td>
             </tr>
           <% } %>
         </tbody>
