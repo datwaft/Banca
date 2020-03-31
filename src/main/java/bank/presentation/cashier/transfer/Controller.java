@@ -129,12 +129,12 @@ public class Controller extends HttpServlet {
     try {
       Account origin = dao.findById(Integer.valueOf(request.getParameter("origin")));
       Account destination = dao.findById(Integer.valueOf(request.getParameter("destination")));
-      Double amount = Long.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
+      Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
       String description = request.getParameter("description");
       Date date = new Date();
       movement.setOrigin(origin);
       movement.setDestination(destination);
-      movement.setAmount(amount.longValue());
+      movement.setAmount(amount);
       movement.setDescription(description);
       movement.setDate(date);
       bank.logic.model.MovementModel.getInstance().create(movement);

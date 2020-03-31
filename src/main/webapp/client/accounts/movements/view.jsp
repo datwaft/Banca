@@ -50,7 +50,7 @@
                 <td><%= (movement.getOrigin() == null ? "Deposit" : (movement.getDestination() == null ? "Withdrawal" : "Movement")) %></td>
                 <td><%= (movement.getOrigin() == null ? "-" : movement.getOrigin().getId()) %></td>
                 <td><%= (movement.getDestination() == null ? "-" : movement.getDestination().getId()) %></td>
-                <td><%= movement.getAmount() * account.getCurrency().getConversion() %> <%= account.getCurrency().getCode() %></td>
+                <td><%= Math.ceil(movement.getAmount() * account.getCurrency().getConversion()) %> <%= account.getCurrency().getCode() %></td>
                 <td><%= movement.getDescription() %></td>
               </tr>
             <% } %>

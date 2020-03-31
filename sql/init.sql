@@ -22,4 +22,6 @@ insert into `movement` (`origin`, `destination`, `amount`, `description`, `date`
 (3, null, 10, 'movimiento 2', '2020-02-09 00:00:00'),
 (4, 3, 10, 'movimiento 3', '2020-03-11 00:00:00');
 
-select * from `movement`;
+update `account` set `amount` = 10 where `id` = 3;
+
+select * from `account`;
