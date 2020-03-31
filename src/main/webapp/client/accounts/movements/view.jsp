@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.TimeZone"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="bank.logic.Account"%>
@@ -9,6 +10,7 @@
 <%
   Model model = (Model)request.getAttribute("model");
   List<Movement> movements = model.getMovements();
+  Account account = model.getAccount();
 %>
 
 <!DOCTYPE html>
@@ -48,7 +50,7 @@
                 <td><%= (movement.getOrigin() == null ? "Deposit" : (movement.getDestination() == null ? "Withdrawal" : "Movement")) %></td>
                 <td><%= (movement.getOrigin() == null ? "-" : movement.getOrigin().getId()) %></td>
                 <td><%= (movement.getDestination() == null ? "-" : movement.getDestination().getId()) %></td>
-                <td><%= movement.getAmount() %></td>
+                <td><%= movement.getAmount() * account.getCurrency().getConversion() %> <%= account.getCurrency().getCode() %></td>
                 <td><%= movement.getDescription() %></td>
               </tr>
             <% } %>

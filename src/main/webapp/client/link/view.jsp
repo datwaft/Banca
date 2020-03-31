@@ -1,5 +1,4 @@
-
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bank.logic.Account"%>
 <%@page import="java.util.List"%>
 <%@page import="bank.presentation.client.link.Model"%>

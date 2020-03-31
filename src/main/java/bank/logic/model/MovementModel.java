@@ -3,7 +3,9 @@ package bank.logic.model;
 import bank.data.MovementDao;
 import bank.logic.Movement;
 import java.text.SimpleDateFormat;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.TimeZone;
 import javax.persistence.EntityManager;
 
@@ -22,6 +24,9 @@ public class MovementModel extends MovementDao {
       List<Movement> origin = this.findByOrigin(account, from, to);
       List<Movement> destination = this.findByDestination(account, from, to);
       origin.addAll(destination);
+      Set<Movement> set = new LinkedHashSet<>(origin);
+      origin.clear();
+      origin.addAll(set);
       return origin;
     } catch (Exception e) {
       System.out.print("An error occurred while getting account = '" + account + "' from table Movement.\n\n Error:" + e + "\n\n");

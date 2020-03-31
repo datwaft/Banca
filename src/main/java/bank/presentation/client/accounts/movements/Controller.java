@@ -33,6 +33,7 @@ public class Controller extends HttpServlet {
     
     try {
       model.setMovements(MovementModel.getInstance().findByAccount(account, "", ""));
+      model.setAccount(bank.logic.model.AccountModel.getInstance().findById(Integer.valueOf(account)));
       return "/client/accounts/movements/view.jsp";
     } catch (Exception ex) {
       return "";
@@ -53,6 +54,7 @@ public class Controller extends HttpServlet {
     
     try {
       model.setMovements(MovementModel.getInstance().findByAccount(account, from, to));
+      model.setAccount(bank.logic.model.AccountModel.getInstance().findById(Integer.valueOf(account)));
       return "/client/accounts/movements/view.jsp";
     } catch (Exception ex) {
       return "";

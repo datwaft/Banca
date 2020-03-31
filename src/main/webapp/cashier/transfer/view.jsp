@@ -1,5 +1,6 @@
 <%@page import="bank.logic.Account"%>
 <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bank.presentation.cashier.transfer.Model"%>
 <%
   Model model = (Model)request.getAttribute("model");
@@ -14,15 +15,9 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <form name="form">
-      <table>
-        <tr><td><%= origin_id %></td></tr>
-        <tr><td><%= destination_id %></td></tr>
-        <tr><td><%= origin %></td></tr>
-        <tr><td><%= destination %></td></tr>
-      </table>
-    </form>
     <form name="form" method="post" action="${pageContext.request.contextPath}/cashier/transfer/transfer">
+      <input type="hidden" name="origin" value="<%= (origin != null ? origin.getId() : "") %>">
+      <input type="hidden" name="destination" value="<%= (destination != null ? destination.getId() : "") %>">
       <table>
         <tr>
           <th colspan="5">Source account<th>
@@ -39,7 +34,8 @@
           </td>
           <td><input type="text" name="origin-id" placeholder="ID number"></td>
           <td>
-            <button type=submit formaction="${pageContext.request.contextPath}/cashier/transfer/load-origin-id">Load</button>
+            <button type=submit formaction="${pageContext.request.contextPath}/cashier/transfer/load-origin-id"
+              <% if (origin != null) out.print("disabled"); %>>Load</button>
           </td>
           <td rowspan="2"><input type="text" name="origin-account" placeholder="Account number"
             <%if (origin != null) out.print("value=\"" + origin.getId() + "\"" ); %> <% if (origin != null) out.print("disabled"); %>></td>
@@ -81,10 +77,10 @@
           </td>
           <td><input type="text" name="destination-id" placeholder="ID number"></td>
           <td>
-            <button type=submit
-              formaction="${pageContext.request.contextPath}/cashier/transfer/load-destination-id">Load</button> </td>
+            <button type=submit formaction="${pageContext.request.contextPath}/cashier/transfer/load-destination-id"
+              <% if (destination != null) out.print("disabled"); %>>Load</button> </td>
           <td rowspan="2"><input type="text" name="destination-account" placeholder="Account number"
-            <%if (origin != null) out.print("value=\"" + destination.getId()+ "\"" ); %> <% if (origin != null) out.print("disabled"); %>></td>
+            <%if (destination != null) out.print("value=\"" + destination.getId()+ "\"" ); %> <% if (destination != null) out.print("disabled"); %>></td>
           <td rowspan="2">
             <button type=submit formaction="${pageContext.request.contextPath}/cashier/transfer/validate-destination-account"
               <% if (destination != null) out.print("disabled"); %>>Validate</button>
@@ -115,7 +111,9 @@
           <td></td>
           <td>Amount to transfer</td>
           <td colspan="3">
-            <input name="amount" type="text" placeholder="10000"> <input name="currency" type="text" size="3" placeholder="$$$" readonly>
+            <input name="amount" type="text" placeholder="10000">
+            <input name="currency" type="text" size="3" placeholder="$$$"
+              value="<% if (origin != null) out.print(origin.getCurrency().getCode()); %>" readonly>
           </td>
         </tr>
         <tr>

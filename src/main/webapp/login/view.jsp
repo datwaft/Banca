@@ -1,4 +1,5 @@
-﻿<%@page import="java.util.HashMap"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="bank.presentation.login.Model"%>
 <%@page import="bank.presentation.login.Controller"%>
@@ -40,6 +41,6 @@
         </table>
       </form>
     </div>
-    <div class="desc"><p>Creado por David Guevara y Mario Arguello. 2020 ©</p></div>
+    <%@ include file="/footer.jsp" %>
   </body>
 </html>
