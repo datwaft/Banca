@@ -48,11 +48,12 @@ public class controller extends HttpServlet {
     return linkAction(request);
   }
   
-   private String viewAction(HttpServletRequest request) {     
-    HttpSession session = request.getSession(true);
-    bank.presentation.client.link.Model model = (bank.presentation.client.link.Model)request.getAttribute("model");
-    
+   private String viewAction(HttpServletRequest request) {    
+     
+    HttpSession session = request.getSession(true);    
     User user = (User)session.getAttribute("user");
+    bank.presentation.client.link.Model model = (bank.presentation.client.link.Model)request.getAttribute("model");
+
     
     try {
       model.setAccounts(AccountModel.getInstance().findByOwner(user.getId()));

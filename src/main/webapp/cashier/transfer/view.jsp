@@ -15,7 +15,7 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <div class="transfer_display">
+    <div class="transfer_display cashier_size">
       <form name="form" method="post" action="${pageContext.request.contextPath}/cashier/transfer/transfer" >
         <input type="hidden" name="origin" value="<%= (origin != null ? origin.getId() : "") %>">
         <input type="hidden" name="destination" value="<%= (destination != null ? destination.getId() : "") %>">
@@ -50,7 +50,6 @@
               <select name="origin-id-account" <% if (origin != null) out.print("disabled"); %>>
                 <% if (origin == null) { %>
                   <option>Please select the source account</option>
-                   <option>la wea shusha</option>
                   <% for (Account account:origin_id) { %>
                     <option><%= account.getId() %></option>               
                   <% } %>
