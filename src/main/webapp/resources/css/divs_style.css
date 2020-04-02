@@ -43,23 +43,16 @@
   border-bottom-left-radius: 1em;
   float: left;
 }
+
 .principal input[type="text"]{
   background: rgba(0,191,255,0.5);
   margin-bottom: 20px;
   border: none;
   outline: none;
   padding: 10px;
-  color: #FFF;
   border-radius: 5px;
 }
-/*.transfer_right input[type="text"], select{
-  background: rgba(0,191,255,0.5);
-  margin-bottom: 20px;
-  border: none;
-  padding: 10px;
-  color: #FFF;
-  border-radius: 5px;
-}*/
+
 
 .principal select{
   background: rgba(0,191,255,0.5);
@@ -115,7 +108,7 @@
 }
   
 .register_left input[type="text"], select{
-  background: rgba(255,255,0,0.5); /*rgba(0,191,255,0.5)*/
+  background: rgba(0,191,255,0.5); /*rgba(0,191,255,0.5)*/
   border: none;
   outline: none;
   padding: 10px;
@@ -133,11 +126,14 @@
 
 .register{
   color: rgba(255,255,0,0.5);
+  background: transparent;
+  border: none;
 }
 
 .register tr td{
   padding: 0px 10px;
   border: none;
+   color: white;
 }
 
 .register input[type="text"], select

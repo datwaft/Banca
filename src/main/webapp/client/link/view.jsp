@@ -33,7 +33,7 @@
             <tr>
               <td><label>Account number to link:</label></td>
               <td><input name="destination_link" type = "text" value=<%= (model.getTo_link() == null ? "" : model.getTo_link().getId())%> ></td>
-              <td><input name="verify" type = "submit" value="Verify" align="center"><td>
+              <td><input name="verify" type = "submit" value="Verify" align="center" formaction="${pageContext.request.contextPath}/client/link/verify"><td>
             </tr>
             <tr>
               <td><label>Complete name: </label></td>
@@ -46,6 +46,7 @@
             <tr>
               <td colspan="3" style="text-align: center;">
                 <input name="link" type = "submit" value="Vincular" <%= (model.getTo_link()== null ? "disabled" : "")%> >
+                <input name="clear" type = "submit" value="clear" align="center" formaction="${pageContext.request.contextPath}/client/link/clear">
               </td>
             </tr>
           </table>

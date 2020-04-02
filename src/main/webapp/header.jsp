@@ -17,7 +17,7 @@
               <li><a href="${pageContext.request.contextPath}/client/transfer/view">Transfer</a></li>
               <li><a href="${pageContext.request.contextPath}/client/link/view">Account linking</a></li>
             <% } else { %>
-              <li><a href="${pageContext.request.contextPath}/register.jsp">Sign Up</a></li>
+              <li><a href="${pageContext.request.contextPath}/cashier/register/view">Register</a></li>
               <li><a href="${pageContext.request.contextPath}/deposit.jsp">Deposit</a></li>
               <li><a href="${pageContext.request.contextPath}/retires_c.jsp">Retire</a></li>
               <li><a href="${pageContext.request.contextPath}/cashier/transfer/view">Transfer</a></li>

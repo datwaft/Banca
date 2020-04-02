@@ -30,8 +30,14 @@ public class controller extends HttpServlet {
       case "/client/link/view":
         url = this.view(request);
         break;
+      case "/client/link/verify":
+        url = this.verify(request);
+        break;
       case "/client/link/link":
         url=this.link(request);
+        break;
+      case "/client/link/clear":
+        url=this.clear(request);
         break;
     }
     request.getRequestDispatcher(url).forward(request, response);
@@ -43,9 +49,24 @@ public class controller extends HttpServlet {
 
   }
   
+  private String verify(HttpServletRequest request) {
+    return verifyAction(request);
+
+  }
+  
   private String link( HttpServletRequest request )
   {
     return linkAction(request);
+  }
+  
+  private String clear( HttpServletRequest request)
+  { 
+    HttpSession session = request.getSession(true);      
+    User user = (User)session.getAttribute("user");
+    bank.presentation.client.link.Model model = (bank.presentation.client.link.Model)request.getAttribute("model");
+    model.setAccounts(AccountModel.getInstance().findByOwner(user.getId()));
+    model.setTo_link(null);
+    return "/client/link/view.jsp";
   }
   
    private String viewAction(HttpServletRequest request) {    
@@ -64,6 +85,38 @@ public class controller extends HttpServlet {
        
   }
    
+   private String verifyAction( HttpServletRequest request )
+   {
+     
+      bank.presentation.client.link.Model model = (bank.presentation.client.link.Model)request.getAttribute("model");
+      HttpSession session = request.getSession(true);      
+      User user = (User)session.getAttribute("user");;
+ 
+      try{
+  
+        if (request.getParameter("destination_link").isEmpty()){
+          throw new Exception("Empty acc field");
+        }
+        else{
+
+          Account destination = AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("destination_link")));
+  
+          model.setTo_link(destination);
+      
+          model.setAccounts(AccountModel.getInstance().findByOwner(user.getId()));
+         
+          model.setSelected(Integer.valueOf(request.getParameter("origin_link")));
+       
+          } 
+        }
+      catch(Exception ex)
+      {
+
+        return "/client/link/view.jsp";
+      }
+     return "/client/link/view.jsp";
+   }
+   
    private String linkAction(HttpServletRequest request){
 
     bank.presentation.client.link.Model model = (bank.presentation.client.link.Model)request.getAttribute("model");
@@ -72,48 +125,18 @@ public class controller extends HttpServlet {
       
       Account origin = AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("origin_link")));
       model.setOrigin(origin);     
-      
-      
-      if (request.getParameter("verify") != null){   
-        
-        HttpSession session = request.getSession(true);      
-        User user = (User)session.getAttribute("user");;
-        
-        if (request.getParameter("destination_link").isEmpty()){
-          throw new Exception("Empty acc field");
-        }
-        else{
-          Account destination = AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("destination_link")));
-          model.setTo_link(destination);
-          model.setAccounts(AccountModel.getInstance().findByOwner(user.getId()));
-          model.setSelected(Integer.valueOf(request.getParameter("origin_link")));
-       }
-        String url = "/client/link/view.jsp";
-        return url;
-      }
-      else if (request.getParameter("link") != null){
-        Link link = new Link();
-        link.setOwner(AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("destination_link"))));
-        link.setLinkedAccount(origin);
-        LinkModel.getInstance().create(link);
-        String url = "/index.jsp";
-        return url;
-      }
-      else
-      {
-        throw new Exception("Invalid password");
-      }
+
+      Link link = new Link();
+      link.setLinkedAccount(AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("destination_link"))));
+      link.setOwner(origin);
+      LinkModel.getInstance().create(link);
 
     } catch (Exception ex) {
-      return "";
-    }   
+          return "/client/link/view.jsp";
+      } 
+    return "/client/link/view.jsp";
     }
-   
-   
-   
-   
-   
-   
+
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
   /**

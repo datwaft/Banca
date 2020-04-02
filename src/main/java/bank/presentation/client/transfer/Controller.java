@@ -102,16 +102,10 @@ public class Controller extends HttpServlet {
     Movement movement = new Movement();
     bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
     try {
-      System.out.println("aqui va 1");
-      System.out.println(request.getParameter("origin_hiden"));
       Account origin = dao.findById(Integer.valueOf(request.getParameter("origin_hiden")));
-      System.out.println("aqui va 2");
       Account destination = dao.findById(Integer.valueOf(request.getParameter("trans_destination_accounts")));
-      System.out.println("aqui va 3");
       Double amount = Double.valueOf(request.getParameter("trans_ammount"))/origin.getCurrency().getConversion();
-      System.out.println("aqui va 4");
       String description = request.getParameter("trans_description");
-      System.out.println("aqui va 5");
       Date date = new Date();
       movement.setOrigin(origin);
       movement.setDestination(destination);
@@ -137,11 +131,11 @@ public class Controller extends HttpServlet {
     bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
     if (request.getParameter("trans_ammount").isEmpty())
       mistakes.put("origin", "The source is required");
-//    System.out.println(Integer.valueOf(request.getParameter("trans_origin_accounts")));
-//    System.out.println(Integer.valueOf(request.getParameter("trans_ammount")));
-//    if (Integer.valueOf(request.getParameter("trans_ammount")) > dao.findById(Integer.valueOf(request.getParameter("trans_origin_accounts"))).getAmount()){
-//      mistakes.put("ammount", "The ammount is insuficient");
-   
+    System.out.println(Integer.valueOf(request.getParameter("origin_hiden")));
+    System.out.println(Integer.valueOf(request.getParameter("trans_ammount")));
+    if (Integer.valueOf(request.getParameter("trans_ammount")) > dao.findById(Integer.valueOf(request.getParameter("origin_hiden"))).getAmount()){
+      mistakes.put("ammount", "The ammount is insuficient");
+    }
     return mistakes;
   }
 
