@@ -104,7 +104,7 @@ public class Controller extends HttpServlet {
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     try {
       Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
-      Double amount = Double.valueOf(request.getParameter("amount"))/account.getCurrency().getConversion();
+      Double amount = Double.valueOf(request.getParameter("amount"));
       String name = request.getParameter("name");
       String description = request.getParameter("description");
       Date date = new Date();

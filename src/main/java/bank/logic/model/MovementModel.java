@@ -27,6 +27,7 @@ public class MovementModel extends MovementDao {
       Set<Movement> set = new LinkedHashSet<>(origin);
       origin.clear();
       origin.addAll(set);
+      origin.sort((m1, m2) -> m1.getDate().compareTo(m2.getDate()));
       return origin;
     } catch (Exception e) {
       System.out.print("An error occurred while getting account = '" + account + "' from table Movement.\n\n Error:" + e + "\n\n");

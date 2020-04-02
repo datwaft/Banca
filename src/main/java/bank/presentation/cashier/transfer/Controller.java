@@ -143,7 +143,7 @@ public class Controller extends HttpServlet {
     try {
       Account origin = dao.findById(Integer.valueOf(request.getParameter("origin")));
       Account destination = dao.findById(Integer.valueOf(request.getParameter("destination")));
-      Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
+      Double amount = Double.valueOf(request.getParameter("amount"));
       String description = request.getParameter("description");
       Date date = new Date();
       movement.setOrigin(origin);
@@ -154,7 +154,7 @@ public class Controller extends HttpServlet {
       
       bank.logic.model.MovementModel.getInstance().create(movement);
       origin.setAmount(origin.getAmount() - amount);
-      destination.setAmount(destination.getAmount() + amount);
+      destination.setAmount(destination.getAmount() + amount/origin.getCurrency().getConversion()*destination.getCurrency().getConversion());
       dao.edit(origin);
       dao.edit(destination);
     } catch (Exception ex) {
