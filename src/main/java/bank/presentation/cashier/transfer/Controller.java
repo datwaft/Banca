@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -138,6 +139,7 @@ public class Controller extends HttpServlet {
   private String transferAction(HttpServletRequest request) {
     Movement movement = new Movement();
     bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
+    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     try {
       Account origin = dao.findById(Integer.valueOf(request.getParameter("origin")));
       Account destination = dao.findById(Integer.valueOf(request.getParameter("destination")));
@@ -178,9 +180,11 @@ public class Controller extends HttpServlet {
       mistakes.put("origin", "The source is invalid");
     if (destination == null)
       mistakes.put("destination", "The destination is invalid");
-    Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
-    if (origin != null && origin.getAmount() < amount)
-      mistakes.put("amount", "The source account doesn't have enough money");
+    if (origin != null) {
+      Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
+      if (origin.getAmount() < amount)
+        mistakes.put("amount", "The source account doesn't have enough money");
+    }
     return mistakes;
   }
           

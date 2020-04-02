@@ -18,6 +18,14 @@
         <servlet-class>bank.presentation.client.link.controller</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>cashier-withdrawal</servlet-name>
+        <servlet-class>bank.presentation.cashier.withdrawal.Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cashier-deposit</servlet-name>
+        <servlet-class>bank.presentation.cashier.deposit.Controller</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>cashier-transfer</servlet-name>
         <servlet-class>bank.presentation.cashier.transfer.Controller</servlet-class>
     </servlet>
@@ -58,6 +66,24 @@
         <url-pattern>/cashier/transfer/load-destination-id</url-pattern>
         <url-pattern>/cashier/transfer/validate-destination-account</url-pattern>
         <url-pattern>/cashier/transfer/validate-destination-id</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cashier-withdrawal</servlet-name>
+        <url-pattern>/cashier/withdrawal/view</url-pattern>
+        <url-pattern>/cashier/withdrawal/withdrawal</url-pattern>
+        <url-pattern>/cashier/withdrawal/clear</url-pattern>
+        <url-pattern>/cashier/withdrawal/load</url-pattern>
+        <url-pattern>/cashier/withdrawal/validate-account</url-pattern>
+        <url-pattern>/cashier/withdrawal/validate-id</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cashier-deposit</servlet-name>
+        <url-pattern>/cashier/deposit/view</url-pattern>
+        <url-pattern>/cashier/deposit/deposit</url-pattern>
+        <url-pattern>/cashier/deposit/clear</url-pattern>
+        <url-pattern>/cashier/deposit/load</url-pattern>
+        <url-pattern>/cashier/deposit/validate-account</url-pattern>
+        <url-pattern>/cashier/deposit/validate-id</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>client-transfer</servlet-name>

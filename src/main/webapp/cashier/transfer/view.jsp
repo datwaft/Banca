@@ -1,6 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bank.logic.Account"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bank.presentation.cashier.transfer.Model"%>
 <%
   Model model = (Model)request.getAttribute("model");
