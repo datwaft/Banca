@@ -1,6 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bank.logic.Account"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bank.presentation.cashier.transfer.Model"%>
 <%
   Model model = (Model)request.getAttribute("model");
@@ -15,7 +15,7 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <div class="transfer_display cashier_size">
+    <div>
       <form name="form" method="post" action="${pageContext.request.contextPath}/cashier/transfer/transfer" >
         <input type="hidden" name="origin" value="<%= (origin != null ? origin.getId() : "") %>">
         <input type="hidden" name="destination" value="<%= (destination != null ? destination.getId() : "") %>">

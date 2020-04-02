@@ -1,3 +1,4 @@
+<%@page import="org.decimal4j.util.DoubleRounder"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.TimeZone"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -48,9 +49,17 @@
               <tr>
                 <td><%= formatter.format(movement.getDate()) %></td>
                 <td><%= (movement.getOrigin() == null ? "Deposit" : (movement.getDestination() == null ? "Withdrawal" : "Movement")) %></td>
-                <td><%= (movement.getOrigin() == null ? "-" : movement.getOrigin().getId()) %></td>
-                <td><%= (movement.getDestination() == null ? "-" : movement.getDestination().getId()) %></td>
-                <td><%= Math.ceil(movement.getAmount() * account.getCurrency().getConversion()) %> <%= account.getCurrency().getCode() %></td>
+                <td><%= (movement.getOrigin() == null ? "-" : 
+                        (movement.getOrigin().equals(account) ? "This account" : movement.getOrigin().getId())) %></td>
+                <td><%= (movement.getDestination() == null ? "-" : 
+                        (movement.getDestination().equals(account) ? "This account" : movement.getDestination().getId())) %></td>
+                <% if ((movement.getOrigin() != null && movement.getDestination() != null) 
+                      && !movement.getOrigin().getCurrency().equals(account.getCurrency())) {%>
+                  <td><%= DoubleRounder.round(movement.getAmount()/movement.getOrigin().getCurrency().getConversion()
+                    *movement.getDestination().getCurrency().getConversion(), 3) %> <%= account.getCurrency().getCode() %></td>
+                <% } else { %>
+                  <td><%= DoubleRounder.round(movement.getAmount(), 3) %> <%= account.getCurrency().getCode() %></td>
+                <% }%>
                 <td><%= movement.getDescription() %></td>
               </tr>
             <% } %>

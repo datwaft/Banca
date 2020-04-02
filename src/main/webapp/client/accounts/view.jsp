@@ -1,3 +1,4 @@
+<%@page import="org.decimal4j.util.DoubleRounder"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="bank.presentation.client.accounts.Model"%>
 <%@page import="java.util.List"%>
@@ -29,7 +30,7 @@
             <tr onclick="window.location='${pageContext.request.contextPath}/client/accounts/movements/view?account=' + <%= account.getId() %>;">
               <td><%= account.getId() %></td>
               <td><%= account.getCurrency().getName() %></td>
-              <td><%= Math.ceil(account.getAmount() * account.getCurrency().getConversion()) %> <%= account.getCurrency().getCode() %></td>
+              <td><%= DoubleRounder.round(account.getAmount(), 3) %> <%= account.getCurrency().getCode() %></td>
               <td><%= account.getDailylimit() %> <%= account.getCurrency().getCode() %></td>
             </tr>
           <% } %>
