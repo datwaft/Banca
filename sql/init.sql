@@ -21,4 +21,6 @@ insert into `movement` (`origin`, `destination`, `amount`, `description`, `date`
 (null, 3, 5000, 'movimiento 1', '2020-01-27 00:00:00'),
 (3, null, 5000, 'movimiento 2', '2020-02-09 00:00:00');
 
+select * from `movement`;
 select * from `account`;
+select now();
