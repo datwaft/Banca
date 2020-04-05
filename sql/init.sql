@@ -24,3 +24,4 @@ insert into `movement` (`origin`, `destination`, `amount`, `description`, `date`
 select * from `movement`;
 select * from `account`;
 select now();
+select * from `user`;

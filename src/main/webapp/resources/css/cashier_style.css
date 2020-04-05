@@ -63,7 +63,17 @@ and open the template in the editor.
   height: 135px;
 }
 
-.transfer_display  table{
+.about_size{
+  margin: auto auto;
+  border-style: solid;
+  border-width: thick;
+  border-radius: 6px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+}
+
+.transfer_display table{
   border-collapse:collapse;
   background: transparent;
   color:white;
