@@ -135,13 +135,17 @@ public class Controller extends HttpServlet {
       mistakes.put("amount", "The amount is required");
     if (request.getParameter("description").isEmpty())
       mistakes.put("description", "The description is required");
-    Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
-    if (account == null)
+    if (!request.getParameter("account").isEmpty()) {
+      Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
+      if (account == null)
+        mistakes.put("destination", "The account is invalid");
+      if (account != null) {
+        Double amount = Double.valueOf(request.getParameter("amount"))/account.getCurrency().getConversion();
+        if (account.getAmount() < amount)
+          mistakes.put("amount", "The account doesn't have enough money");
+      }
+    } else {
       mistakes.put("destination", "The account is invalid");
-    if (account != null) {
-      Double amount = Double.valueOf(request.getParameter("amount"))/account.getCurrency().getConversion();
-      if (account.getAmount() < amount)
-        mistakes.put("amount", "The account doesn't have enough money");
     }
     return mistakes;
   }

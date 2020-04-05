@@ -138,9 +138,13 @@ public class Controller extends HttpServlet {
       mistakes.put("name", "The name is required");
     if (request.getParameter("description").isEmpty())
       mistakes.put("description", "The description is required");
-    Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
-    if (account == null)
+    if (!request.getParameter("account").isEmpty()) {
+      Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
+      if (account == null)
+        mistakes.put("destination", "The account is invalid");
+    } else {
       mistakes.put("destination", "The account is invalid");
+    }
     return mistakes;
   }
   
