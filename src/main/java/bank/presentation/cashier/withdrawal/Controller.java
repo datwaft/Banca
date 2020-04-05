@@ -2,6 +2,7 @@ package bank.presentation.cashier.withdrawal;
 
 import bank.logic.Account;
 import bank.logic.Movement;
+import bank.logic.User;
 import bank.logic.model.AccountModel;
 import java.io.IOException;
 import java.util.Date;
@@ -12,9 +13,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Controller extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+    HttpSession session = request.getSession(true);
+    User user = (User)session.getAttribute("user");
+    
+    if (user == null || !user.getCashier())
+    {
+      request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+    
     request.setAttribute("model", new Model());
     Model model = (Model)request.getAttribute("model");
     AccountModel dao = AccountModel.getInstance();

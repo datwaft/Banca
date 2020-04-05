@@ -12,12 +12,12 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <div class="body">
+    <div class="transfer_display login_size">
       <form name="form" action="${pageContext.request.contextPath}/login/login" method="post">
         <table class="login">
           <tr>
             <th colspan="2">
-              Please, enter your login information
+              <center>Please, enter your login information</center>
             </th>
           </tr>
           <tr>

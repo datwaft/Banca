@@ -23,6 +23,15 @@ public class controller extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
+    HttpSession session = request.getSession(true);
+    User user = (User)session.getAttribute("user");
+    
+    if (user == null || !user.getClient())
+    {
+      request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+    
+    
     request.setAttribute("model", new Model());
     
     String url = "";

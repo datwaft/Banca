@@ -13,7 +13,7 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <div>
+    <div class="transfer_display retire_size">
       <form name="form" method="post" action="${pageContext.request.contextPath}/cashier/withdrawal/withdrawal" >
         <input type="hidden" name="account" value="<%= (account != null ? account.getId() : "") %>">
         <table>

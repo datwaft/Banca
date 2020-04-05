@@ -31,10 +31,36 @@ and open the template in the editor.
   height: 450px;
 }
 
+.deposit_size
+{
+  margin: 50px auto;
+  width: 700px;
+  height: 350px;
+}
+
+.retire_size
+{
+  margin: 50px auto;
+  width: 700px;
+  height: 350px;
+}
+
+.interest_size{
+  margin: 50px auto;
+  width: 550px;
+  height: 80px;
+}
+
 .client_size{
   margin: 40px auto;
   width: 600px;
   height: 400px;
+}
+
+.login_size{
+  margin: 100px auto;
+  width: 400px;
+  height: 135px;
 }
 
 .transfer_display  table{
@@ -54,7 +80,7 @@ and open the template in the editor.
   background-color: rgba(0,0,0,0.5);
 }
 
-.transfer_display input[type="text"]{
+.transfer_display input[type="text"], input[type="password"]{
   background: rgba(0,191,255,0.5);
   margin-bottom: 0px;
   border: none;

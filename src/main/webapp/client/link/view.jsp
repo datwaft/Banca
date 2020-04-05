@@ -11,9 +11,7 @@
   {
   destination = model.getTo_link().getOwner();
   }
-  System.out.print("la wea");
 %>
-
 <!DOCTYPE html>
 <html>
   <%@ include file="/head.jsp" %> 

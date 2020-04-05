@@ -15,7 +15,7 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <div>
+    <div class="transfer_display cashier_size">
       <form name="form" method="post" action="${pageContext.request.contextPath}/cashier/transfer/transfer" >
         <input type="hidden" name="origin" value="<%= (origin != null ? origin.getId() : "") %>">
         <input type="hidden" name="destination" value="<%= (destination != null ? destination.getId() : "") %>">

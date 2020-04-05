@@ -35,12 +35,18 @@ public class Controller extends HttpServlet {
    * @throws IOException if an I/O error occurs
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-   
+    
+    HttpSession session = request.getSession(true);
+    User user = (User)session.getAttribute("user");
+    
+    if (user == null || !user.getClient())
+    {
+      request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+    
     request.setAttribute("model", new Model());
     Model model = (Model)request.getAttribute("model");
     
-    HttpSession session = request.getSession(true);    
-    User user = (User)session.getAttribute("user");
     
     model.origin_accounts = bank.logic.model.AccountModel.getInstance().findByOwner(user.getId());
    
