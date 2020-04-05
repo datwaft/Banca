@@ -198,13 +198,6 @@ public class Controller extends HttpServlet {
     }
     return mistakes;
   }
-          
-  public static String isErroneous(String field, Map<String,String> mistakes) {
-    if ((mistakes != null) && (mistakes.get(field) != null))
-      return "is-invalid";
-    else
-      return "";
-  }
   
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
   /** 

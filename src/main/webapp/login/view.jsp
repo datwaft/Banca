@@ -24,14 +24,14 @@
             <td>username</td>
             <td>
               <input type="text" placeholder="User ID" name="id"
-                class="<%=Controller.isErroneous("id", mistakes)%>" autocomplete="off">
+                class="<%=bank.presentation.Controller.getInstance().isErroneous("id", mistakes)%>" autocomplete="off">
             </td>
           </tr>
           <tr>
             <td>password</td>
             <td>
               <input type="password" placeholder="User password" name="password"
-                class="<%=Controller.isErroneous("password", mistakes)%>" autocomplete="off">
+                class="<%=bank.presentation.Controller.getInstance().isErroneous("password", mistakes)%>" autocomplete="off">
             </td>
           </tr>
           <tr>

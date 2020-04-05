@@ -56,13 +56,6 @@ public class Controller extends HttpServlet {
     }
     request.getRequestDispatcher(url).forward(request, response);
   } 
-
-  public static String isErroneous(String field, Map<String,String> mistakes) {
-    if ((mistakes != null) && (mistakes.get(field) != null))
-      return "is-invalid";
-    else
-      return "";
-  }
   
   private String view(HttpServletRequest request) {
     return "/cashier/withdrawal/view.jsp";
