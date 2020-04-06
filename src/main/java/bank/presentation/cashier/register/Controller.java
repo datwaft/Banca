@@ -67,9 +67,7 @@ public class Controller extends HttpServlet {
   private String register(HttpServletRequest request)
   {
     Map<String, String> mistakes = this.validate(request);
-     System.out.println("aqui llega la n -7");
     if (mistakes.isEmpty()) {
-       System.out.println("aqui llega la n -6");
       return this.registerAction(request);
     } else {
       request.setAttribute("mistakes", mistakes);
@@ -119,12 +117,9 @@ public class Controller extends HttpServlet {
   
   private String registerAction(HttpServletRequest request)
   {
-     System.out.println("aqui llega la n -5");
     User user = bank.logic.model.UserModel.getInstance().find(request.getParameter("register_id_hidden"));
-     System.out.println("aqui llega la n -4");
     try
     {
-       System.out.println("aqui llega la n -3");
       if (user == null)
       {
         
@@ -154,15 +149,13 @@ public class Controller extends HttpServlet {
         {
           user.setClient(true);
         }
-        System.out.println("aqui llega la n 1");
         Account new_account = new Account();
         new_account.setAmount(0);
         new_account.setCurrency(bank.logic.model.CurrencyModel.getInstance().find(request.getParameter("register_currency")));
         new_account.setDailylimit(Integer.valueOf(request.getParameter("register_limit")));
         new_account.setOwner(user);
-         System.out.println("aqui llega la n 2");
         bank.logic.model.UserModel.getInstance().edit(user);
-         System.out.println("aqui llega la n 3");
+
            
         bank.logic.model.AccountModel.getInstance().create(new_account);
         
@@ -180,9 +173,6 @@ public class Controller extends HttpServlet {
             bank.logic.model.LinkModel.getInstance().create(to_link);
           }
         }
-        
-        
-        System.out.println("aqui llega la n 4");
       }
     }
     catch(Exception ex)

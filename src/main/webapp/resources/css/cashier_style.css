@@ -47,7 +47,7 @@ and open the template in the editor.
 
 .interest_size{
   margin: 50px auto;
-  width: 550px;
+  width: 510px;
   height: 80px;
 }
 
@@ -55,6 +55,7 @@ and open the template in the editor.
   margin: 40px auto;
   width: 600px;
   height: 400px;
+  text-align: center;
 }
 
 .login_size{
@@ -72,15 +73,18 @@ and open the template in the editor.
 
 .transfer_display td, tr{
   color:white;
-  
 }
 
+.i 
+{
+  display: block;
+}
 .transfer_display table th{
   text-align: left;
   background-color: rgba(0,0,0,0.5);
 }
 
-.transfer_display input[type="text"], input[type="password"]{
+.transfer_display input[type="text"], input[type="password"], input[type="number"]{
   background: rgba(0,191,255,0.5);
   margin-bottom: 0px;
   border: none;
@@ -93,5 +97,22 @@ and open the template in the editor.
   background-color: white;
 }
 
+.error{
+  
+   border: 2px solid red !important;
+}
+
+.td_class{  /* pruebas para errores de tipo span */
+  
+}
+
+.td_class span{
+  color: red;
+  opacity: 0;
+}
+
+.td_class:hover >span{
+  opacity: 1;
+}
 /*Cashier transfer css ends here*/
 

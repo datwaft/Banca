@@ -18,7 +18,7 @@ public class Model {
   User exist;
   List<Currency> currency = null;
   boolean is = false;
-  String id;
+  String id = ""; //esto debia ser null (en caso de que algo falle) tambien se debe cambiar la condicion del campo de cedula en el view (verificar si user es nullo no)
   
   public Model() {
     this.exist = null;

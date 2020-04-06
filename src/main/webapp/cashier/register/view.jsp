@@ -25,7 +25,7 @@
         <table class = "register">
           <tr>
             <td><label>ID:</label></td>
-            <td><input type = "text" name="register_id" value="<%= user == null ? "" : model.getId()%>"  placeholder="ID"><br></td>
+            <td><input type = "text"  name="register_id" value="<%= model.getId() == "" ? "" : model.getId()%>"  placeholder="ID"><br></td>
             <td><input type = "submit" value="Verify" formaction="${pageContext.request.contextPath}/cashier/register/verify" ><td><br>
           </tr>
           <tr>

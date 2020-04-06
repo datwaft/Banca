@@ -30,7 +30,7 @@
               </select></td>           
             <tr>
               <td><label>Account number to link:</label></td>
-              <td><input name="destination_link" type = "text" value=<%= (model.getTo_link() == null ? "" : model.getTo_link().getId())%> ></td>
+              <td><input  name="destination_link" type = "text" value=<%= (model.getTo_link() == null ? "" : model.getTo_link().getId())%> ></td>
               <td><input name="verify" type = "submit" value="Verify" align="center" formaction="${pageContext.request.contextPath}/client/link/verify"><td>
             </tr>
             <tr>

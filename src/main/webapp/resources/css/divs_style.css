@@ -228,15 +228,18 @@ table.move_table thead{
   width: 100%;
   height: 295px;
 }
+
+
 .container input[type="text"], select{
   background: rgba(0,191,255,0.5);
   margin-bottom: 20px;
-  border: none;
   padding: 8px;
+  border: none;
   color: #FFF;
   border-radius: 5px;
   
 }
+
 
 .container select{
   background: rgba(0,191,255,0.5);

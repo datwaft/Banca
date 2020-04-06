@@ -79,7 +79,7 @@
           <tr>
             <td><label>Ammount to deposit:</label></td>
             <td>
-              <input name="trans_ammount" type = "text" placeholder="Ammount">
+              <input name="trans_ammount" type = "text" placeholder="Amount">
               <input name="currency" type="text" size="3" placeholder="$$$"
                 value="<% if (model.getOrigin() != null) out.print(model.getOrigin().getCurrency().getCode()); %>" readonly>
             </td>
@@ -90,7 +90,7 @@
           </tr>
           <tr>
             <th colspan="2">
-              <center><input type = "submit" value="Tansferir"></center>
+              <center><input type = "submit" value="Tansfer"></center>
             </th>
           </tr>
         </table>

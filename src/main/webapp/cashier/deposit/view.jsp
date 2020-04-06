@@ -30,7 +30,7 @@
               <button type"submit" formaction="${pageContext.request.contextPath}/cashier/deposit/clear"
                 <% if (account == null) out.print("disabled"); %>>Clear</button>
             </td>
-            <td><input type="text" name="id" placeholder="ID number"></td>
+            <td ><input type="text" name="id" placeholder="ID number"><span style="display: block">la wea</span></td>
             <td>
               <button type=submit formaction="${pageContext.request.contextPath}/cashier/deposit/load"
                 <% if (account != null) out.print("disabled"); %>>Load</button>
