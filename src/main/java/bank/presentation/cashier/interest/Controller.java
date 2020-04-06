@@ -6,7 +6,6 @@ import bank.logic.User;
 import bank.logic.model.AccountModel;
 import bank.logic.model.MovementModel;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;

@@ -56,13 +56,6 @@ public class Controller extends HttpServlet {
     }
     request.getRequestDispatcher(url).forward(request, response);
   }
-
-  public static String isErroneous(String field, Map<String,String> mistakes) {
-    if ((mistakes != null) && (mistakes.get(field) != null))
-      return "is-invalid";
-    else
-      return "";
-  }
   
   private String view(HttpServletRequest request) {
     return "/cashier/deposit/view.jsp";
@@ -145,9 +138,13 @@ public class Controller extends HttpServlet {
       mistakes.put("name", "The name is required");
     if (request.getParameter("description").isEmpty())
       mistakes.put("description", "The description is required");
-    Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
-    if (account == null)
+    if (!request.getParameter("account").isEmpty()) {
+      Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
+      if (account == null)
+        mistakes.put("destination", "The account is invalid");
+    } else {
       mistakes.put("destination", "The account is invalid");
+    }
     return mistakes;
   }
   

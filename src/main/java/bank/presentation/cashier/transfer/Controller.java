@@ -185,25 +185,26 @@ public class Controller extends HttpServlet {
       mistakes.put("amount", "The amount is required");
     if (request.getParameter("description").isEmpty())
       mistakes.put("description", "The description is required");
-    Account origin = dao.findById(Integer.valueOf(request.getParameter("origin")));
-    Account destination = dao.findById(Integer.valueOf(request.getParameter("destination")));
-    if (origin == null)
+    if (!request.getParameter("origin").isEmpty()) {
+      Account origin = dao.findById(Integer.valueOf(request.getParameter("origin")));
+      if (origin == null)
+        mistakes.put("origin", "The source is invalid");
+      if (origin != null) {
+        Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
+        if (origin.getAmount() < amount)
+          mistakes.put("amount", "The source account doesn't have enough money");
+      }
+    } else {
       mistakes.put("origin", "The source is invalid");
-    if (destination == null)
+    }
+    if (!request.getParameter("destination").isEmpty()) {
+      Account destination = dao.findById(Integer.valueOf(request.getParameter("destination")));
+      if (destination == null)
+        mistakes.put("destination", "The destination is invalid");
+    } else {
       mistakes.put("destination", "The destination is invalid");
-    if (origin != null) {
-      Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
-      if (origin.getAmount() < amount)
-        mistakes.put("amount", "The source account doesn't have enough money");
     }
     return mistakes;
-  }
-          
-  public static String isErroneous(String field, Map<String,String> mistakes) {
-    if ((mistakes != null) && (mistakes.get(field) != null))
-      return "is-invalid";
-    else
-      return "";
   }
   
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
