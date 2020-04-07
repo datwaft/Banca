@@ -78,12 +78,20 @@ public class Controller extends HttpServlet {
     Model model = (Model) request.getAttribute("model");
     try
     {
+      if("".equals(request.getParameter("trans_origin_accounts")))
+      {
+        throw new Exception("Empty field");
+      }
       model.setOrigin(bank.logic.model.AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
       model.setSelected(model.getOrigin().getId());
       model.setDestination_accounts(bank.logic.model.LinkModel.getInstance().searchByLinked(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
       
     }
-    catch (Exception ex) { System.out.println(ex);}
+    catch (Exception ex) {
+      Map<String, String> mistakes = new HashMap<>();
+      mistakes.put("trans_origin_accounts","Origin account was empty or invalid");  //estas 3 lineas quedaron como pruebas finales xdxdxdxd borrar en caso de error xd
+      request.setAttribute("mistakes", mistakes);
+    }
     return "/client/transfer/view.jsp";
   }
   
@@ -121,7 +129,7 @@ public class Controller extends HttpServlet {
       
       bank.logic.model.MovementModel.getInstance().create(movement);
       origin.setAmount(origin.getAmount() - amount);
-      destination.setAmount(destination.getAmount() + amount);
+      destination.setAmount(destination.getAmount() + amount/origin.getCurrency().getConversion()*destination.getCurrency().getConversion()); //cambio que puede da;ar la transfer de cliente
       dao.edit(origin);
       dao.edit(destination);
       
@@ -136,12 +144,14 @@ public class Controller extends HttpServlet {
     Map<String, String> mistakes = new HashMap<>();
     bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
     if (request.getParameter("trans_ammount").isEmpty())
-      mistakes.put("origin", "The source is required");
-    System.out.println(Integer.valueOf(request.getParameter("origin_hiden")));
-    System.out.println(Integer.valueOf(request.getParameter("trans_ammount")));
-    if (Integer.valueOf(request.getParameter("trans_ammount")) > dao.findById(Integer.valueOf(request.getParameter("origin_hiden"))).getAmount()){
-      mistakes.put("ammount", "The ammount is insuficient");
+      mistakes.put("trans_ammount", "The source is required");
+    if (request.getParameter("trans_ammount").isEmpty() || Integer.valueOf(request.getParameter("trans_ammount")) > dao.findById(Integer.valueOf(request.getParameter("origin_hiden"))).getAmount()){
+      mistakes.put("trans_ammount", "Invalid amount or insuficient balance");
     }
+    if (request.getParameter("trans_description").isEmpty())
+      mistakes.put("trans_description", "The description field was empty");
+    if( "".equals(request.getParameter("trans_destination_accounts")))
+      mistakes.put("trans_destination_accounts","The destination account is invalid");
     return mistakes;
   }
 

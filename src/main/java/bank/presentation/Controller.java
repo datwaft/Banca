@@ -31,6 +31,33 @@ public class Controller {
       return salt.toString();
     }
     
+    public String validateMap(Map<String,String> map, String name)
+    {
+      if(map == null || map.isEmpty() || map.get(name) == null)
+      {
+        return "";
+      }
+      return "error";
+    }
+    
+    public String getTitle(Map<String,String> map, String name)
+    {
+            if(map == null || map.isEmpty() || map.get(name) == null)
+      {
+        return "";
+      }
+      return map.get(name);
+    }
+    
+    public String getSpan(Map<String,String> map)
+    {
+      if(map == null || map.isEmpty())
+      {
+        return "";
+      }
+      return "td_class";
+    }
+    
     public static Controller getInstance() {
         return ControllerHolder.INSTANCE;
     }

@@ -51,7 +51,15 @@ public class Controller extends HttpServlet {
   
   private String verify(HttpServletRequest request)
   {
-    return verifyAction(request);
+    Map<String, String> mistakes = null;
+    if (!request.getParameter("register_id").isEmpty()) {
+      return verifyAction(request);
+    } else {
+      mistakes = new HashMap<>();
+      mistakes.put("register_id","The id field was empty");
+      request.setAttribute("mistakes", mistakes);
+      return "/cashier/register/view.jsp";
+    }
   }
   
   private String register(HttpServletRequest request)
@@ -119,7 +127,10 @@ public class Controller extends HttpServlet {
         new_user.setClient(true);
         new_user.setName(request.getParameter("register_name"));
         new_user.setCellphone(request.getParameter("register_cellphone"));
-        new_user.setPassword("12345678");
+        
+        bank.presentation.Controller controller = bank.presentation.Controller.getInstance();
+        
+        new_user.setPassword(controller.generatePassword(8));
         
         bank.logic.model.UserModel.getInstance().create(new_user);
         
@@ -145,10 +156,8 @@ public class Controller extends HttpServlet {
         new_account.setDailylimit(Integer.valueOf(request.getParameter("register_limit")));
         new_account.setOwner(user);
         bank.logic.model.UserModel.getInstance().edit(user);
-
-           
-        bank.logic.model.AccountModel.getInstance().create(new_account);
         
+        bank.logic.model.AccountModel.getInstance().create(new_account);
         
         List<Account> acclist = bank.logic.model.AccountModel.getInstance().findByOwner(user.getId());
         Account owner = acclist.get(acclist.size()-1);
@@ -176,16 +185,20 @@ public class Controller extends HttpServlet {
   private Map<String, String> validate(HttpServletRequest request) {
     Map<String, String> mistakes = new HashMap<>();
     bank.logic.model.UserModel dao = bank.logic.model.UserModel.getInstance();
-//    if (request.getParameter("register_id").isEmpty())
-//      mistakes.put("id", "id is empty");
-//    if (request.getParameter("register_name").isEmpty())
-//      mistakes.put("name", "name is empty");
-//    if (request.getParameter("register_cellphone").isEmpty())
-//      mistakes.put("cellphone", "cellphone is  empty");
-//    if (request.getParameter("register_limit").isEmpty())
-//      mistakes.put("limit", "limit is empty");
-//    if (request.getParameter("register_currency") == "")
-//      mistakes.put("currency", "Invalid currency choosed");
+    if (request.getParameter("register_id").isEmpty())
+      mistakes.put("register_id", "id field was empty");
+    
+    if ( request.getParameter("register_name") != null && request.getParameter("register_name").isEmpty())
+      mistakes.put("register_name", "name was empty");
+    
+    if (request.getParameter("register_cellphone") != null  && request.getParameter("register_cellphone").isEmpty())
+      mistakes.put("register_cellphone", "cellphone was  empty");
+    
+    
+    if (request.getParameter("register_limit").isEmpty())
+      mistakes.put("register_limit", "limit was empty");
+    if ("".equals(request.getParameter("register_currency")))
+      mistakes.put("currency", "Invalid currency choosed");
     
     return mistakes;
   }

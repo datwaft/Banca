@@ -13,6 +13,8 @@ import bank.logic.model.LinkModel;
 import bank.logic.model.UserModel;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -59,13 +61,26 @@ public class controller extends HttpServlet {
   }
   
   private String verify(HttpServletRequest request) {
-    return verifyAction(request);
-
+    if(!request.getParameter("destination_link").isEmpty())
+      return verifyAction(request);
+    else
+    {
+      Map<String, String> mistakes = new HashMap<>();
+        mistakes.put("destination_link","Destination link was empty");  //estas 3 lineas quedaron como pruebas finales xdxdxdxd borrar en caso de error xd
+        request.setAttribute("mistakes", mistakes);
+        return "/client/link/view.jsp";
+    }
   }
   
   private String link( HttpServletRequest request )
   {
-    return linkAction(request);
+    Map<String, String> mistakes = this.validate(request);
+    if (mistakes.isEmpty()) {
+      return linkAction(request);
+    } else {
+      request.setAttribute("mistakes", mistakes);
+      return "/client/link/view.jsp";
+    }
   }
   
   private String clear( HttpServletRequest request)
@@ -83,13 +98,11 @@ public class controller extends HttpServlet {
     HttpSession session = request.getSession(true);    
     User user = (User)session.getAttribute("user");
     bank.presentation.client.link.Model model = (bank.presentation.client.link.Model)request.getAttribute("model");
-
-    
     try {
       model.setAccounts(AccountModel.getInstance().findByOwner(user.getId()));
       return "/client/link/view.jsp";
     } catch (Exception ex) {
-      return "";
+      return "/client/link/view.jsp";
     }
        
   }
@@ -120,7 +133,7 @@ public class controller extends HttpServlet {
         }
       catch(Exception ex)
       {
-
+        
         return "/client/link/view.jsp";
       }
      return "/client/link/view.jsp";
@@ -145,6 +158,16 @@ public class controller extends HttpServlet {
       } 
     return "/client/link/view.jsp";
     }
+   
+   
+   private Map<String, String> validate(HttpServletRequest request) {
+    Map<String, String> mistakes = new HashMap<>();
+    bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
+    if ("".equals(request.getParameter("origin_link")))
+      mistakes.put("origin_link", "invalid value in origin link, press clear!");
+    
+    return mistakes;
+  }
 
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
