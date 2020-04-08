@@ -3,8 +3,11 @@ package bank.presentation.cashier.register;
 import bank.logic.Account;
 import bank.logic.Link;
 import bank.logic.User;
+import bank.logic.model.AccountModel;
+import bank.logic.model.CurrencyModel;
+import bank.logic.model.LinkModel;
+import bank.logic.model.UserModel;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +30,7 @@ public class Controller extends HttpServlet {
 
     request.setAttribute("model",new Model());
     Model model = (Model) request.getAttribute("model");
-    model.setCurrency(bank.logic.model.CurrencyModel.getInstance().findAll());
+    model.setCurrency(CurrencyModel.getInstance().findAll());
     String url = "";
     switch (request.getServletPath()) {
       case "/cashier/register/view":
@@ -96,7 +99,7 @@ public class Controller extends HttpServlet {
     User user = null; //quitar null cualquier wea  //falta el clear 
     try {
       
-      user = bank.logic.model.UserModel.getInstance().find(request.getParameter("register_id"));
+      user = UserModel.getInstance().find(request.getParameter("register_id"));
       if(user != null)
       {
         if (user.getCashier() == true && user.getClient() == false)
@@ -115,7 +118,7 @@ public class Controller extends HttpServlet {
   
   private String registerAction(HttpServletRequest request)
   {
-    User user = bank.logic.model.UserModel.getInstance().find(request.getParameter("register_id_hidden"));
+    User user = UserModel.getInstance().find(request.getParameter("register_id_hidden"));
     try
     {
       if (user == null)
@@ -132,17 +135,17 @@ public class Controller extends HttpServlet {
         
         new_user.setPassword(controller.generatePassword(8));
         
-        bank.logic.model.UserModel.getInstance().create(new_user);
+        UserModel.getInstance().create(new_user);
         
         Account new_account = new Account();
         
         new_account.setAmount(0);
-        new_account.setCurrency(bank.logic.model.CurrencyModel.getInstance().find(request.getParameter("register_currency")));
+        new_account.setCurrency(CurrencyModel.getInstance().find(request.getParameter("register_currency")));
         new_account.setDailylimit(Integer.valueOf(request.getParameter("register_limit")));
         new_account.setOwner(new_user);
         
         
-        bank.logic.model.AccountModel.getInstance().create(new_account);
+        AccountModel.getInstance().create(new_account);
       }
       else
       {
@@ -152,14 +155,14 @@ public class Controller extends HttpServlet {
         }
         Account new_account = new Account();
         new_account.setAmount(0);
-        new_account.setCurrency(bank.logic.model.CurrencyModel.getInstance().find(request.getParameter("register_currency")));
+        new_account.setCurrency(CurrencyModel.getInstance().find(request.getParameter("register_currency")));
         new_account.setDailylimit(Integer.valueOf(request.getParameter("register_limit")));
         new_account.setOwner(user);
-        bank.logic.model.UserModel.getInstance().edit(user);
+        UserModel.getInstance().edit(user);
         
-        bank.logic.model.AccountModel.getInstance().create(new_account);
+        AccountModel.getInstance().create(new_account);
         
-        List<Account> acclist = bank.logic.model.AccountModel.getInstance().findByOwner(user.getId());
+        List<Account> acclist = AccountModel.getInstance().findByOwner(user.getId());
         Account owner = acclist.get(acclist.size()-1);
         
         for (Account acc : acclist)
@@ -169,7 +172,7 @@ public class Controller extends HttpServlet {
             Link to_link = new Link();
             to_link.setOwner(owner);
             to_link.setLinkedAccount(acc);
-            bank.logic.model.LinkModel.getInstance().create(to_link);
+            LinkModel.getInstance().create(to_link);
           }
         }
       }
@@ -184,7 +187,7 @@ public class Controller extends HttpServlet {
   
   private Map<String, String> validate(HttpServletRequest request) {
     Map<String, String> mistakes = new HashMap<>();
-    bank.logic.model.UserModel dao = bank.logic.model.UserModel.getInstance();
+    UserModel dao = UserModel.getInstance();
     if (request.getParameter("register_id").isEmpty())
       mistakes.put("register_id", "id field was empty");
     
