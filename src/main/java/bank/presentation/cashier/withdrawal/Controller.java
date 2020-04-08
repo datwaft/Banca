@@ -4,11 +4,14 @@ import bank.logic.Account;
 import bank.logic.Movement;
 import bank.logic.User;
 import bank.logic.model.AccountModel;
+import bank.logic.model.MovementModel;
+import bank.logic.model.UserModel;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
+import javax.persistence.PersistenceException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +20,6 @@ import javax.servlet.http.HttpSession;
 
 public class Controller extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
     HttpSession session = request.getSession(true);
     User user = (User)session.getAttribute("user");
     
@@ -62,10 +64,33 @@ public class Controller extends HttpServlet {
   }
 
   private String load(HttpServletRequest request) {
+    Map<String, String> mistakes = this.mistakesLoad(request);
+    if (mistakes.isEmpty()) {
+      return this.loadAction(request);
+    } else {
+      request.setAttribute("mistakes", mistakes);
+      return "/cashier/withdrawal/view.jsp";
+    }
+  }
+  
+  private String loadAction(HttpServletRequest request) {
     Model model = (Model)request.getAttribute("model");
     AccountModel dao = AccountModel.getInstance();
     model.setAccountList(dao.findByOwner(request.getParameter("id")));
     return "/cashier/withdrawal/view.jsp";
+  }
+  
+  private Map<String, String> mistakesLoad(HttpServletRequest request) {
+    Map<String, String> mistakes = new HashMap<>();
+    UserModel dao = UserModel.getInstance();
+    if (request.getParameter("id").isEmpty()) {
+      mistakes.put("id", "The ID cannot be empty");
+    } else {
+      if (dao.find(request.getParameter("id")) == null) {
+        mistakes.put("id", "The ID is invalid");
+      }
+    }
+    return mistakes;
   }
 
   private String validateId(HttpServletRequest request) {
@@ -78,12 +103,37 @@ public class Controller extends HttpServlet {
   }
 
   private String validateAccount(HttpServletRequest request) {
+    Map<String, String> mistakes = this.mistakesAccount(request);
+    if (mistakes.isEmpty()) {
+      return this.validateAccountAction(request);
+    } else {
+      request.setAttribute("mistakes", mistakes);
+      return "/cashier/withdrawal/view.jsp";
+    }
+  }
+  
+  private String validateAccountAction(HttpServletRequest request) {
     Model model = (Model)request.getAttribute("model");
     AccountModel dao = AccountModel.getInstance();
-    try {
-      model.setAccount(dao.findById(Integer.valueOf(request.getParameter("account-input"))));
-    } catch (Exception ex) { }
+    model.setAccount(dao.findById(Integer.valueOf(request.getParameter("account-input"))));
     return "/cashier/withdrawal/view.jsp";
+  }
+  
+  private Map<String, String> mistakesAccount(HttpServletRequest request) {
+    Map<String, String> mistakes = new HashMap<>();
+    AccountModel dao = AccountModel.getInstance();
+    if (request.getParameter("account-input").isEmpty()) {
+      mistakes.put("account-input", "The account cannot be empty");
+    } else {
+      try {
+        if (dao.find(Integer.valueOf(request.getParameter("account-input"))) == null) {
+          mistakes.put("account-input", "The account is invalid");
+        }
+      } catch (NumberFormatException | PersistenceException ex) {
+        mistakes.put("account-input", "The account must be a number");
+      }
+    }
+    return mistakes;
   }
 
   private String clear(HttpServletRequest request) {
@@ -93,7 +143,7 @@ public class Controller extends HttpServlet {
   }
 
   private String withdrawal(HttpServletRequest request) {
-    Map<String, String> mistakes = this.validate(request);
+    Map<String, String> mistakes = this.mistakes(request);
     if (mistakes.isEmpty()) {
       return this.withdrawalAction(request);
     } else {
@@ -104,7 +154,7 @@ public class Controller extends HttpServlet {
   
   private String withdrawalAction(HttpServletRequest request) {
     Movement movement = new Movement();
-    bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
+    AccountModel dao = AccountModel.getInstance();
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     try {
       Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
@@ -117,7 +167,7 @@ public class Controller extends HttpServlet {
       movement.setDescription(description);
       movement.setDate(date);
       
-      bank.logic.model.MovementModel.getInstance().create(movement);
+      MovementModel.getInstance().create(movement);
       account.setAmount(account.getAmount() - amount);
       dao.edit(account);
     } catch (Exception ex) {
@@ -126,26 +176,26 @@ public class Controller extends HttpServlet {
     return "/cashier/deposit/done.jsp";
   }
   
-  private Map<String, String> validate(HttpServletRequest request) {
+  private Map<String, String> mistakes(HttpServletRequest request) {
     Map<String, String> mistakes = new HashMap<>();
-    bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
-    if (request.getParameter("account").isEmpty())
-      mistakes.put("account", "The account is required");
+    AccountModel dao = AccountModel.getInstance();
     if (request.getParameter("amount").isEmpty())
       mistakes.put("amount", "The amount is required");
     if (request.getParameter("description").isEmpty())
       mistakes.put("description", "The description is required");
     if (!request.getParameter("account").isEmpty()) {
       Account account = dao.findById(Integer.valueOf(request.getParameter("account")));
-      if (account == null)
-        mistakes.put("destination", "The account is invalid");
-      if (account != null) {
+      if (account == null) {
+        mistakes.put("account-input", "The account is invalid");
+        mistakes.put("account-select", "The account is invalid");
+      } else if (account != null && !request.getParameter("amount").isEmpty()) {
         Double amount = Double.valueOf(request.getParameter("amount"))/account.getCurrency().getConversion();
         if (account.getAmount() < amount)
           mistakes.put("amount", "The account doesn't have enough money");
       }
     } else {
-      mistakes.put("destination", "The account is invalid");
+      mistakes.put("account-input", "The account is required");
+      mistakes.put("account-select", "The account is required");
     }
     return mistakes;
   }
