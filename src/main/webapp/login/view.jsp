@@ -5,7 +5,10 @@
 <%@page import="bank.presentation.login.Controller"%>
 
 <% Model model= (Model)request.getAttribute("model");%>
-<% Map<String,String> mistakes = (Map<String,String>)request.getAttribute("mistakes");%>
+<% 
+  Map<String,String> errores = (Map<String,String>) request.getAttribute("mistakes");
+  bank.presentation.Controller verify = bank.presentation.Controller.getInstance();
+%>
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +17,7 @@
     <%@ include file="/header.jsp" %>
     <div class="transfer_display login_size">
       <form name="form" action="${pageContext.request.contextPath}/login/login" method="post">
-        <table class="login">
+        <table >
           <tr>
             <th colspan="2">
               <center>Please, enter your login information</center>
@@ -22,16 +25,20 @@
           </tr>
           <tr>
             <td>username</td>
-            <td>
-              <input type="text" placeholder="User ID" name="id"
-                class="<%=bank.presentation.Controller.getInstance().isErroneous("id", mistakes)%>" autocomplete="off">
+            <td class="<%= verify.getSpan(errores) %>">
+              <input type="text" placeholder="User ID" name="id" class="<%= verify.validateMap(errores, "id") %>" autocomplete="off">
+              <span>
+                <%= verify.getTitle(errores,"id") %>
+              </span>
             </td>
           </tr>
           <tr>
             <td>password</td>
-            <td>
-              <input type="password" placeholder="User password" name="password"
-                class="<%=bank.presentation.Controller.getInstance().isErroneous("password", mistakes)%>" autocomplete="off">
+            <td class="<%= verify.getSpan(errores) %>">
+              <input type="password" placeholder="User password" name="password" class="<%= verify.validateMap(errores, "password") %>" autocomplete="off">
+              <span>
+                <%= verify.getTitle(errores,"password") %>
+              </span>
             </td>
           </tr>
           <tr>
