@@ -33,8 +33,7 @@ public class Controller {
     
     public String validateMap(Map<String,String> map, String name)
     {
-      if(map == null || map.isEmpty() || map.get(name) == null)
-      {
+      if (map == null || map.isEmpty() || map.get(name) == null) {
         return "";
       }
       return "error";
@@ -42,8 +41,7 @@ public class Controller {
     
     public String getTitle(Map<String,String> map, String name)
     {
-            if(map == null || map.isEmpty() || map.get(name) == null)
-      {
+      if (map == null || map.isEmpty() || map.get(name) == null) {
         return "";
       }
       return map.get(name);
@@ -51,8 +49,7 @@ public class Controller {
     
     public String getSpan(Map<String,String> map)
     {
-      if(map == null || map.isEmpty())
-      {
+      if (map == null || map.isEmpty()) {
         return "";
       }
       return "td_class";
