@@ -44,14 +44,18 @@
               </td>   
             </tr>
             <tr>
-              <td><label>Account number to link:</label></td>
-              <td class="<%= verify.getSpan(errores) %>">
-                  <input type = "text"  name="destination_link" class="<%= verify.validateMap(errores, "destination_link") %>" value=<%= (model.getTo_link() == null ? "" : model.getTo_link().getId())%>>
-              <span>
-                <%= verify.getTitle(errores,"destination_link") %>
-              </span>
+              <td>
+                <label>Account number to link:</label>
               </td>
-              <td><input name="verify" type = "submit" value="Verify" align="center" formaction="${pageContext.request.contextPath}/client/link/verify"><td>
+              <td class="<%= verify.getSpan(errores) %>">
+                <input type = "text"  name="destination_link" class="<%= verify.validateMap(errores, "destination_link") %>" value=<%= (model.getTo_link() == null ? "" : model.getTo_link().getId())%>>
+                <span>
+                  <%= verify.getTitle(errores,"destination_link") %>
+                </span>
+              </td>
+              <td>
+                <input name="verify" type = "submit" value="Verify" align="center" formaction="${pageContext.request.contextPath}/client/link/verify">
+              <td>
             </tr>
             <tr>
               <td><label>Complete name: </label></td>
