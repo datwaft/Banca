@@ -20,7 +20,7 @@
               <li><a href="${pageContext.request.contextPath}/cashier/register/view">Sign Up</a></li>
               <li><a href="${pageContext.request.contextPath}/cashier/interest/view">Credit interest</a></li>
               <li><a href="${pageContext.request.contextPath}/cashier/deposit/view">Deposit</a></li>
-              <li><a href="${pageContext.request.contextPath}/cashier/withdrawal/view">Retire</a></li>
+              <li><a href="${pageContext.request.contextPath}/cashier/withdrawal/view">Withdraw</a></li>
               <li><a href="${pageContext.request.contextPath}/cashier/transfer/view">Transfer</a></li>
             <% } %>
           </ul>
