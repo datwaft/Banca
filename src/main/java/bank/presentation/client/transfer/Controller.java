@@ -118,7 +118,7 @@ public class Controller extends HttpServlet {
     try {
       Account origin = dao.findById(Integer.valueOf(request.getParameter("origin_hiden")));
       Account destination = dao.findById(Integer.valueOf(request.getParameter("trans_destination_accounts")));
-      Double amount = Double.valueOf(request.getParameter("trans_ammount"))/origin.getCurrency().getConversion();
+      Double amount = Double.valueOf(request.getParameter("trans_ammount"));
       String description = request.getParameter("trans_description");
       Date date = new Date();
       movement.setOrigin(origin);
