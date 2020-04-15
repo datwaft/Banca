@@ -24,7 +24,7 @@ public class Controller extends HttpServlet {
     String url = "";
     switch (request.getServletPath()) {
       case "/client/accounts/movements/view":
-        url = this.view(request);
+        url = this.view(request, user);
         break;
       case "/client/accounts/movements/update":
         url = this.update(request);
@@ -33,21 +33,30 @@ public class Controller extends HttpServlet {
     request.getRequestDispatcher(url).forward(request, response);
   }
 
-  private String view(HttpServletRequest request) {
-    return viewAction(request);
+  private String view(HttpServletRequest request, User user) {
+    return viewAction(request, user);
   }
 
-  private String viewAction(HttpServletRequest request) {
+  private String viewAction(HttpServletRequest request, User user) {
     Model model = (Model)request.getAttribute("model");
     
     String account = request.getParameter("account");
     
     try {
-      model.setMovements(MovementModel.getInstance().findByAccount(account, "", ""));
+      
       model.setAccount(bank.logic.model.AccountModel.getInstance().findById(Integer.valueOf(account)));
+      if(model.getAccount().getOwner().getId() == null ? user.getId() != null : !model.getAccount().getOwner().getId().equals(user.getId()))
+      {
+        System.out.println(model.getAccount().getOwner().getId());
+        System.out.println(user.getId());
+        throw new Exception("This is not one of your account");
+      }
+      model.setMovements(MovementModel.getInstance().findByAccount(account, "", ""));
+
       return "/client/accounts/movements/view.jsp";
     } catch (Exception ex) {
-      return "";
+
+      return "/client/accounts/view";
     }
   }
   

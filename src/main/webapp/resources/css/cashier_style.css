@@ -149,13 +149,46 @@ and open the template in the editor.
 .td_class span{
   font-size:small;
   padding: 0;
-  display: block;
+  display: none;
   color: red;
   opacity: 0;
 }
 
 .td_class:hover >span{
+  display: block;
   opacity: 1;
+}
+
+#welcome{
+  margin: 8px 20px;
+  float: right;
+  color:white;
+}
+
+#date_display
+{
+  margin: 50px 70px;
+  background-color: transparent;
+
+}
+
+#date_display table{
+  background-color: rgba(0,0,0,0.5);
+  border:none;
+  color:white;
+}
+
+#date_display td, tr{
+  color:white;
+}
+
+#date_display input[type="date"]{
+  background: rgba(0,191,255,0.5);
+  margin-bottom: 0px;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;  
+  color: black;
 }
 /*Cashier transfer css ends here*/
 

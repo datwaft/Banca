@@ -19,14 +19,18 @@
   <%@ include file="/head.jsp" %> 
   <body>
     <%@ include file="/header.jsp" %>
-    <div id="move_display">
+    <div id="date_display">
       <form name="form" method="post"
         action="${pageContext.request.contextPath}/client/accounts/movements/update?account=${pageContext.request.getParameter("account")}">
-        <label>From: </label><input type="date" name="from">
-        <label>To: </label><input type="date" name="to">
-        <button type="submit">Filter by date range</button>
+        <table>
+          <tr>
+            <td><label>From: </label><input type="date" name="from"></td>
+            <td><label>To: </label><input type="date" name="to"></td>
+            <td><button type="submit">Filter by date range</button></td>
+          </tr>
+        </table>
       </form>
-      <table class="move_table">
+      <table class="Acc_tables">
         <thead>
           <tr>
             <th>Time</th>

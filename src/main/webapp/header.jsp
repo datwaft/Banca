@@ -28,6 +28,7 @@
       <% } %>
       <% if (usuario!=null) { %>
         <li><a href="${pageContext.request.contextPath}/login/logout">Log Out</a></li>
+        <label id="welcome">Welcome: <%= usuario.getName() %></label>
       <% } else { %>
         <li><a href="${pageContext.request.contextPath}/login/view">Log In</a></li>
       <% } %>

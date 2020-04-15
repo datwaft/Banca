@@ -24,7 +24,7 @@
             </th>
           </tr>
           <tr>
-            <td>username</td>
+            <td>Username</td>
             <td class="<%= verify.getSpan(errores) %>">
               <input type="text" placeholder="User ID" name="id" class="<%= verify.validateMap(errores, "id") %>" autocomplete="off">
               <span>
@@ -33,7 +33,7 @@
             </td>
           </tr>
           <tr>
-            <td>password</td>
+            <td>Password</td>
             <td class="<%= verify.getSpan(errores) %>">
               <input type="password" placeholder="User password" name="password" class="<%= verify.validateMap(errores, "password") %>" autocomplete="off">
               <span>
