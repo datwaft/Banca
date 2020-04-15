@@ -195,10 +195,6 @@ public class Controller extends HttpServlet {
       if (account == null) {
         mistakes.put("account-input", "The account is invalid");
         mistakes.put("account-select", "The account is invalid");
-      } else if (account != null && !request.getParameter("amount").isEmpty()) {
-        Double amount = Double.valueOf(request.getParameter("amount"))/account.getCurrency().getConversion();
-        if (account.getAmount() < amount)
-          mistakes.put("amount", "The account doesn't have enough money");
       }
     } else {
       mistakes.put("account-input", "The account is required");
