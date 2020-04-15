@@ -261,6 +261,7 @@ public class Controller extends HttpServlet {
       movement.setAmount(amount);
       movement.setDescription(description);
       movement.setDate(date);
+      movement.setType("A");
       
       MovementModel.getInstance().create(movement);
       origin.setAmount(origin.getAmount() - amount);

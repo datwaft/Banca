@@ -17,11 +17,20 @@ insert into `account` (`owner`, `currency`, `dailylimit`) values
 ('dual', 'EUR', 20000),
 ('dual', 'CRC', 2000000);
 
-insert into `movement` (`origin`, `destination`, `amount`, `description`, `date`) values 
-(null, 3, 5000, 'movimiento 1', '2020-01-27 00:00:00'),
-(3, null, 5000, 'movimiento 2', '2020-02-09 00:00:00');
+insert into `link` (`owner`, `linked_account`) values
+(1, 2),
+(2, 1),
+(3, 4),
+(4, 3),
+(5, 6),
+(6, 5);
+
+insert into `movement` (`origin`, `destination`, `amount`, `description`, `date`, `type`) values 
+(null, 3, 5000, 'movimiento 1', '2020-01-27 00:00:00', 'A'),
+(3, null, 5000, 'movimiento 2', '2020-02-09 00:00:00', 'A');
 
 select * from `movement`;
 select * from `account`;
 select now();
 select * from `user`;
+select * from `link`;

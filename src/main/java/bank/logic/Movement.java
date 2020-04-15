@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
   @NamedQuery(name = "Movement.findById", query = "SELECT m FROM Movement m WHERE m.id = :id"),
   @NamedQuery(name = "Movement.findByAmount", query = "SELECT m FROM Movement m WHERE m.amount = :amount"),
   @NamedQuery(name = "Movement.findByDescription", query = "SELECT m FROM Movement m WHERE m.description = :description"),
-  @NamedQuery(name = "Movement.findByDate", query = "SELECT m FROM Movement m WHERE m.date = :date")})
+  @NamedQuery(name = "Movement.findByDate", query = "SELECT m FROM Movement m WHERE m.date = :date"),
+  @NamedQuery(name = "Movement.findByType", query = "SELECT m FROM Movement m WHERE m.type = :type")})
 public class Movement implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -44,6 +45,9 @@ public class Movement implements Serializable {
   @Column(name = "date")
   @Temporal(TemporalType.TIMESTAMP)
   private Date date;
+  @Basic(optional = false)
+  @Column(name = "type")
+  private String type;
   @JoinColumn(name = "origin", referencedColumnName = "id")
   @ManyToOne
   private Account origin;
@@ -58,11 +62,12 @@ public class Movement implements Serializable {
     this.id = id;
   }
 
-  public Movement(Integer id, double amount, String description, Date date) {
+  public Movement(Integer id, double amount, String description, Date date, String type) {
     this.id = id;
     this.amount = amount;
     this.description = description;
     this.date = date;
+    this.type = type;
   }
 
   public Integer getId() {
@@ -95,6 +100,14 @@ public class Movement implements Serializable {
 
   public void setDate(Date date) {
     this.date = date;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
   public Account getOrigin() {
