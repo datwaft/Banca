@@ -156,7 +156,9 @@ public class controller extends HttpServlet {
     } catch (Exception ex) {
           return "/client/link/view.jsp";
       } 
-    return "/client/link/view.jsp";
+    
+    request.setAttribute("last_path", "/client/link/view"); 
+    return "/done/view";
     }
    
    

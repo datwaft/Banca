@@ -7,7 +7,7 @@
     <form>
       <table>
         <tr>
-          <th>Your transfer has been done.</th>
+          <th>Action successfull.</th>
         </tr>
         <tr>
           <th>Press <a href="${pageContext.request.contextPath}/cashier/deposit/view">this</a> to do another deposit.</th>

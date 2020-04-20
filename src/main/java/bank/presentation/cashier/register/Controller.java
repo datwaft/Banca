@@ -182,7 +182,8 @@ public class Controller extends HttpServlet {
       
     }
     
-    return "/cashier/register/view.jsp";
+    request.setAttribute("last_path", "/cashier/register/view"); 
+    return "/done/view";
   }
   
   private Map<String, String> validate(HttpServletRequest request) {

@@ -271,7 +271,10 @@ public class Controller extends HttpServlet {
     } catch (Exception ex) {
       return "/error.jsp";
     }
-    return "/cashier/transfer/done.jsp";
+    
+    request.setAttribute("last_path", "/cashier/transfer/view"); 
+    return "/done/view";
+
   }
   
   private Map<String, String> mistakes(HttpServletRequest request) {

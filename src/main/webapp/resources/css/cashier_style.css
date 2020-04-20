@@ -74,6 +74,13 @@ and open the template in the editor.
   height: 80px;
 }
 
+.done_size
+{
+   margin: 10px auto;
+  width: 700px;
+  height: 380px;
+}
+
 .client_size{
   margin: 40px auto;
   width: 600px;

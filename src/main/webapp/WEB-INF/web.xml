@@ -34,12 +34,16 @@
         <servlet-class>bank.presentation.client.transfer.Controller</servlet-class>
     </servlet>
     <servlet>
-      <servlet-name>cashier-register</servlet-name>
-      <servlet-class>bank.presentation.cashier.register.Controller</servlet-class>
+        <servlet-name>cashier-register</servlet-name>
+        <servlet-class>bank.presentation.cashier.register.Controller</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>cashier-interest</servlet-name>
         <servlet-class>bank.presentation.cashier.interest.Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Done-controller</servlet-name>
+        <servlet-class>bank.presentacion.done.Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -102,7 +106,7 @@
         <url-pattern>/client/transfer/clear</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-      <servlet-name>cashier-register</servlet-name>
+        <servlet-name>cashier-register</servlet-name>
         <url-pattern>/cashier/register/view</url-pattern>
         <url-pattern>/cashier/register/verify</url-pattern>
         <url-pattern>/cashier/register/clear</url-pattern>
@@ -112,5 +116,10 @@
         <servlet-name>cashier-interest</servlet-name>
         <url-pattern>/cashier/interest/view</url-pattern>
         <url-pattern>/cashier/interest/credit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Done-controller</servlet-name>
+        <url-pattern>/done/view</url-pattern>
+        <url-pattern>/done/go-back</url-pattern>
     </servlet-mapping>
 </web-app>

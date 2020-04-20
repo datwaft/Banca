@@ -137,7 +137,9 @@ public class Controller extends HttpServlet {
     } catch (Exception ex) {
       return "/error.jsp";
     }
-    return "/client/transfer/view.jsp";
+    
+    request.setAttribute("last_path", "/cashier/transfer/view"); 
+    return "/done/view";
   }
   
   
