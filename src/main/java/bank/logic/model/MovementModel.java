@@ -76,49 +76,6 @@ public class MovementModel extends MovementDao {
     }
   }
   
-  public List<Movement> findByOrigin(String account, String from, String to, String type) {
-    if(account  == null)
-      return null;
-    EntityManager em = getEntityManager();
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-    try {
-      if (from.isEmpty() && to.isEmpty()) {
-        return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.origin.id CHAR) = :id AND type = :type")
-          .setParameter("id", account)
-          .setParameter("type", type)
-          .getResultList();
-      } else if (from.isEmpty()) {
-        return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.origin.id CHAR) = :id AND type = :type" 
-          + " AND obj.date <= to")
-          .setParameter("id", account)
-          .setParameter("to", formatter.parse(to))
-          .setParameter("type", type)
-          .getResultList();
-      } else if (to.isEmpty()) {
-        return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.origin.id CHAR) = :id AND type = :type" 
-          + " AND :from <= obj.date")
-          .setParameter("id", account)
-          .setParameter("from", formatter.parse(from))
-          .setParameter("type", type)
-          .getResultList();
-      } else {
-        return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.origin.id CHAR) = :id" 
-          + " AND obj.date BETWEEN :from AND :to AND type = :type")
-          .setParameter("id", account)
-          .setParameter("to", formatter.parse(to))
-          .setParameter("from", formatter.parse(from))
-          .setParameter("type", type)
-          .getResultList();
-      }
-    } catch (Exception e) {
-      System.out.print("An error occurred while getting origin = '" + account + "' from table Movement.\n\n Error:" + e + "\n\n");
-      return null;
-    } finally {
-      em.close();
-    }
-  }
-  
   public List<Movement> findByDestination(String account, String from, String to) {
     if(account  == null)
       return null;

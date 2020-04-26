@@ -289,8 +289,8 @@ public class Controller extends HttpServlet {
       if (origin == null) {
         mistakes.put("origin-account", "The source account is invalid");
         mistakes.put("origin-id-account", "The source account is invalid");
-      } else if (origin != null && !request.getParameter("amount").isEmpty()) {
-        Double amount = Double.valueOf(request.getParameter("amount"))/origin.getCurrency().getConversion();
+      } else if (!request.getParameter("amount").isEmpty()) {
+        Double amount = Double.valueOf(request.getParameter("amount"));
         if (origin.getAmount() < amount)
           mistakes.put("amount", "The source account doesn't have enough money");
       }

@@ -71,21 +71,6 @@
            </td>
           </tr>
           <tr>
-            <td><label>Destination account number: </label></td>
-            <td>
-              <input type = "text" placeholder="Account No." <%= destination_accs == null ? "disabled" : "" %>>
-              <!--<input type = "submit" value="verify">
-              <input type = "submit" value="clear">-->
-           
-            </td>
-          </tr>
-          <tr>
-            <td><label>Receptor name: </label></td>
-            <td>
-              <input type = "text" <%= destination_accs == null ? "disabled" : "" %>>
-            </td>
-          </tr>
-          <tr>
             <th colspan="3">
               <center>Transfer information</center>
             </th>
@@ -112,7 +97,7 @@
           </tr>
           <tr>
             <th colspan="3">
-          <center><input type = "submit" value="Tansfer" <%= destination_accs == null || destination_accs.isEmpty() ? "disabled":"" %>></center>
+          <center><input type = "submit" value="Transfer" <%= destination_accs == null || destination_accs.isEmpty() ? "disabled":"" %>></center>
             </th>
           </tr>
         </table>

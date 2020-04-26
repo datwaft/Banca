@@ -3,10 +3,20 @@ package bank.presentation.client.transfer;
 import bank.logic.Account;
 import bank.logic.Movement;
 import bank.logic.User;
+import bank.logic.model.AccountModel;
+import bank.logic.model.LinkModel;
+import bank.logic.model.MovementModel;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +35,7 @@ public class Controller extends HttpServlet {
     request.setAttribute("model", new Model());
     Model model = (Model)request.getAttribute("model");
     
-    model.origin_accounts = bank.logic.model.AccountModel.getInstance().findByOwner(user.getId());
+    model.origin_accounts = AccountModel.getInstance().findByOwner(user.getId());
    
     String url = "";
     switch (request.getServletPath()) {
@@ -56,9 +66,9 @@ public class Controller extends HttpServlet {
       if("".equals(request.getParameter("trans_origin_accounts"))) {
         throw new Exception("Empty field");
       }
-      model.setOrigin(bank.logic.model.AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
+      model.setOrigin(AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
       model.setSelected(model.getOrigin().getId());
-      model.setDestination_accounts(bank.logic.model.LinkModel.getInstance().searchByLinked(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
+      model.setDestination_accounts(LinkModel.getInstance().searchByLinked(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
     }
     catch (Exception ex) {
       Map<String, String> mistakes = new HashMap<>();
@@ -87,7 +97,7 @@ public class Controller extends HttpServlet {
   private String transferAction(HttpServletRequest request) {
     
     Movement movement = new Movement();
-    bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
+    AccountModel dao = AccountModel.getInstance();
     try {
       Account origin = dao.findById(Integer.valueOf(request.getParameter("origin_hiden")));
       Account destination = dao.findById(Integer.valueOf(request.getParameter("trans_destination_accounts")));
@@ -101,7 +111,7 @@ public class Controller extends HttpServlet {
       movement.setDate(date);
       movement.setType("C");
       
-      bank.logic.model.MovementModel.getInstance().create(movement);
+      MovementModel.getInstance().create(movement);
       origin.setAmount(origin.getAmount() - amount);
       destination.setAmount(destination.getAmount() + amount/origin.getCurrency().getConversion()*destination.getCurrency().getConversion()); //cambio que puede da;ar la transfer de cliente
       dao.edit(origin);
@@ -115,22 +125,53 @@ public class Controller extends HttpServlet {
     return "/done/view";
   }
   
-  
   private Map<String, String> validate(HttpServletRequest request) {
     Map<String, String> mistakes = new HashMap<>();
-    bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
-    if (request.getParameter("trans_ammount").isEmpty())
-      mistakes.put("trans_ammount", "The source is required");
-    if (request.getParameter("trans_ammount").isEmpty() || Integer.valueOf(request.getParameter("trans_ammount")) > dao.findById(Integer.valueOf(request.getParameter("origin_hiden"))).getAmount()) {
-      mistakes.put("trans_ammount", "Invalid amount or insuficient balance");
+    AccountModel dao = AccountModel.getInstance();
+    
+    if (request.getParameter("origin_hiden").isEmpty()) {
+      mistakes.put("trans_origin_accounts", "The origin account is invalid");
+    } 
+    if (request.getParameter("trans_ammount").isEmpty()) {
+      mistakes.put("trans_ammount", "Invalid transfer amount");
+    } else if (!request.getParameter("origin_hiden").isEmpty()) {
+      Double amount = Double.valueOf(request.getParameter("trans_ammount"));
+      Account origin = dao.findById(Integer.valueOf(request.getParameter("origin_hiden")));
+      Double account_amount = origin.getAmount();
+      Double acc_today = dailyLimitBalance(request.getParameter("origin_hiden"));
+      if (account_amount < amount) {
+        mistakes.put("trans_ammount", "The origin account doesn't have enough balance");
+      } else if (amount + acc_today > origin.getDailylimit()) {
+        mistakes.put("trans_ammount", "That amount exceeds the daily limit");
+      }
     }
-    if (request.getParameter("trans_description").isEmpty())
+    if (request.getParameter("trans_description").isEmpty()) {
       mistakes.put("trans_description", "The description field was empty");
-    if( "".equals(request.getParameter("trans_destination_accounts")))
+    }
+    if(request.getParameter("trans_destination_accounts").isEmpty()) {
       mistakes.put("trans_destination_accounts","The destination account is invalid");
+    }
     return mistakes;
   }
 
+  private Double dailyLimitBalance(String account) {
+    MovementModel dao = MovementModel.getInstance();
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDate today = LocalDate.now(ZoneOffset.UTC) ;
+    OffsetDateTime start = today.atTime(OffsetTime.MIN) ;
+    OffsetDateTime end = today.plusDays(1).atTime(OffsetTime.MIN) ;
+    String from = fmt.format(start);
+    String to = fmt.format(end);
+    List<Movement> movements = dao.findByOrigin(account, from, to);
+    movements = movements.stream().filter(x -> x.getType().equals("C")).collect(Collectors.toList());
+    
+    Double acc = 0d;
+    for (Movement movement : movements) {
+      acc += movement.getAmount();
+    }
+    return acc;
+  }
+  
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
   /**
    * Handles the HTTP <code>GET</code> method.
