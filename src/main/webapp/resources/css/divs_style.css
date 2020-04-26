@@ -25,10 +25,10 @@
 
 }
 
-.transfer_right{
+/*.transfer_right{
   padding: 5px 35px;
   background: rgba(0,0,0,0.5);
-  color:white; /*yellow*/
+  color:white; yellow
   width: 45%;
   height: 325px;
   border-bottom-right-radius: 1em;
@@ -37,14 +37,14 @@
 .transfer_left{
   padding: 5px 35px;
   background: rgba(0,0,0,0.5);
-  color:white; /*yellow*/
+  color:white; yellow
   width: 43%;
   height: 325px;
   border-bottom-left-radius: 1em;
   float: left;
-}
+}*/
 
-.principal input[type="text"]{
+/*.principal input[type="text"]{
   background: rgba(0,191,255,0.5);
   margin-bottom: 20px;
   border: none;
@@ -64,21 +64,21 @@
   color: Black;
   background-color: white;
 
-}
+}*/
 
 /*.transfer_right select{
   background: rgba(0,191,255,0.5);
   border-radius: 5px;
 }*/
-.principal label
+/*.principal label
 {
   display: inline-table;
-}
+}*/
 
 /***************************************** Divs nuevos para registrar*/
 
 
-.register_principal{
+/*.register_principal{
   width: 95%;
   height: 325px;
   margin: 50px auto;
@@ -87,7 +87,7 @@
 .register_left{
   padding: 5px 35px;
   background: rgba(0,0,0,0.5);
-  color:white; /*yellow*/
+  color:white; yellow
   width: 43%;
   height: 325px;
   border-bottom-left-radius: 1em;
@@ -101,14 +101,14 @@
   border-bottom-right-radius: 1em;
   float: right;
   display: block;
-}
+}*/
 
 #sign{
   padding: 0px 80px;
 }
   
-.register_left input[type="text"], select{
-  background: rgba(0,191,255,0.5); /*rgba(0,191,255,0.5)*/
+/*.register_left input[type="text"], select{
+  background: rgba(0,191,255,0.5); rgba(0,191,255,0.5)
   border: none;
   outline: none;
   padding: 10px;
@@ -119,12 +119,12 @@
 .register_left input[type="submit"]{
   backface-visibility:visible;
 
-}
+}*/
 
 
 /* para la tabla de registro*/
 
-.register{
+/*.register{
   color: rgba(255,255,0,0.5);
   background: transparent;
   border: none;
@@ -139,18 +139,18 @@
 .register input[type="text"], select
 {
   border-radius: 5px;
-}
+}*/
 
 
 /*Movimientos*/
-
+/*
 .move_display
 {
   margin: 85px auto;
   width: 1000px;
-}
+}*/
 
-#table_id{
+/*#table_id{
   width: 95px;
 }
 
@@ -163,30 +163,30 @@
 }
 
 .move_table{
-    border-collapse: collapse; /*Quitar espacios entre los bordes*/
-    background-color: rgba(0,0,0,0.5); /*Fondo de la tabla*/
+    border-collapse: collapse; Quitar espacios entre los bordes
+    background-color: rgba(0,0,0,0.5); Fondo de la tabla
     text-align: left;
     width: 100%;
-   /*quitar esta wea*/ table-layout: fixed;
+   quitar esta wea table-layout: fixed;
 }
 
 .move_table th,td{
   word-wrap: break-word;
     padding: 10px;
     border: solid 1px black;
-    color: white; /*letras de la tabla yellow*/
+    color: white; letras de la tabla yellow
 }
 
 table.move_table thead{
     
-    background-color: rgba(0,0,0,0.5);  /*titulo de la tabla*/
+    background-color: rgba(0,0,0,0.5);  titulo de la tabla
     border-bottom: solid 5px;
-    color: white; /*yellow*/
+    color: white; yellow
 }
 
-.move_table tr:nth-child(even){   /*nthchild es una forma de elegir ciertos atributodcomo "pares" "impares" en este caso
+.move_table tr:nth-child(even){   nthchild es una forma de elegir ciertos atributodcomo "pares" "impares" en este caso
                                   se usa para seleccionar los tr pares mediante el parametro even, otro ejemplo es el 
-                                  parametro odd que toma los pares incluyendo 0" */
+                                  parametro odd que toma los pares incluyendo 0" 
     background-color: rgba(0,191,255,0.5);
 }
 
@@ -194,13 +194,13 @@ table.move_table thead{
     background-color: rgba(255,255,0,0.5);
     color:white;
     
-}
+}*/
 
 /*se acaba la pagina de movimientos*/
 
 /*Linking*/
 
-.link_display
+/*.link_display
 {
   padding: 0;
   margin: 45px auto;
@@ -212,9 +212,9 @@ table.move_table thead{
 .link_display .title{
   width: 100%;
   height: 20px;
-}
+}*/
 
-.container label{
+/*.container label{
   color:white;
 }
 .container table,td,tr{
@@ -253,7 +253,7 @@ table.move_table thead{
 
 
 
-/* Retires*/
+ Retires
 
 .retire_display
 {
@@ -303,7 +303,7 @@ table.move_table thead{
 {
   width: 100%;
   height: 295px;
-}
+}*/
 
 /*ends retires and deposites*/
 
