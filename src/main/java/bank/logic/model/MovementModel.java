@@ -50,7 +50,7 @@ public class MovementModel extends MovementDao {
           .getResultList();
       } else if (from.isEmpty()) {
         return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.origin.id CHAR) = :id" 
-          + " AND obj.date <= to")
+          + " AND obj.date <= :to")
           .setParameter("id", account)
           .setParameter("to", formatter.parse(to))
           .getResultList();
@@ -89,7 +89,7 @@ public class MovementModel extends MovementDao {
           .getResultList();
       } else if (from.isEmpty()) {
         return em.createQuery("SELECT obj FROM Movement obj WHERE CAST(obj.destination.id CHAR) = :id" 
-          + " AND obj.date <= to")
+          + " AND obj.date <= :to")
           .setParameter("id", account)
           .setParameter("to", formatter.parse(to))
           .getResultList();
