@@ -19,11 +19,14 @@ and open the template in the editor.
 :-ms-input-placeholder { color: #9DDCFC; }
 
 
+/*Se usa*/
 .principal_div{
   width: 100%;
   height: 100%;
   display: inline-block;
 }
+
+/*hasta aqui*/
 
 .transfer_display{
   border: black solid medium;
@@ -118,6 +121,7 @@ and open the template in the editor.
 }
 
 .transfer_display td, tr{
+  border: none;
   color:white;
 }
 
@@ -130,13 +134,18 @@ and open the template in the editor.
   background-color: rgba(0,0,0,0.5);
 }
 
-.transfer_display input[type="text"], input[type="password"], input[type="number"]{
+.transfer_display input[type="text"], input[type="password"], input[type="number"], select{
   background: rgba(0,191,255,0.5);
   margin-bottom: 0px;
   border: none;
   padding: 8px;
   border-radius: 5px;  
   color: black;
+}
+
+select 
+{
+  color:white;
 }
 
 .transfer_display select option{

@@ -67,7 +67,8 @@ public class Controller extends HttpServlet {
       System.err.println(ex);
       return "/error.jsp";
     }
-    return "/cashier/interest/done.jsp";
+    request.setAttribute("last_path", "/cashier/register/view"); 
+    return "/done/view";
   }
 
   

@@ -4,6 +4,7 @@
   <%@ include file="/head.jsp" %>
   <body>
     <%@ include file="/header.jsp" %>
+    
     <form>
       <table>
         <tr>

@@ -26,7 +26,7 @@ p {
   vertical-align: middle;
   display: inline-block;
 }
-/*Clase para la lista en forma de menu*/
+/*Clase para la lista en forma de menu se usa*/
 .nav li a{
    background-color: rgba(0,0,0,0.5); /*Menu backgoround set to black before it was blue rgba(0,191,255,0.5)*/
   color:white; /* yellow*/
@@ -54,11 +54,15 @@ p {
 .nav li:hover > ul{
   display: block;
 }
+
+
+
 ul, ol{
   list-style:none;
   margin: 0;
   padding: 0;
 }
+/*Hasta aqui*/
  /*termina */
 form {
   display: flex;/*
@@ -78,6 +82,8 @@ form table tr td {
   color:black;
 }
 
+/*S e usa*/
+
 .banner {
   background: rgb(0,191,255);
     background: rgba(0,0,0,0.5); /*Changed to black from blue rgba(0,191,255,0.5)*/
@@ -95,6 +101,8 @@ div.banner{
     height: 90px;
     width: 100%;
 }
+
+/*Hasta aqui*/
 .body {
   
   flex-grow: 1;
@@ -129,13 +137,17 @@ div.banner p{
     font-size: x-large;  
 }
 
+/* se usa*/
+
 #acc_table{
     margin: 85px auto;
     width: 800px;
     
 }
 
-.Acc_tables{
+
+.Acc_tables{  
+ 
     border-collapse: collapse; /*Quitar espacios entre los bordes*/
     background-color: rgba(0,0,0,0.5); /*Fondo de la tabla*/
     text-align: left;
@@ -168,3 +180,4 @@ table.Acc_tables thead{
     
 }
 
+/*Hasta aqui se usa*/
