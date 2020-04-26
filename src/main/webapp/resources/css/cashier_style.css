@@ -34,10 +34,10 @@ and open the template in the editor.
   background-color: rgba(0,0,0,0.8);
 }
 
-.cashier_size{
-  margin: 10px auto;
-  width: 750px;
-  height: 450px;
+.cashier_size{  
+  margin: 5px auto;
+  width: 800px;
+  height: 470px;
 }
 
 .register_size
@@ -60,14 +60,14 @@ and open the template in the editor.
 .deposit_size
 {
   margin: 40px auto;
-  width: 700px;
+  width: 800px;
   height: 380px;
 }
 
 .retire_size
 {
   margin: 50px auto;
-  width: 700px;
+  width: 770px;
   height: 350px;
 }
 
@@ -85,9 +85,9 @@ and open the template in the editor.
 }
 
 .client_size{
-  margin: 40px auto;
+  margin: 15px auto;
   width: 600px;
-  height: 400px;
+  height: 450px;
   text-align: center;
 }
 
@@ -141,8 +141,14 @@ and open the template in the editor.
   padding: 8px;
   border-radius: 5px;  
   color: black;
+  border-bottom: #434343 solid medium;
 }
 
+input[type="text"]
+{
+  border-radius: 0px; 
+  border-bottom: black solid medium;
+}
 select 
 {
   color:white;
@@ -207,4 +213,27 @@ select
   color: black;
 }
 /*Cashier transfer css ends here*/
+
+button, input[type="submit"] {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #434343;
+  padding: 10px 20px 10px 20px;
+  margin: 5px 0px 5px 0px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover{
+  background: rgba(0,191,255,0.5);
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+}
 
