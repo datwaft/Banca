@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bank.presentation.client.transfer;
 
 import bank.logic.Account;
 import bank.logic.Movement;
 import bank.logic.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,38 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Mario
- */
 public class Controller extends HttpServlet {
-
-  /**
-   * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-   * methods.
-   *
-   * @param request servlet request
-   * @param response servlet response
-   * @throws ServletException if a servlet-specific error occurs
-   * @throws IOException if an I/O error occurs
-   */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
     HttpSession session = request.getSession(true);
     User user = (User)session.getAttribute("user");
     
-    if (user == null || !user.getClient())
-    {
+    if (user == null || !user.getClient()) {
       request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
     
     request.setAttribute("model", new Model());
     Model model = (Model)request.getAttribute("model");
     
-    
     model.origin_accounts = bank.logic.model.AccountModel.getInstance().findByOwner(user.getId());
    
-    
     String url = "";
     switch (request.getServletPath()) {
       case "/client/transfer/view":
@@ -74,22 +50,19 @@ public class Controller extends HttpServlet {
   }
   
   private String search(HttpServletRequest request) {
-    
     Model model = (Model) request.getAttribute("model");
     try
     {
-      if("".equals(request.getParameter("trans_origin_accounts")))
-      {
+      if("".equals(request.getParameter("trans_origin_accounts"))) {
         throw new Exception("Empty field");
       }
       model.setOrigin(bank.logic.model.AccountModel.getInstance().findById(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
       model.setSelected(model.getOrigin().getId());
       model.setDestination_accounts(bank.logic.model.LinkModel.getInstance().searchByLinked(Integer.valueOf(request.getParameter("trans_origin_accounts"))));
-      
     }
     catch (Exception ex) {
       Map<String, String> mistakes = new HashMap<>();
-      mistakes.put("trans_origin_accounts","Origin account was empty or invalid");  //estas 3 lineas quedaron como pruebas finales xdxdxdxd borrar en caso de error xd
+      mistakes.put("trans_origin_accounts", "Origin account was empty or invalid");  //estas 3 lineas quedaron como pruebas finales xdxdxdxd borrar en caso de error xd
       request.setAttribute("mistakes", mistakes);
     }
     return "/client/transfer/view.jsp";
@@ -148,7 +121,7 @@ public class Controller extends HttpServlet {
     bank.logic.model.AccountModel dao = bank.logic.model.AccountModel.getInstance();
     if (request.getParameter("trans_ammount").isEmpty())
       mistakes.put("trans_ammount", "The source is required");
-    if (request.getParameter("trans_ammount").isEmpty() || Integer.valueOf(request.getParameter("trans_ammount")) > dao.findById(Integer.valueOf(request.getParameter("origin_hiden"))).getAmount()){
+    if (request.getParameter("trans_ammount").isEmpty() || Integer.valueOf(request.getParameter("trans_ammount")) > dao.findById(Integer.valueOf(request.getParameter("origin_hiden"))).getAmount()) {
       mistakes.put("trans_ammount", "Invalid amount or insuficient balance");
     }
     if (request.getParameter("trans_description").isEmpty())
